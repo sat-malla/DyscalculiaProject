@@ -81,7 +81,7 @@ const Home = ({ navigation }) => {
       </Text>
       <Text
         style={{
-          fontSize: 15,
+          fontSize: 20,
           fontWeight: "500",
           marginTop: 50,
           color: colors.text,
