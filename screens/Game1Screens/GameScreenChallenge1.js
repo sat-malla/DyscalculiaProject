@@ -1,7 +1,9 @@
-import { StyleSheet, View, TouchableOpacity, FlatList } from "react-native";
-import React from "react";
+import { StyleSheet, View, Button, TouchableOpacity, FlatList, Modal, Pressable, ImageBackground } from "react-native";
+import React, { useState } from "react";
 import { useTheme } from "/Users/sathvikm/Documents/DyscalculiaProject/DarkTheme/ThemeProvider.js";
 import { Text } from "@rneui/base";
+import { LinearGradient } from "expo-linear-gradient";
+import { AntDesign } from "@expo/vector-icons";
 
 const buttons = [
     {
@@ -49,8 +51,14 @@ const buttons = [
       },
     ];
 
-const GameScreenChallenge1 = () => {
+const GameScreenChallenge1 = ({ navigation }) => {
   const { colors } = useTheme();
+  const [gameModal, setGameModal] = useState(false);
+
+  const finishGame = () => {
+    setGameModal(false)
+    navigation.navigate("SinglePlayer")
+  }
 
   return (
     <View
@@ -61,6 +69,92 @@ const GameScreenChallenge1 = () => {
         paddingHorizontal: 20,
       }}
     >
+      <Modal
+        animationType="fade"
+        transparent={true}
+        visible={gameModal}
+        onRequestClose={() => {
+          Alert.alert("Closed");
+          setModalVisible(!gameModal);
+        }}
+      >
+        <View
+          style={{
+            flex: 1,
+            alignItems: "center",
+            justifyContent: "center",
+            alignSelf: "center",
+          }}
+        >
+          <View
+            style={[
+              styles.modalVw,
+              {
+                borderColor: colors.text,
+                borderWidth: 3,
+              },
+            ]}
+          >
+            <LinearGradient
+              colors={["#6bffc6", colors.gradientEndCol]}
+              start={{ x: 1, y: 0 }}
+              end={{ x: 1, y: 0.8 }}
+              style={{
+                borderRadius: 16,
+                height: 208,
+                width: 378,
+                alignItems: "center",
+              }}
+            >
+              {/* Give confetti image credit: https://unsplash.com/@dendrolago89 */}
+              <ImageBackground
+                source={require("/Users/sathvikm/Documents/DyscalculiaProject/Images/confetti.jpeg")}
+                imageStyle={{ opacity: 0.2 }}
+                animationType="fade"
+                style={{ width: 378, height: 318, padding: 35 }}
+              >
+                <Text
+                  style={{
+                    marginBottom: 20,
+                    textAlign: "center",
+                    fontSize: 20,
+                    fontWeight: "bold"
+                  }}
+                >
+                  Congragulations! You completed the Game!
+                </Text>
+                <Pressable
+                  style={{
+                    borderRadius: 20,
+                    padding: 10,
+                    elevation: 2,
+                    width: 150,
+                    backgroundColor: "#6bffc6",
+                    flexDirection: "row",
+                    justifyContent: "space-evenly",
+                    marginTop: 10,
+                    marginBottom: 30,
+                    alignSelf: "center",
+                  }}
+                  onPress={() => finishGame()}
+                >
+                  <Text
+                    style={{
+                      color: "black",
+                      fontWeight: "bold",
+                      textAlign: "center",
+                      fontSize: 20,
+                    }}
+                  >
+                    Finish
+                  </Text>
+                  <AntDesign name="arrowright" size={24} color="black" />
+                </Pressable>
+              </ImageBackground>
+            </LinearGradient>
+          </View>
+        </View>
+      </Modal>
       <Text
         style={{
           color: colors.text,
@@ -121,10 +215,27 @@ const GameScreenChallenge1 = () => {
           </TouchableOpacity>
         )}
       />
+      <Button 
+        title="Temporary congrats, actually open modal"
+        onPress={() => setGameModal(true)}
+      />
     </View>
   );
 };
 
 export default GameScreenChallenge1;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  modalVw: {
+    borderRadius: 20,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+});

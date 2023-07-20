@@ -67,10 +67,15 @@ const SinglePlayer = ({ navigation }) => {
     },
   ];
 
-  function startGame1() {
+ // Opening Games
+ const startGame1 = () => {
+    setFirstGameModal(false);
     navigation.navigate("StartScreen1");
-    setFirstGameModal(false)
-  }
+ }
+ const startGame2 = () => {
+  setSecondGameModal(false);
+  navigation.navigate("StartScreen2")
+ }
 
   return (
     <View
@@ -117,7 +122,6 @@ const SinglePlayer = ({ navigation }) => {
                 height: 298,
                 width: 378,
                 alignItems: "center",
-                // marginRight: 0.75,
               }}
             >
               <ImageBackground
@@ -277,7 +281,7 @@ const SinglePlayer = ({ navigation }) => {
                     marginBottom: 50,
                     alignSelf: "center",
                   }}
-                  // onPress={!setFirstGameModal}
+                   onPress={() => startGame2()}
                 >
                   <Text
                     style={{
@@ -846,7 +850,6 @@ const SinglePlayer = ({ navigation }) => {
                   alignItems: "center",
                   height: 118,
                   width: 138,
-                  // marginRight: 0.75,
                 }}
               >
                 <ImageBackground

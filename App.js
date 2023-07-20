@@ -1,8 +1,16 @@
 import "react-native-gesture-handler";
-import { StyleSheet, TouchableOpacity, View } from "react-native";
+import {
+  StyleSheet,
+  TouchableOpacity,
+  Modal,
+  View,
+  Pressable,
+  Button,
+} from "react-native";
 import { Text } from "@rneui/base";
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import React, { useState } from "react";
 import { AntDesign } from "@expo/vector-icons";
 import {
   ThemeProvider,
@@ -19,7 +27,10 @@ import SinglePlayer from "./screens/SinglePlayer";
 import StartScreen1 from "./screens/Game1Screens/StartScreen1";
 import GameScreen1 from "./screens/Game1Screens/GameScreen1";
 import GameScreenChallenge1 from "./screens/Game1Screens/GameScreenChallenge1";
-
+// Importing Single Player Game 2 Screens
+import StartScreen2 from "./screens/Game2Screens/StartScreen2";
+import GameScreen2 from "./screens/Game2Screens/GameScreen2";
+import GameScreenSubt from "./screens/Game2Screens/GameScreenSubt";
 
 const Stack = createNativeStackNavigator();
 
@@ -51,9 +62,14 @@ function Game1Title({ navigation }) {
   return <Text style={{ fontSize: 25 }}>Game 1</Text>;
 }
 
-//ADD MODAL WHEN SOMEONE PRESS QUIT GAME, ASK ARE YOU SURE YOU WANT TO QUIT GAME!!!
+function Game2Title({ navigation }) {
+  return <Text style={{ fontSize: 25 }}>Game 2</Text>;
+}
 
-export default function App() {
+//ADD MODAL WHEN SOMEONE PRESS QUIT GAME, ASK ARE YOU SURE YOU WANT TO QUIT GAME!!!
+// DOESN'T FREAKING WOOORKRRKRKRKKRKRKRK!!!! >:( >:( >:( >:( >:( >:( >:( >:(>:(>:(>:(>:(>:(>:(>:(>:(>:(>:(>:(>:(>:(
+
+export default function App({ navigation }) {
   return (
     <ThemeProvider>
       <NavigationContainer>
@@ -102,9 +118,19 @@ export default function App() {
               return {
                 headerTitle: () => <Game1Title navigation={navigation} />,
                 headerLeft: () => (
-                  <TouchableOpacity onPress={() => navigation.navigate("SinglePlayer")} style={{ flexDirection: "row", marginLeft: -10 }}>
-                    <AntDesign name="arrowleft" size={18} color="black" style={{ marginTop: 2.5 }} />
-                    <Text style={{ fontSize: 18, marginLeft: 5 }}>Quit Game</Text>
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate("SinglePlayer")}
+                    style={{ flexDirection: "row", marginLeft: -10 }}
+                  >
+                    <AntDesign
+                      name="arrowleft"
+                      size={18}
+                      color="black"
+                      style={{ marginTop: 2.5 }}
+                    />
+                    <Text style={{ fontSize: 18, marginLeft: 5 }}>
+                      Quit Game
+                    </Text>
                   </TouchableOpacity>
                 ),
               };
@@ -117,9 +143,19 @@ export default function App() {
               return {
                 headerTitle: () => <Game1Title navigation={navigation} />,
                 headerLeft: () => (
-                  <TouchableOpacity onPress={() => navigation.navigate("SinglePlayer")} style={{ flexDirection: "row", marginLeft: -10 }}>
-                    <AntDesign name="arrowleft" size={18} color="black" style={{ marginTop: 2.5 }} />
-                    <Text style={{ fontSize: 18, marginLeft: 5 }}>Quit Game</Text>
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate("SinglePlayer")}
+                    style={{ flexDirection: "row", marginLeft: -10 }}
+                  >
+                    <AntDesign
+                      name="arrowleft"
+                      size={18}
+                      color="black"
+                      style={{ marginTop: 2.5 }}
+                    />
+                    <Text style={{ fontSize: 18, marginLeft: 5 }}>
+                      Quit Game
+                    </Text>
                   </TouchableOpacity>
                 ),
               };
@@ -132,9 +168,95 @@ export default function App() {
               return {
                 headerTitle: () => <Game1Title navigation={navigation} />,
                 headerLeft: () => (
-                  <TouchableOpacity onPress={() => navigation.navigate("SinglePlayer")} style={{ flexDirection: "row", marginLeft: -10 }}>
-                    <AntDesign name="arrowleft" size={18} color="black" style={{ marginTop: 2.5 }} />
-                    <Text style={{ fontSize: 18, marginLeft: 5 }}>Quit Game</Text>
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate("SinglePlayer")}
+                    style={{ flexDirection: "row", marginLeft: -10 }}
+                  >
+                    <AntDesign
+                      name="arrowleft"
+                      size={18}
+                      color="black"
+                      style={{ marginTop: 2.5 }}
+                    />
+                    <Text style={{ fontSize: 18, marginLeft: 5 }}>
+                      Quit Game
+                    </Text>
+                  </TouchableOpacity>
+                ),
+              };
+            }}
+          />
+          {/* Single Player Game 2 Screens */}
+          <Stack.Screen
+            name="StartScreen2"
+            component={StartScreen2}
+            options={({ navigation }) => {
+              return {
+                headerTitle: () => <Game2Title navigation={navigation} />,
+                headerLeft: () => (
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate("SinglePlayer")}
+                    style={{ flexDirection: "row", marginLeft: -10 }}
+                  >
+                    <AntDesign
+                      name="arrowleft"
+                      size={18}
+                      color="black"
+                      style={{ marginTop: 2.5 }}
+                    />
+                    <Text style={{ fontSize: 18, marginLeft: 5 }}>
+                      Quit Game
+                    </Text>
+                  </TouchableOpacity>
+                ),
+              };
+            }}
+          />
+          <Stack.Screen
+            name="GameScreen2"
+            component={GameScreen2}
+            options={({ navigation }) => {
+              return {
+                headerTitle: () => <Game2Title navigation={navigation} />,
+                headerLeft: () => (
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate("SinglePlayer")}
+                    style={{ flexDirection: "row", marginLeft: -10 }}
+                  >
+                    <AntDesign
+                      name="arrowleft"
+                      size={18}
+                      color="black"
+                      style={{ marginTop: 2.5 }}
+                    />
+                    <Text style={{ fontSize: 18, marginLeft: 5 }}>
+                      Quit Game
+                    </Text>
+                  </TouchableOpacity>
+                ),
+              };
+            }}
+          />
+          <Stack.Screen
+            name="GameScreenSubt"
+            component={GameScreenSubt}
+            options={({ navigation }) => {
+              return {
+                headerTitle: () => <Game2Title navigation={navigation} />,
+                headerLeft: () => (
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate("SinglePlayer")}
+                    style={{ flexDirection: "row", marginLeft: -10 }}
+                  >
+                    <AntDesign
+                      name="arrowleft"
+                      size={18}
+                      color="black"
+                      style={{ marginTop: 2.5 }}
+                    />
+                    <Text style={{ fontSize: 18, marginLeft: 5 }}>
+                      Quit Game
+                    </Text>
                   </TouchableOpacity>
                 ),
               };
@@ -152,5 +274,17 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+  },
+  modalVw: {
+    borderRadius: 20,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
   },
 });

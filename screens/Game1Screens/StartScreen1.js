@@ -1,5 +1,5 @@
 import { StyleSheet, Button, View } from "react-native";
-import React, { useLayoutEffect } from "react";
+import React from "react";
 import { useTheme } from "/Users/sathvikm/Documents/DyscalculiaProject/DarkTheme/ThemeProvider.js";
 import { Text } from "@rneui/base";
 
