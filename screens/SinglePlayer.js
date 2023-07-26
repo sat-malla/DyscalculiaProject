@@ -72,9 +72,25 @@ const SinglePlayer = ({ navigation }) => {
     setFirstGameModal(false);
     navigation.navigate("StartScreen1");
  }
+
  const startGame2 = () => {
   setSecondGameModal(false);
   navigation.navigate("StartScreen2")
+ }
+
+ const startGame3 = () => {
+  setThirdGameModal(false);
+  navigation.navigate("StartScreen3")
+ }
+
+ const startGame4 = () => {
+  setFourthGameModal(false);
+  navigation.navigate("StartScreen4")
+ }
+
+ const startGame5 = () => {
+  setFifthGameModal(false);
+  navigation.navigate("StartScreen5")
  }
 
   return (
@@ -341,7 +357,6 @@ const SinglePlayer = ({ navigation }) => {
                 height: 298,
                 width: 378,
                 alignItems: "center",
-                // marginRight: 0.75,
               }}
             >
               <ImageBackground
@@ -391,7 +406,7 @@ const SinglePlayer = ({ navigation }) => {
                     marginBottom: 50,
                     alignSelf: "center",
                   }}
-                  // onPress={!setFirstGameModal}
+                   onPress={startGame3}
                 >
                   <Text
                     style={{
@@ -451,7 +466,6 @@ const SinglePlayer = ({ navigation }) => {
                 height: 298,
                 width: 378,
                 alignItems: "center",
-                // marginRight: 0.75,
               }}
             >
               <ImageBackground
@@ -501,7 +515,7 @@ const SinglePlayer = ({ navigation }) => {
                     marginBottom: 50,
                     alignSelf: "center",
                   }}
-                  // onPress={!setFirstGameModal}
+                   onPress={startGame4}
                 >
                   <Text
                     style={{
@@ -561,7 +575,6 @@ const SinglePlayer = ({ navigation }) => {
                 height: 298,
                 width: 378,
                 alignItems: "center",
-                // marginRight: 0.75,
               }}
             >
               <ImageBackground
@@ -611,7 +624,7 @@ const SinglePlayer = ({ navigation }) => {
                     marginBottom: 50,
                     alignSelf: "center",
                   }}
-                  // onPress={!setFirstGameModal}
+                   onPress={startGame5}
                 >
                   <Text
                     style={{

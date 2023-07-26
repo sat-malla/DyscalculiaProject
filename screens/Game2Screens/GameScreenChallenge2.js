@@ -6,6 +6,7 @@ import {
   KeyboardAvoidingView,
   Pressable,
   Modal,
+  ImageBackground,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { Text, Input, Button } from "@rneui/base";
@@ -14,7 +15,7 @@ import { useTheme } from "/Users/sathvikm/Documents/DyscalculiaProject/DarkTheme
 import { LinearGradient } from "expo-linear-gradient";
 import { AntDesign } from "@expo/vector-icons";
 
-const GameScreen2 = ({ navigation }) => {
+const GameScreenChallenge2 = ({ navigation }) => {
   const { colors, dark } = useTheme();
   const [ready, setReady] = useState(true);
   const [numEasy1, setNumEasy1] = useState(1);
@@ -31,9 +32,14 @@ const GameScreen2 = ({ navigation }) => {
   const markAdd2 = 1;
 
   const generateNumbersEasy = () => {
-    console.log("1st num at beginning of generateNumbers: " + numEasy1 + "2nd num: " + numEasy2)
-    const randomNum = Math.floor(Math.random() * 10) + 0;
-    const randomNum2 = Math.floor(Math.random() * 10) + 0;
+    console.log(
+      "1st num at beginning of generateNumbers: " +
+        numEasy1 +
+        "2nd num: " +
+        numEasy2
+    );
+    const randomNum = Math.floor(Math.random() * 100) + 0;
+    const randomNum2 = Math.floor(Math.random() * 100) + 0;
     const addOrSubtract = Math.floor(Math.random() * 2) + 1;
     console.log("SIGN is" + addOrSubtract);
     console.log(randomNum);
@@ -79,7 +85,7 @@ const GameScreen2 = ({ navigation }) => {
   const startGame = () => {
     generateNumbersEasy();
     setReady(false);
-  }
+  };
 
   const verify = () => {
     isButtonClicked(true);
@@ -104,9 +110,9 @@ const GameScreen2 = ({ navigation }) => {
     }
   };
 
-  const nextScreen = () => {
+  const finishGame = () => {
     setSubtractModal(false);
-    navigation.navigate("GameScreenChallenge2");
+    navigation.navigate("SinglePlayer");
   };
 
   // useEffect(() => {
@@ -204,58 +210,66 @@ const GameScreen2 = ({ navigation }) => {
               end={{ x: 1, y: 0.8 }}
               style={{
                 borderRadius: 16,
-                height: 208,
+                height: 238,
                 width: 378,
                 alignItems: "center",
-                padding: 26,
               }}
             >
-              <Text
-                style={{
-                  marginBottom: 10,
-                  textAlign: "center",
-                  fontSize: 20,
-                  fontWeight: "bold",
-                }}
-              >
-                🙌Well Done!🙌
-              </Text>
-              <Text
-                style={{
-                  marginBottom: 20,
-                  textAlign: "center",
-                  fontSize: 20,
-                  fontWeight: "bold",
-                }}
-              >
-                Let's move on to the Hard Problems! You got this!
-              </Text>
-              <Pressable
-                style={{
-                  borderRadius: 20,
-                  padding: 10,
-                  elevation: 2,
-                  width: 150,
-                  backgroundColor: "#6bffc6",
-                  flexDirection: "row",
-                  justifyContent: "space-evenly",
-                  marginTop: 10,
-                  alignSelf: "center",
-                }}
-                onPress={nextScreen}
+              <ImageBackground
+                source={require("/Users/sathvikm/Documents/DyscalculiaProject/Images/confetti.jpeg")}
+                imageStyle={{ opacity: 0.2 }}
+                animationType="fade"
+                style={{ width: 378, height: 318, padding: 35 }}
               >
                 <Text
                   style={{
-                    color: "black",
-                    fontWeight: "bold",
+                    marginBottom: 10,
                     textAlign: "center",
                     fontSize: 20,
+                    fontWeight: "bold",
                   }}
                 >
-                  Next
+                  Congratulations!
                 </Text>
-                <AntDesign name="arrowright" size={24} color="black" />
-              </Pressable>
+                <Text
+                  style={{
+                    marginBottom: 15,
+                    textAlign: "center",
+                    fontSize: 20,
+                    fontWeight: "500",
+                  }}
+                >
+                  You completed this game! Now you know how to do easy and hard
+                  addition and subtraction!
+                </Text>
+                <Pressable
+                  style={{
+                    borderRadius: 20,
+                    borderWidth: 2,
+                    padding: 10,
+                    elevation: 2,
+                    width: 150,
+                    backgroundColor: "#6bffc6",
+                    flexDirection: "row",
+                    justifyContent: "space-evenly",
+                    marginTop: 10,
+                    alignSelf: "center",
+                  }}
+                  onPress={finishGame}
+                >
+                  <Text
+                    style={{
+                      color: "black",
+                      fontWeight: "bold",
+                      textAlign: "center",
+                      fontSize: 20,
+                    }}
+                  >
+                    Finish
+                  </Text>
+                  <AntDesign name="arrowright" size={24} color="black" />
+                </Pressable>
+              </ImageBackground>
             </LinearGradient>
           </View>
         </View>
@@ -269,7 +283,7 @@ const GameScreen2 = ({ navigation }) => {
           textAlign: "center",
         }}
       >
-        Let's apply the skills we learned for the following problems!
+        Let's apply the skills we learned for the following hard problems!
       </Text>
       {ready ? (
         <TouchableOpacity
@@ -294,7 +308,7 @@ const GameScreen2 = ({ navigation }) => {
         <View
           style={{
             alignItems: "center",
-            justifyContent: "center"
+            justifyContent: "center",
           }}
         >
           <Text
@@ -317,96 +331,200 @@ const GameScreen2 = ({ navigation }) => {
               paddingHorizontal: 20,
             }}
           >
-            <View
-              style={{
-                flexDirection: "row",
-                flexWrap: "wrap",
-                marginTop: 70,
-                marginLeft: 310,
-                width: 300,
-                alignItems: "center",
-              }}
-            >
-              <Text style={{ fontSize: 50 }}>{numEasy1}</Text>
-              <Button
-                title="+"
-                style={{ marginRight: 10, marginLeft: 30 }}
-                buttonStyle={{
-                  borderRadius: 8,
-                  backgroundColor: "#6bffc6",
-                  borderWidth: 1.5,
-                  borderColor: "black",
+            {numEasy1.toString().length == 1 ? (
+              <View
+                style={{
+                  flexDirection: "row",
+                  flexWrap: "wrap",
+                  marginTop: 70,
+                  marginLeft: 360,
+                  width: 300,
+                  alignItems: "center",
                 }}
-                titleStyle={{
-                  color: "black",
-                  fontWeight: "bold",
-                }}
-                onPress={addLine}
-              />
-              <Button
-                title="–"
-                style={{ marginLeft: 10, marginRight: 10 }}
-                buttonStyle={{
-                  borderRadius: 8,
-                  backgroundColor: "#6bffc6",
-                  borderWidth: 1.5,
-                  borderColor: "black",
-                }}
-                titleStyle={{
-                  color: "black",
-                  fontWeight: "bold",
-                }}
-                onPress={removeLine}
-              />
-              {marks}
-            </View>
-            <View
-              style={{
-                flexDirection: "row",
-                flexWrap: "wrap",
-                marginLeft: 235,
-                width: 300,
-                alignItems: "center",
-              }}
-            >
-              <View style={{
-                flexDirection: "row"
-              }}>
-                <Text style={{ fontSize: 50 }}>{problemSign}</Text>
-                <Text style={{ fontSize: 50, marginLeft: 10 }}>{numEasy2}</Text>
+              >
+                <Text style={{ fontSize: 50 }}>{numEasy1}</Text>
+                <Button
+                  title="+"
+                  style={{ marginRight: 10, marginLeft: 30 }}
+                  buttonStyle={{
+                    borderRadius: 8,
+                    backgroundColor: "#6bffc6",
+                    borderWidth: 1.5,
+                    borderColor: "black",
+                  }}
+                  titleStyle={{
+                    color: "black",
+                    fontWeight: "bold",
+                  }}
+                  onPress={addLine}
+                />
+                <Button
+                  title="–"
+                  style={{ marginLeft: 10, marginRight: 10 }}
+                  buttonStyle={{
+                    borderRadius: 8,
+                    backgroundColor: "#6bffc6",
+                    borderWidth: 1.5,
+                    borderColor: "black",
+                  }}
+                  titleStyle={{
+                    color: "black",
+                    fontWeight: "bold",
+                  }}
+                  onPress={removeLine}
+                />
+                {marks}
               </View>
-              <Button
-                title="+"
-                style={{ marginRight: 10, marginLeft: 30 }}
-                buttonStyle={{
-                  borderRadius: 8,
-                  backgroundColor: "#6bffc6",
-                  borderWidth: 1.5,
-                  borderColor: "black",
+            ) : (
+              <View
+                style={{
+                  flexDirection: "row",
+                  flexWrap: "wrap",
+                  marginTop: 70,
+                  marginLeft: 310,
+                  width: 300,
+                  alignItems: "center",
                 }}
-                titleStyle={{
-                  color: "black",
-                  fontWeight: "bold",
+              >
+                <Text style={{ fontSize: 50 }}>{numEasy1}</Text>
+                <Button
+                  title="+"
+                  style={{ marginRight: 10, marginLeft: 30 }}
+                  buttonStyle={{
+                    borderRadius: 8,
+                    backgroundColor: "#6bffc6",
+                    borderWidth: 1.5,
+                    borderColor: "black",
+                  }}
+                  titleStyle={{
+                    color: "black",
+                    fontWeight: "bold",
+                  }}
+                  onPress={addLine}
+                />
+                <Button
+                  title="–"
+                  style={{ marginLeft: 10, marginRight: 10 }}
+                  buttonStyle={{
+                    borderRadius: 8,
+                    backgroundColor: "#6bffc6",
+                    borderWidth: 1.5,
+                    borderColor: "black",
+                  }}
+                  titleStyle={{
+                    color: "black",
+                    fontWeight: "bold",
+                  }}
+                  onPress={removeLine}
+                />
+                {marks}
+              </View>
+            )}
+            {numEasy2.toString().length == 1 ? (
+              <View
+                style={{
+                  flexDirection: "row",
+                  flexWrap: "wrap",
+                  marginLeft: 275,
+                  width: 300,
+                  alignItems: "center",
                 }}
-                onPress={addLine2}
-              />
-              <Button
-                title="–"
-                style={{ marginLeft: 10, marginRight: 10 }}
-                buttonStyle={{
-                  borderRadius: 8,
-                  backgroundColor: "#6bffc6",
-                  borderWidth: 1.5,
-                  borderColor: "black",
+              >
+                <View
+                  style={{
+                    flexDirection: "row",
+                  }}
+                >
+                  <Text style={{ fontSize: 50 }}>{problemSign}</Text>
+                  <Text style={{ fontSize: 50, marginLeft: 10 }}>
+                    {numEasy2}
+                  </Text>
+                </View>
+                <Button
+                  title="+"
+                  style={{ marginRight: 10, marginLeft: 30 }}
+                  buttonStyle={{
+                    borderRadius: 8,
+                    backgroundColor: "#6bffc6",
+                    borderWidth: 1.5,
+                    borderColor: "black",
+                  }}
+                  titleStyle={{
+                    color: "black",
+                    fontWeight: "bold",
+                  }}
+                  onPress={addLine2}
+                />
+                <Button
+                  title="–"
+                  style={{ marginLeft: 10, marginRight: 10 }}
+                  buttonStyle={{
+                    borderRadius: 8,
+                    backgroundColor: "#6bffc6",
+                    borderWidth: 1.5,
+                    borderColor: "black",
+                  }}
+                  titleStyle={{
+                    color: "black",
+                    fontWeight: "bold",
+                  }}
+                  onPress={removeLine2}
+                />
+                {marks2}
+              </View>
+            ) : (
+              <View
+                style={{
+                  flexDirection: "row",
+                  flexWrap: "wrap",
+                  marginLeft: 225,
+                  width: 300,
+                  alignItems: "center",
                 }}
-                titleStyle={{
-                  color: "black",
-                  fontWeight: "bold",
-                }}
-                onPress={removeLine2}
-              />
-              {marks2}
-            </View>
+              >
+                <View
+                  style={{
+                    flexDirection: "row",
+                  }}
+                >
+                  <Text style={{ fontSize: 50 }}>{problemSign}</Text>
+                  <Text style={{ fontSize: 50, marginLeft: 10 }}>
+                    {numEasy2}
+                  </Text>
+                </View>
+                <Button
+                  title="+"
+                  style={{ marginRight: 10, marginLeft: 30 }}
+                  buttonStyle={{
+                    borderRadius: 8,
+                    backgroundColor: "#6bffc6",
+                    borderWidth: 1.5,
+                    borderColor: "black",
+                  }}
+                  titleStyle={{
+                    color: "black",
+                    fontWeight: "bold",
+                  }}
+                  onPress={addLine2}
+                />
+                <Button
+                  title="–"
+                  style={{ marginLeft: 10, marginRight: 10 }}
+                  buttonStyle={{
+                    borderRadius: 8,
+                    backgroundColor: "#6bffc6",
+                    borderWidth: 1.5,
+                    borderColor: "black",
+                  }}
+                  titleStyle={{
+                    color: "black",
+                    fontWeight: "bold",
+                  }}
+                  onPress={removeLine2}
+                />
+                {marks2}
+              </View>
+            )}
             <View
               style={{
                 borderBottomColor: "black",
@@ -458,7 +576,7 @@ const GameScreen2 = ({ navigation }) => {
   );
 };
 
-export default GameScreen2;
+export default GameScreenChallenge2;
 
 const styles = StyleSheet.create({
   styleInput: {

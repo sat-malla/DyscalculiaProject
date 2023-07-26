@@ -16,12 +16,12 @@ const StartScreen2 = ({ navigation }) => {
       }}
     >
       <Text style={{ fontSize: 35, fontWeight: "bold", marginTop: 60, color: colors.text }}>Welcome to Game 2!</Text>
-      <Text style={{ fontSize: 19, marginTop: 40, color: colors.text, textAlign: "center" }}>Let's refresh our memory to learn how to add and subtract!</Text>
-      <Text style={{ fontSize: 19, marginTop: 20, color: colors.text }}>Here's a great guide to learn how to add:</Text>
-      <Text style={{ fontSize: 19, marginTop: 40, color: colors.text }}>Here's a great guide to learn how to subtract:</Text>
-      <Text style={{ fontSize: 19, marginTop: 40, marginBottom: 10, color: colors.text }}>Now, let's try 10 addition and subtraction problems by clicking the button below!</Text>
+      <Text style={{ fontSize: 19, marginTop: 40, color: colors.text, textAlign: "center" }}>Let's refresh or learn our memory to learn how to add and subtract! We're here to help you!</Text>
+      <Text style={{ fontSize: 19, marginTop: 20, color: colors.text, textAlign: "center" }}>Here's a great guide to learn how to add if you are struggling on this:</Text>
+      <Text style={{ fontSize: 19, marginTop: 40, color: colors.text, textAlign: "center" }}>Here's a great guide to learn how to subtract if you are struggling on this:</Text>
+      <Text style={{ fontSize: 19, marginTop: 40, marginBottom: 10, color: colors.text, textAlign: "center" }}>Now, let's try some addition and subtraction problems by clicking the button below!</Text>
       <Button 
-        title="Click when you are ready!"
+        title="Click to go to game page!"
         onPress={() => navigation.navigate("GameScreen2")}
       />
     </View>

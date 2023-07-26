@@ -5,10 +5,14 @@ import {
   Alert,
   Pressable,
   KeyboardAvoidingView,
+  TouchableWithoutFeedback,
+  Keyboard,
+  Platform,
 } from "react-native";
 import React, { useState } from "react";
 import { Text, Input, Button } from "@rneui/base";
 import { useTheme } from "../DarkTheme/ThemeProvider.js";
+import { useHeaderHeight } from "@react-navigation/elements";
 import { db } from "../firebase";
 
 const Suggest = ({ navigation }) => {
@@ -17,6 +21,7 @@ const Suggest = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
+  const myHeaderHeight = useHeaderHeight();
 
   const sendMessage = async () => {
     await db
@@ -34,13 +39,13 @@ const Suggest = ({ navigation }) => {
 
   return (
     <KeyboardAvoidingView
-      behavior="padding"
+      behavior={Platform.OS === "ios" ? "padding" : null}
       style={{
-        alignItems: "center",
-        height: "100%",
         backgroundColor: colors.primary,
         paddingHorizontal: 20,
+        flex: 1,
       }}
+      keyboardVerticalOffset={myHeaderHeight+47}
     >
       <Modal
         animationType="slide"
@@ -51,12 +56,23 @@ const Suggest = ({ navigation }) => {
           setModalVisible(!modalVisible);
         }}
       >
-        <View style={{
-          flex: 1,
-          alignItems: "center",
-          justifyContent: "center",
-        }}>
-          <View style={[styles.modalView, { backgroundColor: colors.primary, borderColor: colors.text, borderWidth: 1 }]}>
+        <View
+          style={{
+            flex: 1,
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <View
+            style={[
+              styles.modalView,
+              {
+                backgroundColor: colors.primary,
+                borderColor: colors.text,
+                borderWidth: 1,
+              },
+            ]}
+          >
             <Text
               style={{
                 textAlign: "center",
@@ -99,71 +115,89 @@ const Suggest = ({ navigation }) => {
           </View>
         </View>
       </Modal>
-      <Text
-        style={{
-          fontSize: 30,
-          fontWeight: "bold",
-          marginTop: 50,
-          color: colors.text,
-        }}
-      >
-        Contact Here
-      </Text>
-      <Text style={{ fontSize: 20, marginTop: 50, color: colors.text }}>
-        Any issues or suggestions? Please contact me to get the best out of this
-        app!
-      </Text>
-      <View style={styles.inputCont}>
-        <Input
-          placeholder="Name"
-          autoFocus
-          multiline={true}
-          type="text"
-          keyboardAppearance={dark ? "dark" : "light"}
-          value={name}
-          style={{ color: colors.text }}
-          onChangeText={(text) => setName(text)}
-          containerStyle={[styles.inputStyl, { borderColor: colors.text }]} // Add this for dark mode:  { borderColor: colors.text }
-          inputContainerStyle={{ borderBottomWidth: 0 }}
-        />
-        <Input
-          placeholder="Email"
-          multiline={true}
-          type="email"
-          keyboardAppearance={dark ? "dark" : "light"}
-          value={email}
-          style={{ color: colors.text }}
-          onChangeText={(text) => setEmail(text)}
-          containerStyle={[styles.inputStyl, { borderColor: colors.text }]} // Add this for dark mode:  { borderColor: colors.text }
-          inputContainerStyle={{ borderBottomWidth: 0 }}
-        />
-        <Input
-          placeholder="Your Message"
-          multiline={true}
-          type="text"
-          keyboardAppearance={dark ? "dark" : "light"}
-          value={message}
-          style={{ color: colors.text }}
-          onChangeText={(text) => setMessage(text)}
-          containerStyle={[styles.mesContainer, { borderColor: colors.text }]} // Add this for dark mode:  { borderColor: colors.text }
-          inputContainerStyle={{ borderBottomWidth: 0 }}
-        />
-      </View>
-      <Button
-        disabled={!name || !email || !message}
-        title="Send"
-        style={styles.button}
-        titleStyle={{
-          color: colors.text,
-          fontWeight: "bold",
-          color: "black",
-        }}
-        buttonStyle={{
-          borderRadius: 8,
-          backgroundColor: "#6bffc6",
-        }}
-        onPress={sendMessage}
-      />
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <View
+          style={{
+            alignItems: "center",
+            height: "100%",
+          }}
+        >
+          <Text
+            style={{
+              fontSize: 30,
+              fontWeight: "bold",
+              marginTop: 50,
+              color: colors.text,
+            }}
+          >
+            Contact Here
+          </Text>
+          <Text
+            style={{
+              fontSize: 20,
+              marginTop: 50,
+              color: colors.text,
+              textAlign: "center",
+            }}
+          >
+            Any issues or suggestions? Please contact me to get the best out of
+            this app!
+          </Text>
+          <View style={styles.inputCont}>
+            <Input
+              placeholder="Name"
+              multiline={true}
+              type="text"
+              keyboardAppearance={dark ? "dark" : "light"}
+              value={name}
+              style={{ color: colors.text }}
+              onChangeText={(text) => setName(text)}
+              containerStyle={[styles.inputStyl, { borderColor: colors.text }]} // Add this for dark mode:  { borderColor: colors.text }
+              inputContainerStyle={{ borderBottomWidth: 0 }}
+            />
+            <Input
+              placeholder="Email"
+              multiline={true}
+              type="email"
+              keyboardAppearance={dark ? "dark" : "light"}
+              value={email}
+              style={{ color: colors.text }}
+              onChangeText={(text) => setEmail(text)}
+              containerStyle={[styles.inputStyl, { borderColor: colors.text }]} // Add this for dark mode:  { borderColor: colors.text }
+              inputContainerStyle={{ borderBottomWidth: 0 }}
+            />
+            <Input
+              placeholder="Your Message"
+              multiline={true}
+              type="text"
+              keyboardAppearance={dark ? "dark" : "light"}
+              value={message}
+              style={{ color: colors.text }}
+              onChangeText={(text) => setMessage(text)}
+              containerStyle={[
+                styles.mesContainer,
+                { borderColor: colors.text },
+              ]} // Add this for dark mode:  { borderColor: colors.text }
+              inputContainerStyle={{ borderBottomWidth: 0 }}
+            />
+          </View>
+          <Button
+            disabled={!name || !email || !message}
+            title="Send"
+            style={styles.button}
+            titleStyle={{
+              color: colors.text,
+              fontWeight: "bold",
+              color: "black",
+            }}
+            buttonStyle={{
+              borderRadius: 8,
+              backgroundColor: "#6bffc6",
+            }}
+            onPress={sendMessage}
+          />
+        </View>
+      </TouchableWithoutFeedback>
     </KeyboardAvoidingView>
   );
 };
@@ -181,7 +215,7 @@ const styles = StyleSheet.create({
     borderColor: "black",
     borderRadius: 8,
     padding: 5,
-    marginTop: 20,
+    marginTop: 10,
     height: 50,
   },
   mesContainer: {
