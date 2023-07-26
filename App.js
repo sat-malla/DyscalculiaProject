@@ -27,10 +27,27 @@ import SinglePlayer from "./screens/SinglePlayer";
 import StartScreen1 from "./screens/Game1Screens/StartScreen1";
 import GameScreen1 from "./screens/Game1Screens/GameScreen1";
 import GameScreenChallenge1 from "./screens/Game1Screens/GameScreenChallenge1";
+
 // Importing Single Player Game 2 Screens
 import StartScreen2 from "./screens/Game2Screens/StartScreen2";
 import GameScreen2 from "./screens/Game2Screens/GameScreen2";
-import GameScreenSubt from "./screens/Game2Screens/GameScreenSubt";
+import GameScreenChallenge2 from "./screens/Game2Screens/GameScreenChallenge2";
+
+// Importing Single Player Game 3 Screens
+import StartScreen3 from "./screens/Game3Screens/StartScreen3";
+import GameScreen3 from "./screens/Game3Screens/GameScreen3";
+import GameScreenChallenge3 from "./screens/Game3Screens/GameScreenChallenge3";
+
+// Importing Single Player Game 4 Screens
+import StartScreen4 from "./screens/Game4Screens/StartScreen4";
+import GameScreen4 from "./screens/Game4Screens/GameScreen4";
+import GameScreenChallenge4 from "./screens/Game4Screens/GameScreenChallenge4";
+
+// Importing Single Player Game 5 Screens
+import StartScreen5 from "./screens/Game5Screens/StartScreen5";
+import GameScreen5 from "./screens/Game5Screens/GameScreen5";
+import MidScreen5 from "./screens/Game5Screens/MidScreen5";
+import GameScreenChallenge5 from "./screens/Game5Screens/GameScreenChallenge5";
 
 const Stack = createNativeStackNavigator();
 
@@ -64,6 +81,18 @@ function Game1Title({ navigation }) {
 
 function Game2Title({ navigation }) {
   return <Text style={{ fontSize: 25 }}>Game 2</Text>;
+}
+
+function Game3Title({ navigation }) {
+  return <Text style={{ fontSize: 25 }}>Game 3</Text>
+}
+
+function Game4Title({ navigation }) {
+  return <Text style={{ fontSize: 25 }}>Game 4</Text>
+}
+
+function Game5Title({ navigation }) {
+  return <Text style={{ fontSize: 25 }}>Game 5</Text>
 }
 
 //ADD MODAL WHEN SOMEONE PRESS QUIT GAME, ASK ARE YOU SURE YOU WANT TO QUIT GAME!!!
@@ -238,11 +267,264 @@ export default function App({ navigation }) {
             }}
           />
           <Stack.Screen
-            name="GameScreenSubt"
-            component={GameScreenSubt}
+            name="GameScreenChallenge2"
+            component={GameScreenChallenge2}
             options={({ navigation }) => {
               return {
                 headerTitle: () => <Game2Title navigation={navigation} />,
+                headerLeft: () => (
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate("SinglePlayer")}
+                    style={{ flexDirection: "row", marginLeft: -10 }}
+                  >
+                    <AntDesign
+                      name="arrowleft"
+                      size={18}
+                      color="black"
+                      style={{ marginTop: 2.5 }}
+                    />
+                    <Text style={{ fontSize: 18, marginLeft: 5 }}>
+                      Quit Game
+                    </Text>
+                  </TouchableOpacity>
+                ),
+              };
+            }}
+          />
+          {/* Single Player Game 3 Screens */}
+          <Stack.Screen
+            name="StartScreen3"
+            component={StartScreen3}
+            options={({ navigation }) => {
+              return {
+                headerTitle: () => <Game3Title navigation={navigation} />,
+                headerLeft: () => (
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate("SinglePlayer")}
+                    style={{ flexDirection: "row", marginLeft: -10 }}
+                  >
+                    <AntDesign
+                      name="arrowleft"
+                      size={18}
+                      color="black"
+                      style={{ marginTop: 2.5 }}
+                    />
+                    <Text style={{ fontSize: 18, marginLeft: 5 }}>
+                      Quit Game
+                    </Text>
+                  </TouchableOpacity>
+                ),
+              };
+            }}
+          />
+          <Stack.Screen
+            name="GameScreen3"
+            component={GameScreen3}
+            options={({ navigation }) => {
+              return {
+                headerTitle: () => <Game3Title navigation={navigation} />,
+                headerLeft: () => (
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate("SinglePlayer")}
+                    style={{ flexDirection: "row", marginLeft: -10 }}
+                  >
+                    <AntDesign
+                      name="arrowleft"
+                      size={18}
+                      color="black"
+                      style={{ marginTop: 2.5 }}
+                    />
+                    <Text style={{ fontSize: 18, marginLeft: 5 }}>
+                      Quit Game
+                    </Text>
+                  </TouchableOpacity>
+                ),
+              };
+            }}
+          />
+          <Stack.Screen
+            name="GameScreenChallenge3"
+            component={GameScreenChallenge3}
+            options={({ navigation }) => {
+              return {
+                headerTitle: () => <Game3Title navigation={navigation} />,
+                headerLeft: () => (
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate("SinglePlayer")}
+                    style={{ flexDirection: "row", marginLeft: -10 }}
+                  >
+                    <AntDesign
+                      name="arrowleft"
+                      size={18}
+                      color="black"
+                      style={{ marginTop: 2.5 }}
+                    />
+                    <Text style={{ fontSize: 18, marginLeft: 5 }}>
+                      Quit Game
+                    </Text>
+                  </TouchableOpacity>
+                ),
+              };
+            }}
+          />
+          {/* Single Player Game 4 Screens */}
+          <Stack.Screen
+            name="StartScreen4"
+            component={StartScreen4}
+            options={({ navigation }) => {
+              return {
+                headerTitle: () => <Game4Title navigation={navigation} />,
+                headerLeft: () => (
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate("SinglePlayer")}
+                    style={{ flexDirection: "row", marginLeft: -10 }}
+                  >
+                    <AntDesign
+                      name="arrowleft"
+                      size={18}
+                      color="black"
+                      style={{ marginTop: 2.5 }}
+                    />
+                    <Text style={{ fontSize: 18, marginLeft: 5 }}>
+                      Quit Game
+                    </Text>
+                  </TouchableOpacity>
+                ),
+              };
+            }}
+          />
+          <Stack.Screen
+            name="GameScreen4"
+            component={GameScreen4}
+            options={({ navigation }) => {
+              return {
+                headerTitle: () => <Game4Title navigation={navigation} />,
+                headerLeft: () => (
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate("SinglePlayer")}
+                    style={{ flexDirection: "row", marginLeft: -10 }}
+                  >
+                    <AntDesign
+                      name="arrowleft"
+                      size={18}
+                      color="black"
+                      style={{ marginTop: 2.5 }}
+                    />
+                    <Text style={{ fontSize: 18, marginLeft: 5 }}>
+                      Quit Game
+                    </Text>
+                  </TouchableOpacity>
+                ),
+              };
+            }}
+          />
+          <Stack.Screen
+            name="GameScreenChallenge4"
+            component={GameScreenChallenge4}
+            options={({ navigation }) => {
+              return {
+                headerTitle: () => <Game4Title navigation={navigation} />,
+                headerLeft: () => (
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate("SinglePlayer")}
+                    style={{ flexDirection: "row", marginLeft: -10 }}
+                  >
+                    <AntDesign
+                      name="arrowleft"
+                      size={18}
+                      color="black"
+                      style={{ marginTop: 2.5 }}
+                    />
+                    <Text style={{ fontSize: 18, marginLeft: 5 }}>
+                      Quit Game
+                    </Text>
+                  </TouchableOpacity>
+                ),
+              };
+            }}
+          />
+          {/* Single Player Game 5 Screens */}
+          <Stack.Screen
+            name="StartScreen5"
+            component={StartScreen5}
+            options={({ navigation }) => {
+              return {
+                headerTitle: () => <Game5Title navigation={navigation} />,
+                headerLeft: () => (
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate("SinglePlayer")}
+                    style={{ flexDirection: "row", marginLeft: -10 }}
+                  >
+                    <AntDesign
+                      name="arrowleft"
+                      size={18}
+                      color="black"
+                      style={{ marginTop: 2.5 }}
+                    />
+                    <Text style={{ fontSize: 18, marginLeft: 5 }}>
+                      Quit Game
+                    </Text>
+                  </TouchableOpacity>
+                ),
+              };
+            }}
+          />
+          <Stack.Screen
+            name="GameScreen5"
+            component={GameScreen5}
+            options={({ navigation }) => {
+              return {
+                headerTitle: () => <Game5Title navigation={navigation} />,
+                headerLeft: () => (
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate("SinglePlayer")}
+                    style={{ flexDirection: "row", marginLeft: -10 }}
+                  >
+                    <AntDesign
+                      name="arrowleft"
+                      size={18}
+                      color="black"
+                      style={{ marginTop: 2.5 }}
+                    />
+                    <Text style={{ fontSize: 18, marginLeft: 5 }}>
+                      Quit Game
+                    </Text>
+                  </TouchableOpacity>
+                ),
+              };
+            }}
+          />
+          <Stack.Screen
+            name="MidScreen5"
+            component={MidScreen5}
+            options={({ navigation }) => {
+              return {
+                headerTitle: () => <Game5Title navigation={navigation} />,
+                headerLeft: () => (
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate("SinglePlayer")}
+                    style={{ flexDirection: "row", marginLeft: -10 }}
+                  >
+                    <AntDesign
+                      name="arrowleft"
+                      size={18}
+                      color="black"
+                      style={{ marginTop: 2.5 }}
+                    />
+                    <Text style={{ fontSize: 18, marginLeft: 5 }}>
+                      Quit Game
+                    </Text>
+                  </TouchableOpacity>
+                ),
+              };
+            }}
+          />
+          <Stack.Screen
+            name="GameScreenChallenge5"
+            component={GameScreenChallenge5}
+            options={({ navigation }) => {
+              return {
+                headerTitle: () => <Game5Title navigation={navigation} />,
                 headerLeft: () => (
                   <TouchableOpacity
                     onPress={() => navigation.navigate("SinglePlayer")}
