@@ -4,9 +4,10 @@ import {
   TouchableOpacity,
   View,
   KeyboardAvoidingView,
+  ImageBackground,
   Pressable,
   Modal,
-  ImageBackground,
+  ScrollView,
 } from "react-native";
 import React, { useEffect, useState, useLayoutEffect } from "react";
 import { Text, Input, Button } from "@rneui/base";
@@ -21,22 +22,33 @@ const GameScreenChallenge4 = ({ navigation }) => {
   const [ready, setReady] = useState(true);
   const [num1, setNum1] = useState(0);
   const [num2, setNum2] = useState(0);
+  const [problemSign, setProblemSign] = useState("");
   const [answer, setAnswer] = useState("");
   const [buttonClicked, isButtonClicked] = useState(false);
   const [answerCorrect, isAnswerCorrect] = useState(false);
   const [count, setCount] = useState(0);
+  const [helpCount, setHelpCount] = useState(1);
   const [finishModal, setFinishModal] = useState(false);
+  const [helpModal, setHelpModal] = useState(false);
 
   const generateNumbers = () => {
     const randomNum = Math.floor(Math.random() * 10) + 0;
     const randomNum2 = Math.floor(Math.random() * 10) + 0;
+    const problemSign = Math.floor(Math.random() * 2) + 1;
 
-    if (randomNum > randomNum2) {
+    if (problemSign == 2) {
+      setProblemSign("+");
       setNum1(randomNum);
       setNum2(randomNum2);
     } else {
-      setNum1(randomNum2);
-      setNum2(randomNum);
+      setProblemSign("-");
+      if (randomNum > randomNum2) {
+        setNum1(randomNum);
+        setNum2(randomNum2);
+      } else {
+        setNum1(randomNum2);
+        setNum2(randomNum);
+      }
     }
   };
 
@@ -47,15 +59,22 @@ const GameScreenChallenge4 = ({ navigation }) => {
 
   const verify = () => {
     isButtonClicked(true);
-    realAnswer = num1 - num2;
+    let realAnswer = num2.toString() + problemSign + num1.toString() + "=?";
+    if (problemSign === "-") {
+      realAnswer = num1.toString() + problemSign + num2.toString() + "=?";
+    }
     if (count < 10) {
-      if (Number(answer) == realAnswer) {
+      if (answer === realAnswer) {
         generateNumbers();
         isAnswerCorrect(true);
         setAnswer("");
         setCount(count + 1);
-      } else if (Number(answer) != realAnswer) {
+      } else if (answer !== realAnswer) {
         isAnswerCorrect(false);
+        setHelpCount(helpCount + 1);
+        if (helpCount >= 3) {
+          setHelpModal(true);
+        }
       }
     } else if (count == 10) {
       setFinishModal(true);
@@ -66,6 +85,11 @@ const GameScreenChallenge4 = ({ navigation }) => {
     setFinishModal(false);
     navigation.navigate("SinglePlayer");
   };
+
+  const contactScreen = () => {
+    setHelpModal(false);
+    navigation.navigate("Suggest")
+  }
 
   return (
     <View
@@ -108,7 +132,7 @@ const GameScreenChallenge4 = ({ navigation }) => {
               end={{ x: 1, y: 0.8 }}
               style={{
                 borderRadius: 16,
-                height: 238,
+                height: 258,
                 width: 378,
                 alignItems: "center",
               }}
@@ -137,8 +161,7 @@ const GameScreenChallenge4 = ({ navigation }) => {
                     fontWeight: "bold",
                   }}
                 >
-                  You have completed this game! Now you know how to read math
-                  equations backwards!
+                  You have completed this game! Now you know how to read equations forwards and backwards!
                 </Text>
                 <Pressable
                   style={{
@@ -167,6 +190,161 @@ const GameScreenChallenge4 = ({ navigation }) => {
                   <AntDesign name="arrowright" size={24} color="black" />
                 </Pressable>
               </ImageBackground>
+            </LinearGradient>
+          </View>
+        </View>
+      </Modal>
+      <Modal
+        animationType="fade"
+        transparent={true}
+        visible={helpModal}
+        onRequestClose={() => {
+          Alert.alert("Closed");
+          setModalVisible(!helpModal);
+        }}
+      >
+        <View
+          style={{
+            flex: 1,
+            alignItems: "center",
+            justifyContent: "center",
+            alignSelf: "center",
+          }}
+        >
+          <View
+            style={[
+              styles.modalVw,
+              {
+                borderColor: colors.text,
+                borderWidth: 3,
+              },
+            ]}
+          >
+            <LinearGradient
+              colors={["#6bffc6", colors.gradientEndCol]}
+              start={{ x: 1, y: 0 }}
+              end={{ x: 1, y: 0.8 }}
+              style={{
+                borderRadius: 16,
+                height: 758,
+                width: 378,
+                alignItems: "center",
+                padding: 26,
+              }}
+            >
+              <Text
+                style={{
+                  marginBottom: 10,
+                  textAlign: "center",
+                  fontSize: 20,
+                  fontWeight: "bold",
+                }}
+              >
+                It seems that you are struggling on this problem. Here are some
+                tips to help you out!
+              </Text>
+              <Text
+                style={{
+                  marginBottom: 20,
+                  textAlign: "center",
+                  fontSize: 20,
+                  fontWeight: "bold",
+                }}
+              >
+                Recall from the video that a+b=? is the same as ?=a+b. This is the same for subtraction.
+              </Text>
+              <Text
+                style={{
+                  marginBottom: 20,
+                  textAlign: "center",
+                  fontSize: 20,
+                  fontWeight: "bold",
+                }}
+              >
+                Also, recall from the video that a+b=? is the same as ?=b+a. However, this is not the case for subtraction.
+              </Text>
+              <Text
+                style={{
+                  marginBottom: 20,
+                  textAlign: "center",
+                  fontSize: 20,
+                  fontWeight: "bold",
+                }}
+              >
+                Why? Because in addition, a+b is always the same as b+a. Example: 5+4 = 4+5 is 9 = 9 
+              </Text>
+              <Text
+                style={{
+                  marginBottom: 20,
+                  textAlign: "center",
+                  fontSize: 20,
+                  fontWeight: "bold",
+                }}
+              >
+                In subtraction; however, a-b is not always the same as b-a. Example: 5-4 = 4-5 is 1 = -1.  
+              </Text>
+              <Text
+                style={{
+                  marginBottom: 10,
+                  textAlign: "center",
+                  fontSize: 13,
+                  color: "red"
+                }}
+              >
+                *You don't have to know how 4-5=-1. You just need to know how those two equations are not equal to each other.
+              </Text>
+              <Text
+                style={{
+                  marginBottom: 15,
+                  textAlign: "center",
+                  fontSize: 20,
+                  fontWeight: "bold",
+                }}
+              >
+                Let me know if you are still struggling by contacting me below,
+                and I can help you out!
+              </Text>
+              <Button
+                title="Contact Me!"
+                style={{ width: 200 }}
+                titleStyle={{
+                  fontSize: 13,
+                  textDecorationLine: "underline",
+                  color: "black",
+                  marginTop: -10,
+                  marginBottom: 10
+                }}
+                buttonStyle={{
+                  backgroundColor: "white",
+                  borderWidth: 0
+                }}
+                onPress={contactScreen}
+              />
+              <Pressable
+                style={{
+                  borderRadius: 20,
+                  padding: 10,
+                  elevation: 2,
+                  width: 150,
+                  backgroundColor: "#6bffc6",
+                  flexDirection: "row",
+                  justifyContent: "space-evenly",
+                  marginTop: 10,
+                  alignSelf: "center",
+                }}
+                onPress={() => setHelpModal(false)}
+              >
+                <Text
+                  style={{
+                    color: "black",
+                    fontWeight: "bold",
+                    textAlign: "center",
+                    fontSize: 20,
+                  }}
+                >
+                  Close
+                </Text>
+              </Pressable>
             </LinearGradient>
           </View>
         </View>
@@ -212,12 +390,13 @@ const GameScreenChallenge4 = ({ navigation }) => {
             style={{
               color: colors.text,
               marginTop: 20,
+              marginHorizontal: 10,
               fontSize: 20,
               fontWeight: "400",
               textAlign: "center",
             }}
           >
-            Type in the correct answer below.
+            Write the the expression shown in the reverse direction. Make sure to write the numbers in the opposite order shown.
           </Text>
           <View
             style={{
@@ -228,8 +407,8 @@ const GameScreenChallenge4 = ({ navigation }) => {
               marginTop: 50,
             }}
           >
-            <Text style={{ fontSize: 70 }}>
-              ? = {num1} - {num2}
+            <Text style={{ fontSize: 70, color: colors.text, }}>
+              ? = {num1} {problemSign} {num2}
             </Text>
           </View>
           <Input
@@ -247,7 +426,7 @@ const GameScreenChallenge4 = ({ navigation }) => {
             title="Check"
             style={styles.button}
             titleStyle={{
-              color: colors.text,
+              color: "black",
               fontWeight: "bold",
             }}
             buttonStyle={{
@@ -258,9 +437,9 @@ const GameScreenChallenge4 = ({ navigation }) => {
           />
           {buttonClicked ? (
             answerCorrect ? (
-              <Text style={styles.response}>👏Good Job!👏</Text>
+              <Text style={[styles.response, { color: colors.text }]}>🎉 Well Done! 🎉</Text>
             ) : (
-              <Text style={styles.response}>
+              <Text style={[styles.response, { color: colors.text }]}>
                 No pressure! Try it one more time!
               </Text>
             )
@@ -278,7 +457,6 @@ export default GameScreenChallenge4;
 const styles = StyleSheet.create({
   styleInput: {
     borderWidth: 2,
-    borderColor: "black",
     alignContent: "center",
     borderRadius: 8,
     padding: 5,

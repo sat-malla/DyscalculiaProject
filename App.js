@@ -49,6 +49,12 @@ import GameScreen5 from "./screens/Game5Screens/GameScreen5";
 import MidScreen5 from "./screens/Game5Screens/MidScreen5";
 import GameScreenChallenge5 from "./screens/Game5Screens/GameScreenChallenge5";
 
+// Importing Single Player Game 6 Screens
+import StartScreen6 from "./screens/Game6Screens/StartScreen6";
+import GameScreen6 from "./screens/Game6Screens/GameScreen6";
+import MidScreen6 from "./screens/Game6Screens/MidScreen6";
+import GameScreenChallenge6 from "./screens/Game6Screens/GameScreenChallenge6";
+
 const Stack = createNativeStackNavigator();
 
 const globalScreenOptions = {
@@ -93,6 +99,10 @@ function Game4Title({ navigation }) {
 
 function Game5Title({ navigation }) {
   return <Text style={{ fontSize: 25 }}>Game 5</Text>
+}
+
+function Game6Title({ navigation }) {
+  return <Text style={{ fontSize: 25 }}>Game 6</Text>
 }
 
 //ADD MODAL WHEN SOMEONE PRESS QUIT GAME, ASK ARE YOU SURE YOU WANT TO QUIT GAME!!!
@@ -525,6 +535,107 @@ export default function App({ navigation }) {
             options={({ navigation }) => {
               return {
                 headerTitle: () => <Game5Title navigation={navigation} />,
+                headerLeft: () => (
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate("SinglePlayer")}
+                    style={{ flexDirection: "row", marginLeft: -10 }}
+                  >
+                    <AntDesign
+                      name="arrowleft"
+                      size={18}
+                      color="black"
+                      style={{ marginTop: 2.5 }}
+                    />
+                    <Text style={{ fontSize: 18, marginLeft: 5 }}>
+                      Quit Game
+                    </Text>
+                  </TouchableOpacity>
+                ),
+              };
+            }}
+          />
+          {/* Single Player Game 6 Screens */}
+          <Stack.Screen
+            name="StartScreen6"
+            component={StartScreen6}
+            options={({ navigation }) => {
+              return {
+                headerTitle: () => <Game6Title navigation={navigation} />,
+                headerLeft: () => (
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate("SinglePlayer")}
+                    style={{ flexDirection: "row", marginLeft: -10 }}
+                  >
+                    <AntDesign
+                      name="arrowleft"
+                      size={18}
+                      color="black"
+                      style={{ marginTop: 2.5 }}
+                    />
+                    <Text style={{ fontSize: 18, marginLeft: 5 }}>
+                      Quit Game
+                    </Text>
+                  </TouchableOpacity>
+                ),
+              };
+            }}
+          />
+          <Stack.Screen
+            name="GameScreen6"
+            component={GameScreen6}
+            options={({ navigation }) => {
+              return {
+                headerTitle: () => <Game6Title navigation={navigation} />,
+                headerLeft: () => (
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate("SinglePlayer")}
+                    style={{ flexDirection: "row", marginLeft: -10 }}
+                  >
+                    <AntDesign
+                      name="arrowleft"
+                      size={18}
+                      color="black"
+                      style={{ marginTop: 2.5 }}
+                    />
+                    <Text style={{ fontSize: 18, marginLeft: 5 }}>
+                      Quit Game
+                    </Text>
+                  </TouchableOpacity>
+                ),
+              };
+            }}
+          />
+          <Stack.Screen
+            name="MidScreen6"
+            component={MidScreen6}
+            options={({ navigation }) => {
+              return {
+                headerTitle: () => <Game6Title navigation={navigation} />,
+                headerLeft: () => (
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate("SinglePlayer")}
+                    style={{ flexDirection: "row", marginLeft: -10 }}
+                  >
+                    <AntDesign
+                      name="arrowleft"
+                      size={18}
+                      color="black"
+                      style={{ marginTop: 2.5 }}
+                    />
+                    <Text style={{ fontSize: 18, marginLeft: 5 }}>
+                      Quit Game
+                    </Text>
+                  </TouchableOpacity>
+                ),
+              };
+            }}
+          />
+          <Stack.Screen
+            name="GameScreenChallenge6"
+            component={GameScreenChallenge6}
+            options={({ navigation }) => {
+              return {
+                headerTitle: () => <Game6Title navigation={navigation} />,
                 headerLeft: () => (
                   <TouchableOpacity
                     onPress={() => navigation.navigate("SinglePlayer")}

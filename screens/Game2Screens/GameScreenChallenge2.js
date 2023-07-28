@@ -8,9 +8,8 @@ import {
   Modal,
   ImageBackground,
 } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Text, Input, Button } from "@rneui/base";
-import { Divider } from "@rneui/themed";
 import { useTheme } from "/Users/sathvikm/Documents/DyscalculiaProject/DarkTheme/ThemeProvider.js";
 import { LinearGradient } from "expo-linear-gradient";
 import { AntDesign } from "@expo/vector-icons";
@@ -18,85 +17,56 @@ import { AntDesign } from "@expo/vector-icons";
 const GameScreenChallenge2 = ({ navigation }) => {
   const { colors, dark } = useTheme();
   const [ready, setReady] = useState(true);
-  const [numEasy1, setNumEasy1] = useState(1);
-  const [numEasy2, setNumEasy2] = useState(1);
+  const [num1, setNum1] = useState(1);
+  const [num2, setNum2] = useState(1);
   const [problemSign, setProblemSign] = useState("");
   const [answer, setAnswer] = useState("");
   const [buttonClicked, isButtonClicked] = useState(false);
   const [answerCorrect, isAnswerCorrect] = useState(false);
   const [count, setCount] = useState(0);
-  const [subtractModal, setSubtractModal] = useState(false);
+  const [finishModal, setFinishModal] = useState(false);
   const [marks, setMarks] = useState([]);
   const [marks2, setMarks2] = useState([]);
   const markAdd = 1;
   const markAdd2 = 1;
 
-  const generateNumbersEasy = () => {
-    console.log(
-      "1st num at beginning of generateNumbers: " +
-        numEasy1 +
-        "2nd num: " +
-        numEasy2
-    );
+  const generateNumbers = () => {
     const randomNum = Math.floor(Math.random() * 100) + 0;
     const randomNum2 = Math.floor(Math.random() * 100) + 0;
     const addOrSubtract = Math.floor(Math.random() * 2) + 1;
-    console.log("SIGN is" + addOrSubtract);
-    console.log(randomNum);
-    console.log(randomNum2);
 
     if (addOrSubtract == 2) {
       setProblemSign("+");
-      console.log(
-        "Problem sign after setting problem sign when it's plus sign: " +
-          problemSign
-      );
+      setNum1(randomNum);
+      setNum2(randomNum2);
     } else if (addOrSubtract == 1) {
       setProblemSign("–");
-      console.log(
-        "Problem sign after setting problem sign when it's minus sign: " +
-          problemSign
-      );
-    }
-
-    if (problemSign === "+") {
-      console.log("Plus problem sign if condition: " + problemSign);
-      setNumEasy1(randomNum);
-      setNumEasy2(randomNum2);
-      console.log("num easy1 is: " + numEasy1 + "2nd num: " + numEasy2);
-    } else if (problemSign === "–") {
-      console.log("Minus problem sign if condition: " + problemSign);
-      if (randomNum >= randomNum2) {
-        console.log(
-          "Minus problem sign if condition with randomNum>randomNum2"
-        );
-        setNumEasy1(randomNum);
-        setNumEasy2(randomNum2);
-      } else if (randomNum < randomNum2) {
-        console.log("Random 1 is less than Random 2");
-        console.log(randomNum);
-        console.log(randomNum2);
-        setNumEasy1(randomNum2);
-        setNumEasy2(randomNum);
+      if (randomNum > randomNum2) {
+        setNum1(randomNum);
+        setNum2(randomNum2);
+      } else {
+        setNum1(randomNum2);
+        setNum2(randomNum);
       }
     }
   };
 
   const startGame = () => {
-    generateNumbersEasy();
+    generateNumbers();
     setReady(false);
   };
 
   const verify = () => {
     isButtonClicked(true);
+    let realAnswer = 0;
     if (problemSign === "–") {
-      realAnswer = numEasy1 - numEasy2;
+      realAnswer = num1 - num2;
     } else {
-      realAnswer = numEasy1 + numEasy2;
+      realAnswer = num1 + num2;
     }
     if (count < 10) {
       if (Number(answer) == realAnswer) {
-        generateNumbersEasy();
+        generateNumbers();
         isAnswerCorrect(true);
         setMarks([]);
         setMarks2([]);
@@ -106,33 +76,26 @@ const GameScreenChallenge2 = ({ navigation }) => {
         isAnswerCorrect(false);
       }
     } else if (count == 10) {
-      setSubtractModal(true);
+      setFinishModal(true);
     }
   };
 
   const finishGame = () => {
-    setSubtractModal(false);
+    setFinishModal(false);
     navigation.navigate("SinglePlayer");
   };
-
-  // useEffect(() => {
-  //   if (runFirst) {
-  //     generateNumbersEasy();
-  //   }
-  // }, [runFirst]);
 
   const addLine = () => {
     setMarks((prevLines) => [
       ...prevLines,
       <Text
         key={prevLines.length}
-        style={{ marginRight: 10, fontSize: 20, fontWeight: "500" }}
+        style={{ marginRight: 10, fontSize: 20, fontWeight: "500", color: colors.text }}
       >
         |
       </Text>,
     ]);
   };
-
   const addLine2 = () => {
     setMarks2((prevLines) => [
       ...prevLines,
@@ -142,14 +105,13 @@ const GameScreenChallenge2 = ({ navigation }) => {
           marginRight: 10,
           fontSize: 20,
           fontWeight: "500",
-          marginBottom: 20,
+          color: colors.text
         }}
       >
         |
       </Text>,
     ]);
   };
-
   const removeLine = () => {
     setMarks((prevLines) => {
       let newLines = [...prevLines];
@@ -157,7 +119,6 @@ const GameScreenChallenge2 = ({ navigation }) => {
       return newLines;
     });
   };
-
   const removeLine2 = () => {
     setMarks2((prevLines) => {
       let newLines = [...prevLines];
@@ -181,10 +142,10 @@ const GameScreenChallenge2 = ({ navigation }) => {
       <Modal
         animationType="fade"
         transparent={true}
-        visible={subtractModal}
+        visible={finishModal}
         onRequestClose={() => {
           Alert.alert("Closed");
-          setModalVisible(!subtractModal);
+          setModalVisible(!finishModal);
         }}
       >
         <View
@@ -210,7 +171,7 @@ const GameScreenChallenge2 = ({ navigation }) => {
               end={{ x: 1, y: 0.8 }}
               style={{
                 borderRadius: 16,
-                height: 238,
+                height: 248,
                 width: 378,
                 alignItems: "center",
               }}
@@ -331,7 +292,7 @@ const GameScreenChallenge2 = ({ navigation }) => {
               paddingHorizontal: 20,
             }}
           >
-            {numEasy1.toString().length == 1 ? (
+            {num1.toString().length == 1 ? (
               <View
                 style={{
                   flexDirection: "row",
@@ -342,7 +303,7 @@ const GameScreenChallenge2 = ({ navigation }) => {
                   alignItems: "center",
                 }}
               >
-                <Text style={{ fontSize: 50 }}>{numEasy1}</Text>
+                <Text style={{ fontSize: 50, color: colors.text }}>{num1}</Text>
                 <Button
                   title="+"
                   style={{ marginRight: 10, marginLeft: 30 }}
@@ -386,7 +347,7 @@ const GameScreenChallenge2 = ({ navigation }) => {
                   alignItems: "center",
                 }}
               >
-                <Text style={{ fontSize: 50 }}>{numEasy1}</Text>
+                <Text style={{ fontSize: 50, color: colors.text }}>{num1}</Text>
                 <Button
                   title="+"
                   style={{ marginRight: 10, marginLeft: 30 }}
@@ -420,7 +381,7 @@ const GameScreenChallenge2 = ({ navigation }) => {
                 {marks}
               </View>
             )}
-            {numEasy2.toString().length == 1 ? (
+            {num2.toString().length == 1 ? (
               <View
                 style={{
                   flexDirection: "row",
@@ -435,9 +396,9 @@ const GameScreenChallenge2 = ({ navigation }) => {
                     flexDirection: "row",
                   }}
                 >
-                  <Text style={{ fontSize: 50 }}>{problemSign}</Text>
-                  <Text style={{ fontSize: 50, marginLeft: 10 }}>
-                    {numEasy2}
+                  <Text style={{ fontSize: 50, color: colors.text }}>{problemSign}</Text>
+                  <Text style={{ fontSize: 50, marginLeft: 10, color: colors.text }}>
+                    {num2}
                   </Text>
                 </View>
                 <Button
@@ -487,9 +448,9 @@ const GameScreenChallenge2 = ({ navigation }) => {
                     flexDirection: "row",
                   }}
                 >
-                  <Text style={{ fontSize: 50 }}>{problemSign}</Text>
-                  <Text style={{ fontSize: 50, marginLeft: 10 }}>
-                    {numEasy2}
+                  <Text style={{ fontSize: 50, color: colors.text }}>{problemSign}</Text>
+                  <Text style={{ fontSize: 50, marginLeft: 10, color: colors.text }}>
+                    {num2}
                   </Text>
                 </View>
                 <Button
@@ -527,13 +488,13 @@ const GameScreenChallenge2 = ({ navigation }) => {
             )}
             <View
               style={{
-                borderBottomColor: "black",
+                borderColor: colors.text,
                 borderWidth: 3,
                 width: 110,
                 borderBottomWidth: StyleSheet.hairlineWidth,
               }}
             />
-            <Text style={{ fontSize: 50, marginLeft: 40 }}>?</Text>
+            <Text style={{ fontSize: 50, marginLeft: 40, color: colors.text }}>?</Text>
           </View>
           <Input
             placeholder="Type answer here"
@@ -550,7 +511,7 @@ const GameScreenChallenge2 = ({ navigation }) => {
             title="Check"
             style={styles.button}
             titleStyle={{
-              color: colors.text,
+              color: "black",
               fontWeight: "bold",
             }}
             buttonStyle={{
@@ -561,9 +522,9 @@ const GameScreenChallenge2 = ({ navigation }) => {
           />
           {buttonClicked ? (
             answerCorrect ? (
-              <Text style={styles.response}>👏Good Job!👏</Text>
+              <Text style={[styles.response, { color: colors.text }]}>🎉 Well Done! 🎉</Text>
             ) : (
-              <Text style={styles.response}>
+              <Text style={[styles.response, { color: colors.text }]}>
                 No pressure! Try it one more time!
               </Text>
             )
@@ -581,7 +542,6 @@ export default GameScreenChallenge2;
 const styles = StyleSheet.create({
   styleInput: {
     borderWidth: 2,
-    borderColor: "black",
     alignContent: "center",
     borderRadius: 8,
     padding: 5,

@@ -121,7 +121,7 @@ const GameScreenChallenge1 = ({ navigation }) => {
                     fontWeight: "bold"
                   }}
                 >
-                  Congragulations! You completed the Game!
+                  Congragulations! Now you know how to count numbers with your fingers!
                 </Text>
                 <Pressable
                   style={{

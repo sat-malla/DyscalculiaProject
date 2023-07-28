@@ -4,10 +4,9 @@ import {
   TouchableOpacity,
   View,
   KeyboardAvoidingView,
+  ImageBackground,
   Pressable,
   Modal,
-  Image,
-  ImageBackground,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { Text, Input, Button } from "@rneui/base";
@@ -15,55 +14,53 @@ import { useTheme } from "/Users/sathvikm/Documents/DyscalculiaProject/DarkTheme
 import { LinearGradient } from "expo-linear-gradient";
 import { AntDesign } from "@expo/vector-icons";
 
-const GameScreenChallenge3 = ({ navigation }) => {
+const GameScreenChallenge6 = ({ navigation }) => {
   const { colors, dark } = useTheme();
   const [ready, setReady] = useState(true);
-  const [num1, setNum1] = useState(0);
-  const [num2, setNum2] = useState(0);
-  const [answer, setAnswer] = useState("");
+  const [numbers, setNumbers] = useState("");
   const [buttonClicked, isButtonClicked] = useState(false);
+  const [answer, setAnswer] = useState("");
   const [answerCorrect, isAnswerCorrect] = useState(false);
   const [count, setCount] = useState(0);
-  const [helpCount, setHelpCount] = useState(0);
-  const [helpModal, setHelpModal] = useState(false);
   const [finishModal, setFinishModal] = useState(false);
 
-  const generateNumbersMult = () => {
-    const randomNum = Math.floor(Math.random() * 12) + 0;
-    const randomNum2 = Math.floor(Math.random() * 12) + 0;
-
-    setNum1(randomNum);
-    setNum2(randomNum2);
+  const generateNumbers = () => {
+    let numArray = [];
+    for (let x = 0; x <= 4; x++) {
+      let randomNum = Math.floor(Math.random() * 100) + 1;
+      let randomNum2 = Math.floor(Math.random() * 100) + 1;
+      numArray[x] = (randomNum / randomNum2).toFixed(2);
+    }
+    setNumbers(numArray.join(", "));
   };
 
   const startGame = () => {
-    generateNumbersMult();
+    generateNumbers();
     setReady(false);
   };
 
   const verify = () => {
     isButtonClicked(true);
-    realAnswer = num1 * num2;
+    let arrayNumbers = numbers.split(", ");
+    let realAnswer = [...arrayNumbers].sort((a, b) => {
+      return Number(a) - Number(b);
+    });
+    let finalAns = realAnswer.join(", ");
     if (count < 10) {
-      if (Number(answer) == realAnswer) {
-        generateNumbersMult();
+      if (answer === finalAns) {
         isAnswerCorrect(true);
         setAnswer("");
         setCount(count + 1);
-        setHelpCount(0);
-      } else if (Number(answer) != realAnswer) {
+        generateNumbers();
+      } else if (answer !== finalAns) {
         isAnswerCorrect(false);
-        setHelpCount(helpCount + 1);
-        if (helpCount == 2) {
-          setHelpModal(true);
-        }
       }
     } else if (count == 10) {
       setFinishModal(true);
     }
   };
 
-  const finishGame = () => {
+  const finishScreen = () => {
     setFinishModal(false);
     navigation.navigate("SinglePlayer");
   };
@@ -135,14 +132,14 @@ const GameScreenChallenge3 = ({ navigation }) => {
                 </Text>
                 <Text
                   style={{
-                    marginBottom: 10,
+                    marginBottom: 20,
                     textAlign: "center",
                     fontSize: 20,
                     fontWeight: "bold",
                   }}
                 >
-                  You have completed this game! Now you know how to multiply
-                  with and without the multiplication table!
+                  You have completed this game! Now you know how to organize
+                  whole numbers and decimals! Good job!
                 </Text>
                 <Pressable
                   style={{
@@ -156,7 +153,7 @@ const GameScreenChallenge3 = ({ navigation }) => {
                     marginTop: 10,
                     alignSelf: "center",
                   }}
-                  onPress={finishGame}
+                  onPress={finishScreen}
                 >
                   <Text
                     style={{
@@ -175,83 +172,6 @@ const GameScreenChallenge3 = ({ navigation }) => {
           </View>
         </View>
       </Modal>
-      <Modal
-        animationType="fade"
-        transparent={true}
-        visible={helpModal}
-        onRequestClose={() => {
-          Alert.alert("Closed");
-          setModalVisible(!helpModal);
-        }}
-      >
-        <View
-          style={{
-            flex: 1,
-            alignItems: "center",
-            justifyContent: "center",
-            alignSelf: "center",
-          }}
-        >
-          <View
-            style={[
-              styles.modalVw,
-              {
-                borderColor: colors.text,
-                borderWidth: 3,
-              },
-            ]}
-          >
-            <LinearGradient
-              colors={["#6bffc6", colors.gradientEndCol]}
-              start={{ x: 1, y: 0 }}
-              end={{ x: 1, y: 0.8 }}
-              style={{
-                borderRadius: 16,
-                height: 608,
-                width: 378,
-                alignItems: "center",
-                justifyContent: "center"
-              }}
-            >
-              <Text
-                style={{
-                  marginBottom: 15,
-                  textAlign: "center",
-                  fontSize: 20,
-                  fontWeight: "bold",
-                }}
-              >
-                It seems that you are struggling with this problem. Here is the
-                multiplication table to help you! When done, press Close.
-              </Text>
-              <Image
-                source={require("/Users/sathvikm/Documents/DyscalculiaProject/Images/MultiplicationTable.jpg")}
-                style={{
-                  width: 350,
-                  height: 350,
-                  borderRadius: 8,
-                  borderWidth: 1,
-                }}
-              />
-              <Button
-                title="Close"
-                style={styles.button}
-                titleStyle={{
-                  color: "black",
-                  fontWeight: "bold",
-                }}
-                buttonStyle={{
-                  borderRadius: 8,
-                  borderWidth: 2,
-                  borderColor: "black",
-                  backgroundColor: "#6bffc6",
-                }}
-                onPress={() => setHelpModal(false)}
-              />
-            </LinearGradient>
-          </View>
-        </View>
-      </Modal>
       <Text
         style={{
           color: colors.text,
@@ -261,8 +181,7 @@ const GameScreenChallenge3 = ({ navigation }) => {
           textAlign: "center",
         }}
       >
-        Let's apply the skills we learned for the following problems without the
-        Multiplication Table!
+        Let's apply the skills we learned for the following problems!
       </Text>
       {ready ? (
         <TouchableOpacity
@@ -299,20 +218,35 @@ const GameScreenChallenge3 = ({ navigation }) => {
               textAlign: "center",
             }}
           >
-            Type in the correct answer below.
+            Type in the correct order!
           </Text>
           <View
             style={{
-              flexDirection: "row",
-              alignItems: "center",
               justifyContent: "center",
-              paddingHorizontal: 20,
-              marginTop: 50,
+              alignItems: "center",
             }}
           >
-            <Text style={{ fontSize: 70, color: colors.text }}>
-              {num1} x {num2} = ?
-            </Text>
+            <View
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "center",
+                flexWrap: "wrap",
+                width: "80%",
+              }}
+            >
+              <Text
+                style={{
+                  fontSize: 50,
+                  marginTop: 80,
+                  marginRight: 10,
+                  textAlign: "center",
+                  color: colors.text,
+                }}
+              >
+                {numbers}
+              </Text>
+            </View>
           </View>
           <Input
             placeholder="Type answer here"
@@ -355,7 +289,7 @@ const GameScreenChallenge3 = ({ navigation }) => {
   );
 };
 
-export default GameScreenChallenge3;
+export default GameScreenChallenge6;
 
 const styles = StyleSheet.create({
   styleInput: {
@@ -363,7 +297,7 @@ const styles = StyleSheet.create({
     alignContent: "center",
     borderRadius: 8,
     padding: 5,
-    marginTop: 70,
+    marginTop: 30,
     width: 300,
     height: 50,
   },

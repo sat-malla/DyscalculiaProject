@@ -93,6 +93,11 @@ const SinglePlayer = ({ navigation }) => {
   navigation.navigate("StartScreen5")
  }
 
+ const startGame6 = () => {
+  setSixthGameModal(false);
+  navigation.navigate("StartScreen6")
+ }
+
   return (
     <View
       style={{
@@ -684,7 +689,6 @@ const SinglePlayer = ({ navigation }) => {
                 height: 298,
                 width: 378,
                 alignItems: "center",
-                // marginRight: 0.75,
               }}
             >
               <ImageBackground
@@ -734,7 +738,7 @@ const SinglePlayer = ({ navigation }) => {
                     marginBottom: 50,
                     alignSelf: "center",
                   }}
-                  // onPress={!setFirstGameModal}
+                  onPress={startGame6}
                 >
                   <Text
                     style={{
@@ -779,6 +783,7 @@ const SinglePlayer = ({ navigation }) => {
           contentContainerStyle={{ justifyContent: "center" }}
           style={{ marginTop: 50 }}
           keyExtractor={(item) => item.id}
+          ItemSeparatorComponent={() => <View style={{ height: 30 }} />}
           renderItem={({ item }) => (
             <TouchableOpacity
               style={{
@@ -801,7 +806,6 @@ const SinglePlayer = ({ navigation }) => {
                   alignItems: "center",
                   height: 118,
                   width: 138,
-                  // marginRight: 0.75,
                 }}
               >
                 <ImageBackground
@@ -840,6 +844,7 @@ const SinglePlayer = ({ navigation }) => {
           contentContainerStyle={{ justifyContent: "center" }}
           style={{ marginTop: 50 }}
           keyExtractor={(item) => item.id}
+          ItemSeparatorComponent={() => <View style={{ height: 30 }} />}
           renderItem={({ item }) => (
             <TouchableOpacity
               style={{

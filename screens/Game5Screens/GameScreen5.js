@@ -15,12 +15,11 @@ import { AntDesign } from "@expo/vector-icons";
 import DropDownPicker from "react-native-dropdown-picker";
 
 const GameScreen5 = ({ navigation }) => {
-  const { colors } = useTheme();
+  const { colors, dark } = useTheme();
   const [ready, setReady] = useState(true);
   const [num1, setNum1] = useState(1);
   const [num2, setNum2] = useState(1);
   const [buttonClicked, isButtonClicked] = useState(false);
-  const [realAnswer, setRealAnswer] = useState("");
   const [answerCorrect, isAnswerCorrect] = useState(false);
   const [count, setCount] = useState(0);
   const [challengeModal, setChallengeModal] = useState(false);
@@ -38,49 +37,6 @@ const GameScreen5 = ({ navigation }) => {
   const markAdd = 1;
   const markAdd2 = 1;
 
-  const generateNumbers = () => {
-    const randomNum = Math.floor(Math.random() * 10) + 0;
-    const randomNum2 = Math.floor(Math.random() * 10) + 0;
-
-    setNum1(randomNum);
-    setNum2(randomNum2);
-  };
-
-  const startGame = () => {
-    generateNumbers();
-    setReady(false);
-  };
-
-  const verify = () => {
-    isButtonClicked(true);
-    if (num1 > num2) {
-        setRealAnswer(">");
-    } else if (num1 == num2) {
-        setRealAnswer("=");
-    } else if (num1 < num2) {
-        setRealAnswer("<");
-    }
-    if (count < 10) {
-      if (value === realAnswer) {
-        generateNumbers();
-        isAnswerCorrect(true);
-        setMarks([]);
-        setMarks2([]);
-        setValue(null);
-        setCount(count + 1);
-      } else if (value !== realAnswer) {
-        isAnswerCorrect(false);
-      }
-    } else if (count == 10) {
-      setChallengeModal(true);
-    }
-  };
-
-  const nextScreen = () => {
-    setChallengeModal(false);
-    navigation.navigate("MidScreen5");
-  };
-
   const addLine = () => {
     setMarks((prevLines) => [
       ...prevLines,
@@ -90,7 +46,7 @@ const GameScreen5 = ({ navigation }) => {
           marginRight: 10,
           fontSize: 20,
           fontWeight: "500",
-          color: "red",
+          color: colors.redComp,
         }}
       >
         |
@@ -106,8 +62,7 @@ const GameScreen5 = ({ navigation }) => {
           marginRight: 10,
           fontSize: 20,
           fontWeight: "500",
-          marginBottom: 20,
-          color: "blue",
+          color: colors.blueComp,
         }}
       >
         |
@@ -127,6 +82,69 @@ const GameScreen5 = ({ navigation }) => {
       newLines.splice(-markAdd2);
       return newLines;
     });
+  };
+
+  const marksData = [
+    {
+      id: "1",
+      text: "Red Number Ticks: ",
+      color: colors.redComp,
+      onPressAdd: () => addLine(),
+      onPressRemove: () => removeLine(),
+      marks: marks,
+    },
+    {
+      id: "2",
+      text: "Blue Number Ticks: ",
+      color: colors.blueComp,
+      onPressAdd: () => addLine2(),
+      onPressRemove: () => removeLine2(),
+      marks: marks2,
+    },
+  ];
+
+  const generateNumbers = () => {
+    const randomNum = Math.floor(Math.random() * 10) + 0;
+    const randomNum2 = Math.floor(Math.random() * 10) + 0;
+
+    setNum1(randomNum);
+    setNum2(randomNum2);
+  };
+
+  const startGame = () => {
+    generateNumbers();
+    setReady(false);
+  };
+
+  const verify = () => {
+    let ans = "";
+    isButtonClicked(true);
+    if (num1 > num2) {
+      ans = ">";
+    } else if (num1 == num2) {
+      ans = "=";
+    } else if (num1 < num2) {
+      ans = "<";
+    }
+    if (count < 10) {
+      if (value === ans) {
+        isAnswerCorrect(true);
+        setMarks([]);
+        setMarks2([]);
+        setValue(null);
+        setCount(count + 1);
+        generateNumbers();
+      } else if (value !== ans) {
+        isAnswerCorrect(false);
+      }
+    } else if (count == 10) {
+      setChallengeModal(true);
+    }
+  };
+
+  const nextScreen = () => {
+    setChallengeModal(false);
+    navigation.navigate("MidScreen5");
   };
 
   return (
@@ -282,12 +300,12 @@ const GameScreen5 = ({ navigation }) => {
               flexDirection: "row",
               alignItems: "center",
               justifyContent: "center",
-              marginTop: 50,
+              marginTop: 20,
               marginLeft: 20,
               paddingHorizontal: 150,
             }}
           >
-            <Text style={{ fontSize: 50, color: "red" }}>{num1}</Text>
+            <Text style={{ fontSize: 50, color: colors.redComp }}>{num1}</Text>
             <DropDownPicker
               open={open}
               value={value}
@@ -295,146 +313,122 @@ const GameScreen5 = ({ navigation }) => {
               setOpen={setOpen}
               setValue={setValue}
               setItems={setItems}
-              dropDownContainerStyle={{ width: 70, marginLeft: 20 }}
+              dropDownContainerStyle={{
+                width: 70,
+                marginLeft: 20,
+                backgroundColor: colors.primary,
+                borderColor: colors.text,
+              }}
               placeholder=" "
-              listItemLabelStyle={{ fontSize: 25 }}
-              labelStyle={{ fontSize: 25 }}
+              listItemLabelStyle={{ fontSize: 25, color: colors.text }}
+              labelStyle={{ fontSize: 25, color: colors.text }}
+              arrowIconStyle={dark ? { backgroundColor: colors.text, borderRadius: 8 } : { backgroundColor: "white" }}
+              tickIconStyle={dark ? { backgroundColor: colors.text, borderRadius: 8 } : { backgroundColor: "white" }}
               style={{
                 width: 70,
                 alignSelf: "center",
+                backgroundColor: colors.primary,
+                borderColor: colors.text,
+                color: colors.text,
               }}
             />
-            <Text style={{ fontSize: 50, color: "blue" }}>{num2}</Text>
+            <Text style={{ fontSize: 50, color: colors.blueComp }}>{num2}</Text>
           </View>
           <View
             style={{
               flexDirection: "row",
-              alignItems: "stretch",
               marginTop: 100,
             }}
           >
-            <View
-              style={{
-                justifyContent: "flex-start",
-                flexDirection: "row",
-                marginRight: 50,
-              }}
-            >
-              <Button
-                title="+"
-                buttonStyle={{
-                  borderRadius: 8,
-                  backgroundColor: "#6bffc6",
-                  borderWidth: 1.5,
-                  width: 50,
-                  borderColor: "black",
-                }}
-                titleStyle={{
-                  color: "black",
-                  fontWeight: "bold",
-                }}
-                onPress={addLine}
-              />
-              <Button
-                title="–"
-                style={{ marginLeft: 10, marginRight: 10 }}
-                buttonStyle={{
-                  borderRadius: 8,
-                  backgroundColor: "#6bffc6",
-                  borderWidth: 1.5,
-                  width: 50,
-                  borderColor: "black",
-                }}
-                titleStyle={{
-                  color: "black",
-                  fontWeight: "bold",
-                }}
-                onPress={removeLine}
-              />
-            </View>
-            <View
-              style={{
-                justifyContent: "flex-end",
-                flexDirection: "row",
-                marginLeft: 100,
-              }}
-            >
-              <Button
-                title="+"
-                style={{ marginRight: 10, marginLeft: 10 }}
-                buttonStyle={{
-                  borderRadius: 8,
-                  backgroundColor: "#6bffc6",
-                  borderWidth: 1.5,
-                  width: 50,
-                  borderColor: "black",
-                }}
-                titleStyle={{
-                  color: "black",
-                  fontWeight: "bold",
-                }}
-                onPress={addLine2}
-              />
-              <Button
-                title="–"
-                buttonStyle={{
-                  borderRadius: 8,
-                  backgroundColor: "#6bffc6",
-                  borderWidth: 1.5,
-                  width: 50,
-                  borderColor: "black",
-                }}
-                titleStyle={{
-                  color: "black",
-                  fontWeight: "bold",
-                }}
-                onPress={removeLine2}
-              />
-            </View>
-          </View>
-          <View
-            style={{
-              marginTop: 10,
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <View
-              style={{
-                justifyContent: "flex-start",
-                flexWrap: "wrap",
-                width: 100,
-                marginRight: 280,
-                flexDirection: "row",
-                borderWidth: 2,
-                borderRadius: 8,
-                padding: 10
-              }}
-            >
-              {marks}
-            </View>
-            <View
-              style={{
-                justifyContent: "flex-start",
-                width: 100,
-                flexWrap: "wrap",
-                marginLeft: 280,
-                flexDirection: "row",
-                borderWidth: 2,
-                borderRadius: 8,
-                padding: 10,
-                marginTop: -25
-              }}
-            >
-              {marks2}
-            </View>
+            <FlatList
+              data={marksData}
+              scrollEnabled={false}
+              contentContainerStyle={{ justifyContent: "center" }}
+              style={{ marginTop: 70 }}
+              ItemSeparatorComponent={() => <View style={{ height: 50 }} />}
+              keyExtractor={(item) => item.id}
+              renderItem={({ item }) => (
+                <View
+                  style={{
+                    flexDirection: "column",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text style={{ fontSize: 18, color: item.color }}>
+                    {item.text}
+                  </Text>
+                  <View
+                    style={{
+                      flexDirection: "row",
+                      alignItems: "center",
+                      marginLeft: 270,
+                      marginTop: 20,
+                    }}
+                  >
+                    <View
+                      style={{
+                        justifyContent: "flex-start",
+                        flexDirection: "row",
+                        marginRight: 50,
+                      }}
+                    >
+                      <Button
+                        title="+"
+                        buttonStyle={{
+                          borderRadius: 8,
+                          backgroundColor: "#6bffc6",
+                          borderWidth: 1.5,
+                          width: 50,
+                          borderColor: "black",
+                        }}
+                        titleStyle={{
+                          color: "black",
+                          fontWeight: "bold",
+                        }}
+                        onPress={item.onPressAdd}
+                      />
+                      <Button
+                        title="–"
+                        style={{ marginLeft: 10, marginRight: 10 }}
+                        buttonStyle={{
+                          borderRadius: 8,
+                          backgroundColor: "#6bffc6",
+                          borderWidth: 1.5,
+                          width: 50,
+                          borderColor: "black",
+                        }}
+                        titleStyle={{
+                          color: "black",
+                          fontWeight: "bold",
+                        }}
+                        onPress={item.onPressRemove}
+                      />
+                    </View>
+                    <View
+                      style={{
+                        justifyContent: "flex-start",
+                        flexWrap: "wrap",
+                        width: 100,
+                        marginRight: 280,
+                        flexDirection: "row",
+                        borderWidth: 2,
+                        borderRadius: 8,
+                        padding: 15,
+                      }}
+                    >
+                      {item.marks}
+                    </View>
+                  </View>
+                </View>
+              )}
+            />
           </View>
           <Button
             disabled={!value}
             title="Check"
             style={styles.button}
             titleStyle={{
-              color: colors.text,
+              color: "black",
               fontWeight: "bold",
             }}
             buttonStyle={{
@@ -445,9 +439,9 @@ const GameScreen5 = ({ navigation }) => {
           />
           {buttonClicked ? (
             answerCorrect ? (
-              <Text style={styles.response}>👏Good Job!👏</Text>
+              <Text style={[styles.response, { color: colors.text }]}>👏Good Job!👏</Text>
             ) : (
-              <Text style={styles.response}>
+              <Text style={[styles.response, { color: colors.text }]}>
                 No pressure! Try it one more time!
               </Text>
             )
@@ -465,7 +459,6 @@ export default GameScreen5;
 const styles = StyleSheet.create({
   styleInput: {
     borderWidth: 2,
-    borderColor: "black",
     alignContent: "center",
     borderRadius: 8,
     padding: 5,
