@@ -35,13 +35,13 @@ const SinglePlayer = ({ navigation }) => {
     {
       id: "2",
       title: "Game 3",
-      image: require("/Users/sathvikm/Documents/DyscalculiaProject/Images/hand.jpg"),
+      image: require("/Users/sathvikm/Documents/DyscalculiaProject/Images/Game3Image.png"),
       openModal: () => setThirdGameModal(true)
     },
     {
       id: "3",
       title: "Game 5",
-      image: require("/Users/sathvikm/Documents/DyscalculiaProject/Images/hand.jpg"),
+      image: require("/Users/sathvikm/Documents/DyscalculiaProject/Images/Game5Image.png"),
       openModal: () => setFifthGameModal(true)
     },
   ];
@@ -50,19 +50,19 @@ const SinglePlayer = ({ navigation }) => {
     {
       id: "4",
       title: "Game 2",
-      image: require("/Users/sathvikm/Documents/DyscalculiaProject/Images/addition.jpg"),
+      image: require("/Users/sathvikm/Documents/DyscalculiaProject/Images/Game2Image.png"),
       openModal: () => setSecondGameModal(true)
     },
     {
       id: "5",
       title: "Game 4",
-      image: require("/Users/sathvikm/Documents/DyscalculiaProject/Images/hand.jpg"),
+      image: require("/Users/sathvikm/Documents/DyscalculiaProject/Images/Game4Image.png"),
       openModal: () => setFourthGameModal(true)
     },
     {
       id: "6",
       title: "Game 6",
-      image: require("/Users/sathvikm/Documents/DyscalculiaProject/Images/hand.jpg"),
+      image: require("/Users/sathvikm/Documents/DyscalculiaProject/Images/Game6Image.png"),
       openModal: () => setSixthGameModal(true)
     },
   ];
@@ -191,6 +191,7 @@ const SinglePlayer = ({ navigation }) => {
                     marginTop: 10,
                     marginBottom: 50,
                     alignSelf: "center",
+                    borderWidth: 2
                   }}
                   onPress={() => startGame1()}
                 >
@@ -256,7 +257,7 @@ const SinglePlayer = ({ navigation }) => {
               }}
             >
               <ImageBackground
-                source={require("/Users/sathvikm/Documents/DyscalculiaProject/Images/addition.jpg")}
+                source={require("/Users/sathvikm/Documents/DyscalculiaProject/Images/Game2Image.png")}
                 imageStyle={{ opacity: 0.2 }}
                 animationType="fade"
                 style={{ width: 378, height: 318, padding: 20 }}
@@ -301,6 +302,7 @@ const SinglePlayer = ({ navigation }) => {
                     marginTop: 10,
                     marginBottom: 50,
                     alignSelf: "center",
+                    borderWidth: 2
                   }}
                    onPress={() => startGame2()}
                 >
@@ -365,7 +367,7 @@ const SinglePlayer = ({ navigation }) => {
               }}
             >
               <ImageBackground
-                source={require("/Users/sathvikm/Documents/DyscalculiaProject/Images/addition.jpg")}
+                source={require("/Users/sathvikm/Documents/DyscalculiaProject/Images/Game3Image.png")}
                 imageStyle={{ opacity: 0.2 }}
                 animationType="fade"
                 style={{ width: 378, height: 318, padding: 20 }}
@@ -410,6 +412,7 @@ const SinglePlayer = ({ navigation }) => {
                     marginTop: 10,
                     marginBottom: 50,
                     alignSelf: "center",
+                    borderWidth: 2
                   }}
                    onPress={startGame3}
                 >
@@ -474,7 +477,7 @@ const SinglePlayer = ({ navigation }) => {
               }}
             >
               <ImageBackground
-                source={require("/Users/sathvikm/Documents/DyscalculiaProject/Images/addition.jpg")}
+                source={require("/Users/sathvikm/Documents/DyscalculiaProject/Images/Game4Image.png")}
                 imageStyle={{ opacity: 0.2 }}
                 animationType="fade"
                 style={{ width: 378, height: 318, padding: 20 }}
@@ -519,6 +522,7 @@ const SinglePlayer = ({ navigation }) => {
                     marginTop: 10,
                     marginBottom: 50,
                     alignSelf: "center",
+                    borderWidth: 2
                   }}
                    onPress={startGame4}
                 >
@@ -583,7 +587,7 @@ const SinglePlayer = ({ navigation }) => {
               }}
             >
               <ImageBackground
-                source={require("/Users/sathvikm/Documents/DyscalculiaProject/Images/addition.jpg")}
+                source={require("/Users/sathvikm/Documents/DyscalculiaProject/Images/Game5Image.png")}
                 imageStyle={{ opacity: 0.2 }}
                 animationType="fade"
                 style={{ width: 378, height: 318, padding: 20 }}
@@ -628,6 +632,7 @@ const SinglePlayer = ({ navigation }) => {
                     marginTop: 10,
                     marginBottom: 50,
                     alignSelf: "center",
+                    borderWidth: 2
                   }}
                    onPress={startGame5}
                 >
@@ -692,7 +697,7 @@ const SinglePlayer = ({ navigation }) => {
               }}
             >
               <ImageBackground
-                source={require("/Users/sathvikm/Documents/DyscalculiaProject/Images/addition.jpg")}
+                source={require("/Users/sathvikm/Documents/DyscalculiaProject/Images/Game6Image.png")}
                 imageStyle={{ opacity: 0.2 }}
                 animationType="fade"
                 style={{ width: 378, height: 318, padding: 20 }}
@@ -737,6 +742,7 @@ const SinglePlayer = ({ navigation }) => {
                     marginTop: 10,
                     marginBottom: 50,
                     alignSelf: "center",
+                    borderWidth: 2
                   }}
                   onPress={startGame6}
                 >
@@ -789,7 +795,7 @@ const SinglePlayer = ({ navigation }) => {
               style={{
                 borderColor: colors.text,
                 borderWidth: 1,
-                height: 120,
+                height: 130,
                 width: 140,
                 marginTop: 10,
                 alignItems: "center",
@@ -804,14 +810,14 @@ const SinglePlayer = ({ navigation }) => {
                 style={{
                   borderRadius: 16,
                   alignItems: "center",
-                  height: 118,
+                  height: 128,
                   width: 138,
                 }}
               >
                 <ImageBackground
                   source={item.image}
-                  imageStyle={{ opacity: 0.3 }}
-                  style={{ width: 138, height: 118 }}
+                  imageStyle={{ opacity: 0.2 }}
+                  style={{ width: 138, height: 128 }}
                 >
                   <Text
                     style={{
@@ -826,7 +832,7 @@ const SinglePlayer = ({ navigation }) => {
                   <Text
                     style={{
                       marginLeft: 15,
-                      marginTop: 50,
+                      marginTop: 60,
                       fontSize: 12,
                       fontWeight: "500",
                     }}
@@ -850,7 +856,7 @@ const SinglePlayer = ({ navigation }) => {
               style={{
                 borderColor: colors.text,
                 borderWidth: 1,
-                height: 120,
+                height: 130,
                 width: 140,
                 marginTop: 10,
                 marginLeft: 15,
@@ -866,14 +872,14 @@ const SinglePlayer = ({ navigation }) => {
                 style={{
                   borderRadius: 16,
                   alignItems: "center",
-                  height: 118,
+                  height: 128,
                   width: 138,
                 }}
               >
                 <ImageBackground
                   source={item.image}
-                  imageStyle={{ opacity: 0.3 }}
-                  style={{ width: 138, height: 118 }}
+                  imageStyle={{ opacity: 0.2 }}
+                  style={{ width: 138, height: 128 }}
                 >
                   <Text
                     style={{
@@ -888,7 +894,7 @@ const SinglePlayer = ({ navigation }) => {
                   <Text
                     style={{
                       marginLeft: 15,
-                      marginTop: 50,
+                      marginTop: 60,
                       fontSize: 12,
                       fontWeight: "500",
                     }}

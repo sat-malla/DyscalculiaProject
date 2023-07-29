@@ -74,6 +74,7 @@ const Home = ({ navigation }) => {
           fontSize: 30,
           fontWeight: "bold",
           marginTop: 60,
+          textAlign: "center",
           color: colors.text,
         }}
       >
