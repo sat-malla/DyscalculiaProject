@@ -119,7 +119,7 @@ const Register = ({ navigation }) => {
               <TextInput
                 placeholder="Password"
                 placeholderTextColor="gray"
-                style={[styles.styleInput, { borderColor: colors.text, width: 330 }]}
+                style={[styles.styleInput, { borderColor: colors.text, width: 330, color: colors.text }]}
                 textContentType="text"
                 value={password}
                 onChangeText={setPassword}
@@ -140,9 +140,9 @@ const Register = ({ navigation }) => {
                 onPress={() => setRevealPass(!revealPass)}
               >
                 {revealPass ? (
-                  <Feather name="eye" size={24} color="black" />
+                  <Feather name="eye" size={24} color={colors.text} />
                 ) : (
-                  <Feather name="eye-off" size={24} color="black" />
+                  <Feather name="eye-off" size={24} color={colors.text} />
                 )}
               </TouchableOpacity>
             </View>
@@ -157,7 +157,7 @@ const Register = ({ navigation }) => {
             }}
             buttonStyle={{
               borderRadius: 8,
-              backgroundColor: "#c9ffea",
+              backgroundColor: colors.loginBanner,
               height: 45,
             }}
             onPress={register}

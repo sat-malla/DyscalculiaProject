@@ -13,6 +13,7 @@ import React, { useState } from "react";
 import { Text, Button } from "@rneui/base";
 import { useTheme } from "../DarkTheme/ThemeProvider.js";
 import { useHeaderHeight } from "@react-navigation/elements";
+import { Link } from "@react-navigation/native";
 import { Feather } from "@expo/vector-icons";
 import { auth } from "../firebase.js";
 
@@ -90,7 +91,7 @@ const Login = ({ navigation }) => {
                 placeholderTextColor="gray"
                 style={[
                   styles.styleInput,
-                  { borderColor: colors.text, width: 330 },
+                  { borderColor: colors.text, width: 330, color: colors.text },
                 ]}
                 textContentType="text"
                 value={password}
@@ -112,9 +113,9 @@ const Login = ({ navigation }) => {
                 onPress={() => setRevealPass(!revealPass)}
               >
                 {revealPass ? (
-                  <Feather name="eye" size={24} color="black" />
+                  <Feather name="eye" size={24} color={colors.text} />
                 ) : (
-                  <Feather name="eye-off" size={24} color="black" />
+                  <Feather name="eye-off" size={24} color={colors.text} />
                 )}
               </TouchableOpacity>
             </View>
@@ -129,12 +130,17 @@ const Login = ({ navigation }) => {
             }}
             buttonStyle={{
               borderRadius: 8,
-              backgroundColor: "#c9ffea",
+              backgroundColor: colors.loginBanner,
               height: 45,
             }}
             onPress={login}
           />
-          {/* Create button for Forgot Password */}
+          <Link
+              to={{ screen: "ForgotPass", params: { id: "id" } }}
+              style={{ marginTop: 20, color: colors.buttonColor, fontSize: 17 }}
+            >
+              Forgot Password?
+            </Link>
           <Text
             style={{
               fontWeight: "bold",

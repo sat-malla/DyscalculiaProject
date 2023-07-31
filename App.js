@@ -18,6 +18,7 @@ import Info from "./screens/Info";
 import Suggest from "./screens/Suggest";
 import Login from "./screens/Login";
 import Register from "./screens/Register";
+import ForgotPass from "./screens/ForgotPass";
 import TermsAndCo from "./screens/TermsAndCo";
 import SinglePlayer from "./screens/SinglePlayer";
 
@@ -81,6 +82,10 @@ function LoginTitle({ navigation }) {
 
 function RegisterTitle({ navigation }) {
   return <Text style={{ fontSize: 25 }}>Register</Text>;
+}
+
+function ForgotPassTitle({ navigation }) {
+  return <Text style={{ fontSize: 25 }}>Forgot Password?</Text>;
 }
 
 function TACTitle({ navigation }) {
@@ -165,6 +170,15 @@ export default function App({ navigation }) {
             options={({ navigation }) => {
               return {
                 headerTitle: () => <RegisterTitle navigation={navigation} />,
+              };
+            }}
+          />
+          <Stack.Screen
+            name="ForgotPass"
+            component={ForgotPass}
+            options={({ navigation }) => {
+              return {
+                headerTitle: () => <ForgotPassTitle navigation={navigation} />,
               };
             }}
           />

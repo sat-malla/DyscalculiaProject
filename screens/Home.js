@@ -3,7 +3,6 @@ import {
   View,
   TouchableOpacity,
   Button,
-  Pressable,
   Image,
 } from "react-native";
 import { Text } from "@rneui/base";
@@ -115,7 +114,7 @@ const Home = ({ navigation }) => {
             padding: 10,
             elevation: 2,
             width: "75%",
-            backgroundColor: "#c9ffea",
+            backgroundColor: colors.loginBanner,
             flexDirection: "row",
             justifyContent: "center",
             marginTop: 30,
@@ -203,6 +202,22 @@ const Home = ({ navigation }) => {
         color={colors.buttonColor}
         onPress={() => navigation.navigate("Suggest")}
       />
+      <TouchableOpacity
+        style={{
+          backgroundColor: colors.loginBanner,
+          alignItems: "center",
+          padding: 15,
+          overflow: "hidden",
+          borderWidth: 2,
+          borderRadius: 8,
+          borderColor: colors.text,
+          marginTop: 20,
+          width: "80%",
+        }}
+      >
+        <Text style={{ fontSize: 20, fontWeight: "bold" }}>Check Your Profile Here! 👇</Text>
+        <Ionicons name="ios-person-circle-outline" size={130} color="black" style={{ marginTop: 10 }}/>
+      </TouchableOpacity>
     </View>
   );
 };

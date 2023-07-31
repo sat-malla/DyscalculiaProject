@@ -5,7 +5,8 @@ export const lightTheme={
     gradientEndCol: 'white',
     redComp: 'red',
     blueComp: 'blue',
-    orYouCan: 'gray'
+    orYouCan: 'gray',
+    loginBanner: '#c9ffea'
 }
 export const darkTheme={
     primary: '#242430',
@@ -14,5 +15,6 @@ export const darkTheme={
     gradientEndCol: '#ccffec',
     redComp: '#ff3654',
     blueComp: '#33b8ff',
-    orYouCan: 'white'
+    orYouCan: 'white',
+    loginBanner: '#e6fff5'
 }
