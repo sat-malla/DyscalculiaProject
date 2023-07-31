@@ -21,6 +21,8 @@ import {
 import Home from "./screens/Home";
 import Info from "./screens/Info";
 import Suggest from "./screens/Suggest";
+import Register from "./screens/Register";
+import TermsAndCo from "./screens/TermsAndCo";
 import SinglePlayer from "./screens/SinglePlayer";
 
 // Importing Single Player Game 1 Screens
@@ -75,6 +77,14 @@ function InfoTitle({ navigation }) {
 
 function SuggestTitle({ navigation }) {
   return <Text style={{ fontSize: 25 }}>Contact</Text>;
+}
+
+function RegisterTitle({ navigation }) {
+  return <Text style={{ fontSize: 25 }}>Register</Text>;
+}
+
+function TACTitle({ navigation }) {
+  return <Text style={{ fontSize: 25, marginLeft: 10 }}>Terms & Conditions</Text>;
 }
 
 function SPTitle({ navigation }) {
@@ -137,6 +147,24 @@ export default function App({ navigation }) {
             options={({ navigation }) => {
               return {
                 headerTitle: () => <SuggestTitle navigation={navigation} />,
+              };
+            }}
+          />
+          <Stack.Screen
+            name="Register"
+            component={Register}
+            options={({ navigation }) => {
+              return {
+                headerTitle: () => <RegisterTitle navigation={navigation} />,
+              };
+            }}
+          />
+          <Stack.Screen
+            name="TermsAndCo"
+            component={TermsAndCo}
+            options={({ navigation }) => {
+              return {
+                headerTitle: () => <TACTitle navigation={navigation} />,
               };
             }}
           />

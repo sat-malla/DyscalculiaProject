@@ -4,7 +4,8 @@ export const lightTheme={
     buttonColor: '#0099ff',
     gradientEndCol: 'white',
     redComp: 'red',
-    blueComp: 'blue'
+    blueComp: 'blue',
+    orYouCan: 'gray'
 }
 export const darkTheme={
     primary: '#242430',
@@ -12,5 +13,6 @@ export const darkTheme={
     buttonColor: '#089cff',
     gradientEndCol: '#ccffec',
     redComp: '#ff3654',
-    blueComp: '#33b8ff'
+    blueComp: '#33b8ff',
+    orYouCan: 'white'
 }
