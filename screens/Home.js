@@ -121,7 +121,7 @@ const Home = ({ navigation }) => {
             marginTop: 30,
             alignSelf: "center",
           }}
-          onPress={() => navigation.navigate("Register")}
+          onPress={() => navigation.navigate("Login")}
         >
           <AntDesign
             name="infocirlceo"

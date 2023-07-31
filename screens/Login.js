@@ -7,58 +7,32 @@ import {
   Platform,
   TextInput,
   TouchableOpacity,
+  Image,
 } from "react-native";
-import React, { useState, useLayoutEffect } from "react";
+import React, { useState } from "react";
 import { Text, Button } from "@rneui/base";
 import { useTheme } from "../DarkTheme/ThemeProvider.js";
 import { useHeaderHeight } from "@react-navigation/elements";
-import { AntDesign, FontAwesome, Feather, Entypo } from "@expo/vector-icons";
-import { CheckBox } from "@rneui/base";
-import { Link } from "@react-navigation/native";
-import { isRegistered } from "./RegisteredOrNot.js";
+import { Feather } from "@expo/vector-icons";
 import { auth } from "../firebase.js";
 
-const Register = ({ navigation }) => {
+const Login = ({ navigation }) => {
   const { dark, colors } = useTheme();
-  const { globalRegistered, isGlobalRegistered } = isRegistered();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [termsCo, setTermsCo] = useState(false);
   const [revealPass, setRevealPass] = useState(false);
   const myHeaderHeight = useHeaderHeight();
 
-  const register = async () => {
+  const login = async () => {
     await auth
-      .createUserWithEmailAndPassword(email, password)
+      .signInWithEmailAndPassword(email, password)
       .catch((error) => alert(error))
       .then(
-        () => navigation.navigate("Home"),
-        isGlobalRegistered(true),
-        console.log("Is Global Registered?: " + globalRegistered)
+        () => navigation.navigate("Home")
+        //   isGlobalRegistered(true),
+        //   console.log("Is Global Registered?: " + globalRegistered)
       );
   };
-
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerRight: () => (
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "flex-end",
-            width: 80,
-            marginRight: 10,
-          }}
-        >
-          <TouchableOpacity
-            onPress={() => navigation.navigate("Home")}
-            activeOpacity={0.5}
-          >
-            <Entypo name="home" size={30} color="black" />
-          </TouchableOpacity>
-        </View>
-      ),
-    })
-  }, [navigation])
 
   return (
     <KeyboardAvoidingView
@@ -85,18 +59,12 @@ const Register = ({ navigation }) => {
               color: colors.text,
             }}
           >
-            Register Today!
+            Login
           </Text>
-          <Text
-            style={{
-              fontSize: 20,
-              marginTop: 50,
-              color: colors.text,
-              textAlign: "center",
-            }}
-          >
-            Register for customized profile pictures, achievements, and more!
-          </Text>
+          <Image
+            source={require("/Users/sathvikm/Documents/DyscalculiaProject/Images/loginPic.png")}
+            style={{ width: 300, height: 150, marginTop: 15 }}
+          />
           <View style={styles.inputCont}>
             <TextInput
               placeholder="Email"
@@ -108,6 +76,7 @@ const Register = ({ navigation }) => {
               textContentType="text"
               value={email}
               onChangeText={setEmail}
+              keyboardAppearance={dark ? "dark" : "light"}
             />
             <View
               style={{
@@ -119,7 +88,10 @@ const Register = ({ navigation }) => {
               <TextInput
                 placeholder="Password"
                 placeholderTextColor="gray"
-                style={[styles.styleInput, { borderColor: colors.text, width: 330 }]}
+                style={[
+                  styles.styleInput,
+                  { borderColor: colors.text, width: 330 },
+                ]}
                 textContentType="text"
                 value={password}
                 onChangeText={setPassword}
@@ -135,7 +107,7 @@ const Register = ({ navigation }) => {
                   height: 45,
                   marginLeft: -40,
                   alignItems: "center",
-                  justifyContent: "center"
+                  justifyContent: "center",
                 }}
                 onPress={() => setRevealPass(!revealPass)}
               >
@@ -148,8 +120,8 @@ const Register = ({ navigation }) => {
             </View>
           </View>
           <Button
-            disabled={!email || !password || !termsCo}
-            title="Register"
+            disabled={!email || !password}
+            title="Login"
             style={[styles.button, { marginTop: 50 }]}
             titleStyle={{
               fontWeight: "bold",
@@ -160,50 +132,9 @@ const Register = ({ navigation }) => {
               backgroundColor: "#c9ffea",
               height: 45,
             }}
-            onPress={register}
+            onPress={login}
           />
-          <View
-            style={{
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "center",
-              paddingHorizontal: 10,
-              marginRight: 20,
-              flexWrap: "wrap",
-            }}
-          >
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <CheckBox
-                style={{
-                  alignSelf: "center",
-                }}
-                containerStyle={{
-                  marginTop: 15,
-                  marginRight: -5,
-                  backgroundColor: "transparent",
-                }}
-                checkedColor="#11ad71"
-                checked={termsCo}
-                onPress={() => setTermsCo(!termsCo)}
-              />
-              <Text style={{ marginTop: 10, color: colors.text }}>
-                By registering, you confirm that you accept our
-              </Text>
-            </View>
-            <Link
-              to={{ screen: "TermsAndCo", params: { id: "id" } }}
-              style={{ marginTop: -20, color: colors.buttonColor }}
-            >
-              Terms & Conditions
-            </Link>
-          </View>
-
+          {/* Create button for Forgot Password */}
           <Text
             style={{
               fontWeight: "bold",
@@ -226,50 +157,16 @@ const Register = ({ navigation }) => {
               marginTop: 30,
               alignSelf: "center",
             }}
-            //   onPress={() => navigation.navigate("Register")}
+            onPress={() => navigation.navigate("Register")}
           >
-            <AntDesign name="google" size={24} color="#ed8939" />
             <Text
               style={{
                 color: "#ed8939",
                 fontWeight: "bold",
                 fontSize: 18,
-                marginRight: 45,
               }}
             >
-              Sign up with Google
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={{
-              borderRadius: 8,
-              padding: 10,
-              elevation: 2,
-              width: "85%",
-              backgroundColor: "#e1eafc",
-              flexDirection: "row",
-              justifyContent: "space-around",
-              alignItems: "center",
-              marginTop: 15,
-              alignSelf: "center",
-            }}
-            // onPress={() => navigation.navigate("Register")}
-          >
-            <FontAwesome
-              name="facebook-f"
-              size={24}
-              color="#4f8aff"
-              style={{ marginLeft: 5 }}
-            />
-            <Text
-              style={{
-                color: "#4f8aff",
-                fontWeight: "bold",
-                fontSize: 18,
-                marginRight: 35,
-              }}
-            >
-              Sign up with Facebook
+              Create New Account
             </Text>
           </TouchableOpacity>
         </View>
@@ -278,7 +175,7 @@ const Register = ({ navigation }) => {
   );
 };
 
-export default Register;
+export default Login;
 
 const styles = StyleSheet.create({
   inputCont: {

@@ -2,10 +2,6 @@ import "react-native-gesture-handler";
 import {
   StyleSheet,
   TouchableOpacity,
-  Modal,
-  View,
-  Pressable,
-  Button,
 } from "react-native";
 import { Text } from "@rneui/base";
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
@@ -14,13 +10,13 @@ import React, { useState } from "react";
 import { AntDesign } from "@expo/vector-icons";
 import {
   ThemeProvider,
-  useTheme,
 } from "/Users/sathvikm/Documents/DyscalculiaProject/DarkTheme/ThemeProvider.js";
 
 // Importing Screens
 import Home from "./screens/Home";
 import Info from "./screens/Info";
 import Suggest from "./screens/Suggest";
+import Login from "./screens/Login";
 import Register from "./screens/Register";
 import TermsAndCo from "./screens/TermsAndCo";
 import SinglePlayer from "./screens/SinglePlayer";
@@ -77,6 +73,10 @@ function InfoTitle({ navigation }) {
 
 function SuggestTitle({ navigation }) {
   return <Text style={{ fontSize: 25 }}>Contact</Text>;
+}
+
+function LoginTitle({ navigation }) {
+  return <Text style={{ fontSize: 25 }}>Login</Text>;
 }
 
 function RegisterTitle({ navigation }) {
@@ -147,6 +147,15 @@ export default function App({ navigation }) {
             options={({ navigation }) => {
               return {
                 headerTitle: () => <SuggestTitle navigation={navigation} />,
+              };
+            }}
+          />
+          <Stack.Screen
+            name="Login"
+            component={Login}
+            options={({ navigation }) => {
+              return {
+                headerTitle: () => <LoginTitle navigation={navigation} />,
               };
             }}
           />
