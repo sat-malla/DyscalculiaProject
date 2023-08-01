@@ -214,6 +214,7 @@ const Home = ({ navigation }) => {
           marginTop: 20,
           width: "80%",
         }}
+        onPress={() => navigation.navigate("Profile")}
       >
         <Text style={{ fontSize: 20, fontWeight: "bold" }}>Check Your Profile Here! 👇</Text>
         <Ionicons name="ios-person-circle-outline" size={130} color="black" style={{ marginTop: 10 }}/>

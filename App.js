@@ -20,6 +20,7 @@ import Login from "./screens/Login";
 import Register from "./screens/Register";
 import ForgotPass from "./screens/ForgotPass";
 import TermsAndCo from "./screens/TermsAndCo";
+import Profile from "./screens/Profile";
 import SinglePlayer from "./screens/SinglePlayer";
 
 // Importing Single Player Game 1 Screens
@@ -90,6 +91,10 @@ function ForgotPassTitle({ navigation }) {
 
 function TACTitle({ navigation }) {
   return <Text style={{ fontSize: 25, marginLeft: 10 }}>Terms & Conditions</Text>;
+}
+
+function ProfileTitle({ navigation }) {
+  return <Text style={{ fontSize: 25 }}>Profile</Text>;
 }
 
 function SPTitle({ navigation }) {
@@ -188,6 +193,15 @@ export default function App({ navigation }) {
             options={({ navigation }) => {
               return {
                 headerTitle: () => <TACTitle navigation={navigation} />,
+              };
+            }}
+          />
+          <Stack.Screen
+            name="Profile"
+            component={Profile}
+            options={({ navigation }) => {
+              return {
+                headerTitle: () => <ProfileTitle navigation={navigation} />,
               };
             }}
           />
