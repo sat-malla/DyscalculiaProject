@@ -4,9 +4,10 @@ import {
   TouchableOpacity,
   Button,
   Image,
+  ScrollView,
 } from "react-native";
 import { Text } from "@rneui/base";
-import React from "react";
+import React, { useLayoutEffect, useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import { useTheme } from "../DarkTheme/ThemeProvider.js";
 import { isRegistered } from "./RegisteredOrNot.js";
@@ -14,99 +15,120 @@ import { AntDesign, Entypo, Ionicons } from "@expo/vector-icons";
 
 const Home = ({ navigation }) => {
   const { dark, colors, setScheme } = useTheme();
+  const [heyThere, setHeyThere] = useState(false);
   const { globalRegistered } = isRegistered();
 
   const toggleTheme = () => {
     dark ? setScheme("light") : setScheme("dark");
   };
 
-  navigation.setOptions({
-    headerLeft: () => (
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "flex-end",
-          marginRight: 22,
-          marginLeft: -5,
-          marginBottom: 2,
-        }}
-      >
-        <TouchableOpacity
-          onPress={toggleTheme}
-          style={{
-            borderWidth: 2,
-            borderColor: "black",
-            borderRadius: 8,
-            padding: 5,
-            paddingHorizontal: 6,
-          }}
-        >
-          {dark ? (
-            <Entypo name="light-up" size={17} color={"black"} />
-          ) : (
-            <Ionicons name="moon" size={17} color={"black"} />
-          )}
-        </TouchableOpacity>
-      </View>
-    ),
-    headerRight: () => (
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "flex-end",
-          width: 80,
-          marginRight: 10,
-        }}
-      >
-        <TouchableOpacity
-          onPress={() => navigation.navigate("Info")}
-          activeOpacity={0.5}
-        >
-          <AntDesign name="infocirlceo" size={25} color="black" />
-        </TouchableOpacity>
-      </View>
-    ),
-  });
-
-  return (
-    <View
-      style={{
-        alignItems: "center",
-        height: "100%",
-        backgroundColor: colors.primary,
-        paddingHorizontal: 20,
-      }}
-    >
-      {globalRegistered ? (
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerLeft: () => (
         <View
           style={{
-            backgroundColor: "#c9ffea",
-            width: 300,
-            padding: 15,
-            overflow: "hidden",
-            borderWidth: 2,
-            borderRadius: 8,
-            borderColor: colors.text,
-            marginTop: 20,
-            width: "86%",
+            flexDirection: "row",
+            justifyContent: "flex-end",
+            marginRight: 22,
+            marginLeft: -5,
+            marginBottom: 2,
           }}
         >
-          <Image
-            source={require("/Users/sathvikm/Documents/DyscalculiaProject/Images/helloHome.png")}
-            style={{ width: 300, height: 200, borderRadius: 6 }}
-          />
-          <Text
+          <TouchableOpacity
             style={{
-              fontSize: 30,
-              fontWeight: "bold",
-              textAlign: "center",
+              alignItems: "center",
+            }}
+            onPress={() => navigation.navigate("Profile")}
+          >
+            <Ionicons
+              name="ios-person-circle-outline"
+              size={40}
+              color="black"
+            />
+          </TouchableOpacity>
+        </View>
+      ),
+      headerRight: () => (
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "flex-end",
+            width: 80,
+            marginRight: 10,
+          }}
+        >
+          <TouchableOpacity
+            onPress={() => navigation.navigate("Info")}
+            activeOpacity={0.5}
+          >
+            <AntDesign name="infocirlceo" size={25} color="black" />
+          </TouchableOpacity>
+        </View>
+      ),
+    });
+  }, [navigation]);
+
+  return (
+    <ScrollView
+      style={{
+        height: "100%",
+        backgroundColor: colors.primary,
+      }}
+      contentContainerStyle={{
+        alignItems: "center",
+        paddingHorizontal: 20,
+      }}
+      scrollIndicatorInsets={{ right: 1 }}
+    >
+      {!globalRegistered ? (
+        heyThere ? (
+          <Text> </Text>
+        ) : (
+          <View
+            style={{
+              backgroundColor: "#c9ffea",
+              width: 300,
+              padding: 15,
+              paddingVertical: 10,
+              overflow: "hidden",
+              borderWidth: 2,
+              borderRadius: 8,
+              borderColor: colors.text,
               marginTop: 20,
-              color: colors.text,
+              width: "86%",
             }}
           >
-            Hey There! 👋
-          </Text>
-        </View>
+            <Button
+              title="Close"
+              onPress={() => setHeyThere(true)}
+              style={{ marginTop: -20, marginBottom: 20, marginRight: 50 }}
+            />
+            <Image
+              source={require("/Users/sathvikm/Documents/DyscalculiaProject/Images/helloHome.png")}
+              style={{ width: 300, height: 200, borderRadius: 6 }}
+            />
+            <Text
+              style={{
+                fontSize: 30,
+                fontWeight: "bold",
+                textAlign: "center",
+                marginTop: 20,
+              }}
+            >
+              Hey There! 👋
+            </Text>
+            <Text
+              style={{
+                fontSize: 20,
+                fontWeight: "bold",
+                textAlign: "center",
+                marginTop: 10,
+              }}
+            >
+              Click the top right corner above to access your profile! ↖️
+            </Text>
+          </View>
+        )
       ) : (
         <TouchableOpacity
           style={{
@@ -202,24 +224,55 @@ const Home = ({ navigation }) => {
         color={colors.buttonColor}
         onPress={() => navigation.navigate("Suggest")}
       />
+      {dark ? (
+        <Text
+          style={{
+            alignSelf: "center",
+            fontSize: 30,
+            fontWeight: "bold",
+            marginTop: 40,
+            color: colors.text,
+          }}
+        >
+          Light Mode:
+        </Text>
+      ) : (
+        <Text
+          style={{
+            alignSelf: "center",
+            fontSize: 30,
+            fontWeight: "bold",
+            marginTop: 40,
+            color: colors.text,
+          }}
+        >
+          Dark Mode:
+        </Text>
+      )}
       <TouchableOpacity
+        onPress={toggleTheme}
         style={{
-          backgroundColor: colors.loginBanner,
-          alignItems: "center",
-          padding: 15,
-          overflow: "hidden",
-          borderWidth: 2,
-          borderRadius: 8,
-          borderColor: colors.text,
-          marginTop: 20,
+          marginTop: 15,
           width: "80%",
+          height: "5%",
+          alignItems: "center",
+          justifyContent: "center",
+          borderRadius: 8,
+          borderWidth: 2,
+          padding: 5,
+          paddingHorizontal: 6,
+          backgroundColor: dark ? "#2E293A" : "white",
+          borderColor: dark ? "white" : "black",
         }}
-        onPress={() => navigation.navigate("Profile")}
       >
-        <Text style={{ fontSize: 20, fontWeight: "bold" }}>Check Your Profile Here! 👇</Text>
-        <Ionicons name="ios-person-circle-outline" size={130} color="black" style={{ marginTop: 10 }}/>
+        {dark ? (
+          <Entypo name="light-up" size={25} color={"white"} />
+        ) : (
+          <Ionicons name="moon" size={25} color={"black"} />
+        )}
       </TouchableOpacity>
-    </View>
+      <View style={{ height: 70, marginTop: 200 }}/>
+    </ScrollView>
   );
 };
 
