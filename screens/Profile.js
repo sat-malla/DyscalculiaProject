@@ -8,15 +8,19 @@ import {
 import React, { useRef, useState } from "react";
 import { Text, ButtonGroup } from "@rneui/base";
 import { useTheme } from "../DarkTheme/ThemeProvider.js";
-import { Ionicons, MaterialCommunityIcons, Feather } from "@expo/vector-icons";
+import { Ionicons, MaterialCommunityIcons, Feather, AntDesign, Entypo } from "@expo/vector-icons";
 import FlashMessage, { showMessage } from "react-native-flash-message";
 
 const Profile = () => {
-  const { colors } = useTheme();
+  const { colors, dark, setScheme } = useTheme();
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [glasses, setGlasses] = useState(false);
   const [partyHat, setPartyHat] = useState(false);
   const [saved, isSaved] = useState(false);
+
+  const toggleTheme = () => {
+    dark ? setScheme("light") : setScheme("dark");
+  };
 
   const buttonOptions = ["Male", "Female"];
   // Add glasses and party hat profile pictures
@@ -54,12 +58,30 @@ const Profile = () => {
       >
         Make your desired changes, and hit save below!
       </Text>
-      {glasses ? (
+      {glasses && partyHat ? (
+        <Image
+          source={
+            selectedIndex == 0
+              ? require("/Users/sathvikm/Documents/DyscalculiaProject/Images/maleGPHProfilePic.png")
+              : require("/Users/sathvikm/Documents/DyscalculiaProject/Images/femaleGPHProfilePic.png")
+          }
+          style={{ width: 400, height: 400 }}
+        />
+      ) : (glasses) ? (
         <Image
           source={
             selectedIndex == 0
               ? require("/Users/sathvikm/Documents/DyscalculiaProject/Images/maleGlassesProfilePic.png")
               : require("/Users/sathvikm/Documents/DyscalculiaProject/Images/femaleGlassesProfilePic.png")
+          }
+          style={{ width: 400, height: 400 }}
+        />
+      ) : (partyHat) ? (
+        <Image
+          source={
+            selectedIndex == 0
+              ? require("/Users/sathvikm/Documents/DyscalculiaProject/Images/malePHProfilePic.png")
+              : require("/Users/sathvikm/Documents/DyscalculiaProject/Images/femalePHProfilePic.png")
           }
           style={{ width: 400, height: 400 }}
         />
@@ -73,6 +95,54 @@ const Profile = () => {
           style={{ width: 400, height: 400 }}
         />
       )}
+      {dark ? (
+        <Text
+          style={{
+            alignSelf: "center",
+            fontSize: 30,
+            fontWeight: "bold",
+            marginTop: 40,
+            color: colors.text,
+          }}
+        >
+          Light Mode:
+        </Text>
+      ) : (
+        <Text
+          style={{
+            alignSelf: "center",
+            fontSize: 30,
+            fontWeight: "bold",
+            marginTop: 40,
+            color: colors.text,
+          }}
+        >
+          Dark Mode:
+        </Text>
+      )}
+      <TouchableOpacity
+        onPress={toggleTheme}
+        style={{
+          marginTop: 15,
+          marginBottom: 70,
+          width: "95%",
+          height: "3.5%",
+          alignItems: "center",
+          justifyContent: "center",
+          borderRadius: 8,
+          borderWidth: 2,
+          padding: 5,
+          paddingHorizontal: 6,
+          backgroundColor: dark ? "#2E293A" : "white",
+          borderColor: dark ? "white" : "black",
+        }}
+      >
+        {dark ? (
+          <Entypo name="light-up" size={25} color={"white"} />
+        ) : (
+          <Ionicons name="moon" size={25} color={"black"} />
+        )}
+      </TouchableOpacity>
       <ButtonGroup
         buttons={buttonOptions}
         selectedIndex={selectedIndex}

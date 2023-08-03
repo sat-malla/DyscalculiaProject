@@ -64,7 +64,7 @@ const Login = ({ navigation }) => {
           </Text>
           <Image
             source={require("/Users/sathvikm/Documents/DyscalculiaProject/Images/loginPic.png")}
-            style={{ width: 300, height: 150, marginTop: 15 }}
+            style={{ width: 300, height: 150, marginTop: 30, borderRadius: 8 }}
           />
           <View style={styles.inputCont}>
             <TextInput

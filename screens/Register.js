@@ -20,7 +20,7 @@ import { auth } from "../firebase.js";
 
 const Register = ({ navigation }) => {
   const { dark, colors } = useTheme();
-  const { globalRegistered, isGlobalRegistered } = isRegistered();
+  const { globalRegistered, isTrueRegistered } = isRegistered();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [termsCo, setTermsCo] = useState(false);
@@ -33,8 +33,8 @@ const Register = ({ navigation }) => {
       .catch((error) => alert(error))
       .then(
         () => navigation.navigate("Home"),
-        isGlobalRegistered(true),
-        console.log("Is Global Registered?: " + globalRegistered)
+        globalRegistered ? isTrueRegistered(true) : isTrueRegistered(false),
+        console.log("Is Global Registered 3?: " + globalRegistered)
       );
   };
 
@@ -108,6 +108,7 @@ const Register = ({ navigation }) => {
               textContentType="text"
               value={email}
               onChangeText={setEmail}
+              keyboardAppearance={dark ? "dark" : "light"}
             />
             <View
               style={{
@@ -123,6 +124,7 @@ const Register = ({ navigation }) => {
                 textContentType="text"
                 value={password}
                 onChangeText={setPassword}
+                keyboardAppearance={dark ? "dark" : "light"}
                 secureTextEntry={revealPass ? false : true}
               />
               <TouchableOpacity

@@ -14,13 +14,9 @@ import { isRegistered } from "./RegisteredOrNot.js";
 import { AntDesign, Entypo, Ionicons } from "@expo/vector-icons";
 
 const Home = ({ navigation }) => {
-  const { dark, colors, setScheme } = useTheme();
+  const { colors } = useTheme();
   const [heyThere, setHeyThere] = useState(false);
   const { globalRegistered } = isRegistered();
-
-  const toggleTheme = () => {
-    dark ? setScheme("light") : setScheme("dark");
-  };
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -80,7 +76,7 @@ const Home = ({ navigation }) => {
       }}
       scrollIndicatorInsets={{ right: 1 }}
     >
-      {!globalRegistered ? (
+      {globalRegistered ? (
         heyThere ? (
           <Text> </Text>
         ) : (
@@ -224,53 +220,6 @@ const Home = ({ navigation }) => {
         color={colors.buttonColor}
         onPress={() => navigation.navigate("Suggest")}
       />
-      {dark ? (
-        <Text
-          style={{
-            alignSelf: "center",
-            fontSize: 30,
-            fontWeight: "bold",
-            marginTop: 40,
-            color: colors.text,
-          }}
-        >
-          Light Mode:
-        </Text>
-      ) : (
-        <Text
-          style={{
-            alignSelf: "center",
-            fontSize: 30,
-            fontWeight: "bold",
-            marginTop: 40,
-            color: colors.text,
-          }}
-        >
-          Dark Mode:
-        </Text>
-      )}
-      <TouchableOpacity
-        onPress={toggleTheme}
-        style={{
-          marginTop: 15,
-          width: "80%",
-          height: "5%",
-          alignItems: "center",
-          justifyContent: "center",
-          borderRadius: 8,
-          borderWidth: 2,
-          padding: 5,
-          paddingHorizontal: 6,
-          backgroundColor: dark ? "#2E293A" : "white",
-          borderColor: dark ? "white" : "black",
-        }}
-      >
-        {dark ? (
-          <Entypo name="light-up" size={25} color={"white"} />
-        ) : (
-          <Ionicons name="moon" size={25} color={"black"} />
-        )}
-      </TouchableOpacity>
       <View style={{ height: 70, marginTop: 200 }}/>
     </ScrollView>
   );
