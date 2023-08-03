@@ -188,11 +188,11 @@ const Suggest = ({ navigation }) => {
             titleStyle={{
               color: colors.text,
               fontWeight: "bold",
-              color: "black",
+              color: colors.bannerText,
             }}
             buttonStyle={{
               borderRadius: 8,
-              backgroundColor: "#6bffc6",
+              backgroundColor: colors.loginBanner,
             }}
             onPress={sendMessage}
           />

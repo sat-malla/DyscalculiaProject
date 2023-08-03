@@ -143,16 +143,16 @@ const Home = ({ navigation }) => {
           <AntDesign
             name="infocirlceo"
             size={19}
-            color="#11ad71"
+            color={colors.bannerText}
             style={{ marginRight: 10, marginLeft: 12, marginTop: 7 }}
           />
-          <Text style={{ color: "#11ad71", fontWeight: "500" }}>
+          <Text style={{ color: colors.bannerText, fontWeight: "500" }}>
             Login today to have custom profile pictures, achievements, and more!
           </Text>
           <AntDesign
             name="arrowright"
             size={15}
-            color="#11ad71"
+            color={colors.bannerText}
             style={{ marginTop: 10, marginLeft: 3, marginRight: 10 }}
           />
         </TouchableOpacity>

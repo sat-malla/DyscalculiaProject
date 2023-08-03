@@ -196,7 +196,7 @@ const Profile = () => {
         >
           <Text
             style={{
-              color: "#11ad71",
+              color: colors.bannerText,
               fontWeight: "bold",
               fontSize: 18,
               marginLeft: 30,
@@ -207,7 +207,7 @@ const Profile = () => {
           <Feather
             name="check"
             size={24}
-            color="#11ad71"
+            color={colors.bannerText}
             style={{ marginLeft: 20, marginRight: 20 }}
           />
         </TouchableOpacity>
@@ -228,10 +228,10 @@ const Profile = () => {
           //  Disable when user hasn't completed 3 games
           onPress={() => setGlasses(!glasses)}
         >
-          <Ionicons name="glasses" size={35} color="#11ad71" />
+          <Ionicons name="glasses" size={35} color={colors.bannerText} />
           <Text
             style={{
-              color: "#11ad71",
+              color: colors.bannerText,
               fontWeight: "bold",
               fontSize: 18,
               marginRight: 35,
@@ -285,7 +285,7 @@ const Profile = () => {
         >
           <Text
             style={{
-              color: "#11ad71",
+              color: colors.bannerText,
               fontWeight: "bold",
               fontSize: 18,
               marginLeft: 30,
@@ -296,7 +296,7 @@ const Profile = () => {
           <Feather
             name="check"
             size={24}
-            color="#11ad71"
+            color={colors.bannerText}
             style={{ marginLeft: 20, marginRight: 20 }}
           />
         </TouchableOpacity>
@@ -317,10 +317,10 @@ const Profile = () => {
           //  Disable when user hasn't completed 3 games
           onPress={() => setPartyHat(!partyHat)}
         >
-          <MaterialCommunityIcons name="party-popper" size={35} color="#11ad71" />
+          <MaterialCommunityIcons name="party-popper" size={35} color={colors.bannerText} />
           <Text
             style={{
-              color: "#11ad71",
+              color: colors.bannerText,
               fontWeight: "bold",
               fontSize: 18,
               marginRight: 35,
@@ -345,7 +345,7 @@ const Profile = () => {
       )}
       <TouchableOpacity
         style={{
-          backgroundColor: "#e1eafc",
+          backgroundColor: colors.saveButtonBG,
           flexDirection: "row",
           justifyContent: "center",
           alignItems: "center",
@@ -360,8 +360,8 @@ const Profile = () => {
             showMessage({
                 message: "Saved!",
                 type: "success",
-                titleStyle: { fontSize: 19, marginTop: 20, fontWeight: "bold", color: "#11ad71" },
-                backgroundColor: colors.loginBanner,
+                titleStyle: { fontSize: 19, marginTop: 20, fontWeight: "bold", color: colors.bannerText },
+                backgroundColor: colors.savedBG,
                 style: { alignItems: "center", alignSelf: "center", width: 450, borderTopStartRadius: 8, borderTopEndRadius: 8, overflow: "scroll" },
                 position: "bottom"
             });
@@ -369,7 +369,7 @@ const Profile = () => {
       >
         <Text
           style={{
-            color: "#4f8aff",
+            color: colors.saveButtonText,
             fontWeight: "bold",
             fontSize: 18,
           }}

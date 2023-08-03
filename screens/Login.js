@@ -126,7 +126,7 @@ const Login = ({ navigation }) => {
             style={[styles.button, { marginTop: 50 }]}
             titleStyle={{
               fontWeight: "bold",
-              color: "#11ad71",
+              color: colors.bannerText,
             }}
             buttonStyle={{
               borderRadius: 8,
@@ -156,7 +156,7 @@ const Login = ({ navigation }) => {
               padding: 10,
               elevation: 2,
               width: "85%",
-              backgroundColor: "#fcede1",
+              backgroundColor: colors.orangeBG,
               flexDirection: "row",
               justifyContent: "space-around",
               alignItems: "center",
@@ -167,7 +167,7 @@ const Login = ({ navigation }) => {
           >
             <Text
               style={{
-                color: "#ed8939",
+                color: colors.orangeText,
                 fontWeight: "bold",
                 fontSize: 18,
               }}
