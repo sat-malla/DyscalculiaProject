@@ -10,6 +10,7 @@ import { Text, ButtonGroup } from "@rneui/base";
 import { useTheme } from "../DarkTheme/ThemeProvider.js";
 import { Ionicons, MaterialCommunityIcons, Feather, AntDesign, Entypo } from "@expo/vector-icons";
 import FlashMessage, { showMessage } from "react-native-flash-message";
+import { useGlobalState } from "/Users/sathvikm/Documents/DyscalculiaProject/screens/RewardSystem.js";
 
 const Profile = () => {
   const { colors, dark, setScheme } = useTheme();
@@ -17,6 +18,7 @@ const Profile = () => {
   const [glasses, setGlasses] = useState(false);
   const [partyHat, setPartyHat] = useState(false);
   const [saved, isSaved] = useState(false);
+  const [starCount, setStarCount] = useGlobalState('starCount')
 
   const toggleTheme = () => {
     dark ? setScheme("light") : setScheme("dark");
@@ -163,7 +165,7 @@ const Profile = () => {
           color: colors.text,
         }}
       >
-        Current number of stars earned:
+        Current number of stars earned: {starCount}
       </Text>
       <Text
         style={{

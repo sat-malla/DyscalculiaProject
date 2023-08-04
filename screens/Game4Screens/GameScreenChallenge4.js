@@ -59,10 +59,7 @@ const GameScreenChallenge4 = ({ navigation }) => {
 
   const verify = () => {
     isButtonClicked(true);
-    let realAnswer = num2.toString() + problemSign + num1.toString() + "=?";
-    if (problemSign === "-") {
-      realAnswer = num1.toString() + problemSign + num2.toString() + "=?";
-    }
+    let realAnswer = num1.toString() + problemSign + num2.toString() + "=?";
     if (count < 10) {
       if (answer === realAnswer) {
         generateNumbers();
@@ -261,37 +258,7 @@ const GameScreenChallenge4 = ({ navigation }) => {
                   fontWeight: "bold",
                 }}
               >
-                Also, recall from the video that a+b=? is the same as ?=b+a. However, this is not the case for subtraction.
-              </Text>
-              <Text
-                style={{
-                  marginBottom: 20,
-                  textAlign: "center",
-                  fontSize: 20,
-                  fontWeight: "bold",
-                }}
-              >
-                Why? Because in addition, a+b is always the same as b+a. Example: 5+4 = 4+5 is 9 = 9 
-              </Text>
-              <Text
-                style={{
-                  marginBottom: 20,
-                  textAlign: "center",
-                  fontSize: 20,
-                  fontWeight: "bold",
-                }}
-              >
-                In subtraction; however, a-b is not always the same as b-a. Example: 5-4 = 4-5 is 1 = -1.  
-              </Text>
-              <Text
-                style={{
-                  marginBottom: 10,
-                  textAlign: "center",
-                  fontSize: 13,
-                  color: "red"
-                }}
-              >
-                *You don't have to know how 4-5=-1. You just need to know how those two equations are not equal to each other.
+                How? Because for both operations, they are the same operations and numbers. They are just swapped.
               </Text>
               <Text
                 style={{
