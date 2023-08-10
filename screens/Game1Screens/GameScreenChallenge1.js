@@ -1,11 +1,33 @@
-import { StyleSheet, View, Button, TouchableOpacity, FlatList, Modal, Pressable, ImageBackground } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Button,
+  TouchableOpacity,
+  FlatList,
+  Modal,
+  Pressable,
+  ImageBackground,
+  Image,
+} from "react-native";
 import React, { useState } from "react";
 import { useTheme } from "/Users/sathvikm/Documents/DyscalculiaProject/DarkTheme/ThemeProvider.js";
 import { Text } from "@rneui/base";
 import { LinearGradient } from "expo-linear-gradient";
 import { AntDesign } from "@expo/vector-icons";
+import { useGlobalState } from "/Users/sathvikm/Documents/DyscalculiaProject/screens/RewardSystem.js";
 
-const buttons = [
+const GameScreenChallenge1 = ({ navigation }) => {
+  const { colors } = useTheme();
+  const [number, setNumber] = useState(0);
+  const [ready, setReady] = useState(true);
+  const [buttonClicked, isButtonClicked] = useState(false);
+  const [answerCorrect, isAnswerCorrect] = useState(false);
+  const [count, setCount] = useState(0);
+  const [finishModal, setFinishModal] = useState(false);
+  const [image, setImage] = useState(null);
+  const [userFruit, setUserFruit] = useGlobalState("game1Fruit");
+
+  const buttons = [
     {
       id: "1",
       number: 1,
@@ -27,38 +49,73 @@ const buttons = [
       number: 5,
     },
   ];
-  
-  const buttons1 = [
-      {
-        id: "1",
-        number: 6,
-      },
-      {
-        id: "2",
-        number: 7,
-      },
-      {
-        id: "3",
-        number: 8,
-      },
-      {
-        id: "4",
-        number: 9,
-      },
-      {
-        id: "5",
-        number: 10,
-      },
-    ];
 
-const GameScreenChallenge1 = ({ navigation }) => {
-  const { colors } = useTheme();
-  const [gameModal, setGameModal] = useState(false);
+  const buttons1 = [
+    {
+      id: "6",
+      number: 6,
+    },
+    {
+      id: "7",
+      number: 7,
+    },
+    {
+      id: "8",
+      number: 8,
+    },
+    {
+      id: "9",
+      number: 9,
+    },
+    {
+      id: "10",
+      number: 10,
+    },
+  ];
 
   const finishGame = () => {
-    setGameModal(false)
-    navigation.navigate("SinglePlayer")
-  }
+    setFinishModal(false);
+    navigation.navigate("SinglePlayer");
+  };
+
+  const generateNumber = () => {
+    const randomNum = Math.floor(Math.random() * 10) + 1;
+    setNumber(randomNum);
+    if (userFruit == "apple") {
+      image = Array(randomNum).fill({
+        image: require("/Users/sathvikm/Documents/DyscalculiaProject/Images/appleicon.png"),
+      });
+    } else if (userFruit == "orange") {
+      image = Array(randomNum).fill({
+        image: require("/Users/sathvikm/Documents/DyscalculiaProject/Images/orangeicon.png"),
+      });
+    } else if (userFruit == "banana") {
+      image = Array(randomNum).fill({
+        image: require("/Users/sathvikm/Documents/DyscalculiaProject/Images/bananaicon.png"),
+      });
+    }
+  };
+
+  const startGame = () => {
+    generateNumber();
+    setReady(false);
+  };
+
+  const verify = (buttonId) => {
+    isButtonClicked(true);
+    let realAnswer = number;
+    if (count < 10) {
+      if (realAnswer == buttonId) {
+        generateNumber();
+        isAnswerCorrect(true);
+        setCount(count + 1);
+      } else if (realAnswer != buttonId) {
+        isAnswerCorrect(false);
+      }
+    } else if (count == 10) {
+      setFinishModal(true);
+    }
+  };
 
   return (
     <View
@@ -72,10 +129,10 @@ const GameScreenChallenge1 = ({ navigation }) => {
       <Modal
         animationType="fade"
         transparent={true}
-        visible={gameModal}
+        visible={finishModal}
         onRequestClose={() => {
           Alert.alert("Closed");
-          setModalVisible(!gameModal);
+          setModalVisible(!setFinishModal);
         }}
       >
         <View
@@ -118,10 +175,11 @@ const GameScreenChallenge1 = ({ navigation }) => {
                     marginBottom: 20,
                     textAlign: "center",
                     fontSize: 20,
-                    fontWeight: "bold"
+                    fontWeight: "bold",
                   }}
                 >
-                  Congragulations! Now you know how to count numbers with your fingers!
+                  Congratulations! Now you know how to count numbers with your
+                  fingers!
                 </Text>
                 <Pressable
                   style={{
@@ -164,61 +222,132 @@ const GameScreenChallenge1 = ({ navigation }) => {
           textAlign: "center",
         }}
       >
-        Count the number of fruits on the screen!
+        Let's apply the skills we learned for the following problems!
       </Text>
-      <FlatList
-        data={buttons}
-        scrollEnabled={false}
-        contentContainerStyle={{ flexDirection: "row", justifyContent: "center" }}
-        style={{ marginTop: 50 }}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <TouchableOpacity
+      {ready ? (
+        <TouchableOpacity
+          style={{
+            width: 200,
+            borderWidth: 2,
+            borderColor: colors.text,
+            backgroundColor: "#6bffc6",
+            borderRadius: 8,
+            height: 50,
+            padding: 10,
+            alignItems: "center",
+            marginTop: 50,
+          }}
+          onPress={startGame}
+        >
+          <Text style={{ fontSize: 20, fontWeight: "bold" }}>
+            Press to Play!
+          </Text>
+        </TouchableOpacity>
+      ) : (
+        <View style={{ justifyContent: "center" }}>
+          <Text
             style={{
-              borderColor: colors.text,
-              borderWidth: 1,
-              height: 40,
-              width: 40,
+              color: colors.text,
               marginTop: 10,
-              marginLeft: 15,
-              alignItems: "center",
-              borderRadius: 8,
-              padding: 10,
-              backgroundColor: "#b3ffe4"
+              fontSize: 20,
+              textAlign: "center",
             }}
           >
-            <Text>{item.number}</Text>
-          </TouchableOpacity>
-        )}
-      />
-      <FlatList
-        data={buttons1}
-        scrollEnabled={false}
-        contentContainerStyle={{ flexDirection: "row", justifyContent: "center" }}
-        style={{ marginTop: -520}}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <TouchableOpacity
-            style={{
-              borderColor: colors.text,
-              borderWidth: 1,
-              height: 40,
-              width: 40,
-              marginLeft: 15,
-              alignItems: "center",
-              borderRadius: 8,
-              padding: 10,
-              backgroundColor: "#b3ffe4"
+            Count the number of fruits on your screen!
+          </Text>
+          <FlatList
+            data={image}
+            scrollEnabled={false}
+            contentContainerStyle={{
+              flexDirection: "row",
+              justifyContent: "center",
+              margin: 4,
             }}
-          >
-            <Text>{item.number}</Text>
-          </TouchableOpacity>
-        )}
-      />
-      <Button 
-        title="Temporary congrats, actually open modal"
-        onPress={() => setGameModal(true)}
-      />
+            numColumns={2}
+            style={{ marginTop: 50 }}
+            keyExtractor={(item, index) => index.toString()}
+            renderItem={({ item }) => (
+              <View style={{
+                padding: 20
+              }}>
+                <Image
+                  source={item.image}
+                  style={{ width: 300, height: 100 }}
+                />
+              </View>
+            )}
+          />
+          <FlatList
+            data={buttons}
+            scrollEnabled={false}
+            contentContainerStyle={{
+              flexDirection: "row",
+              justifyContent: "center",
+            }}
+            style={{ marginTop: 50 }}
+            keyExtractor={(item) => item.id}
+            renderItem={({ item }) => (
+              <TouchableOpacity
+                style={{
+                  borderColor: colors.text,
+                  borderWidth: 1,
+                  height: 40,
+                  width: 40,
+                  marginLeft: 15,
+                  alignItems: "center",
+                  borderRadius: 8,
+                  padding: 10,
+                  backgroundColor: "#b3ffe4",
+                }}
+                onPress={() => verify(item.id)}
+              >
+                <Text>{item.number}</Text>
+              </TouchableOpacity>
+            )}
+          />
+          <FlatList
+            data={buttons1}
+            scrollEnabled={false}
+            contentContainerStyle={{
+              flexDirection: "row",
+              justifyContent: "center",
+            }}
+            style={{ marginTop: -240 }}
+            keyExtractor={(item) => item.id}
+            renderItem={({ item }) => (
+              <TouchableOpacity
+                style={{
+                  borderColor: colors.text,
+                  borderWidth: 1,
+                  height: 40,
+                  width: 40,
+                  marginLeft: 15,
+                  alignItems: "center",
+                  borderRadius: 8,
+                  padding: 10,
+                  backgroundColor: "#b3ffe4",
+                }}
+                onPress={verify(item.id)}
+              >
+                <Text>{item.number}</Text>
+              </TouchableOpacity>
+            )}
+          />
+          {buttonClicked ? (
+            answerCorrect ? (
+              <Text style={[styles.response, { color: colors.text }]}>
+                👏Good Job!👏
+              </Text>
+            ) : (
+              <Text style={[styles.response, { color: colors.text }]}>
+                No pressure! Try it one more time!
+              </Text>
+            )
+          ) : (
+            <Text> </Text>
+          )}
+        </View>
+      )}
     </View>
   );
 };

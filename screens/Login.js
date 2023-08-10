@@ -16,12 +16,15 @@ import { useHeaderHeight } from "@react-navigation/elements";
 import { Link } from "@react-navigation/native";
 import { Feather } from "@expo/vector-icons";
 import { auth } from "../firebase.js";
+import { useGlobalState } from "/Users/sathvikm/Documents/DyscalculiaProject/screens/RewardSystem.js";
+
 
 const Login = ({ navigation }) => {
   const { dark, colors } = useTheme();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [revealPass, setRevealPass] = useState(false);
+  const [registered, isRegistered] = useGlobalState("registered")
   const myHeaderHeight = useHeaderHeight();
 
   const login = async () => {
@@ -29,8 +32,8 @@ const Login = ({ navigation }) => {
       .signInWithEmailAndPassword(email, password)
       .catch((error) => alert(error))
       .then(
-        () => navigation.navigate("Home")
-        //   isGlobalRegistered(true),
+        () => navigation.navigate("Home"),
+        () => isRegistered(true),
         //   console.log("Is Global Registered?: " + globalRegistered)
       );
   };

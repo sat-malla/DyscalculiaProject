@@ -17,26 +17,45 @@ import { useHeaderHeight } from "@react-navigation/elements";
 import { AntDesign, FontAwesome, Feather, Entypo } from "@expo/vector-icons";
 import { CheckBox } from "@rneui/base";
 import { Link } from "@react-navigation/native";
-import { isRegistered } from "./RegisteredOrNot.js";
-import { auth } from "../firebase.js";
+import { auth, db } from "../firebase.js";
+import { useGlobalState } from "/Users/sathvikm/Documents/DyscalculiaProject/screens/RewardSystem.js";
+
 
 const Register = ({ navigation }) => {
-  const { dark, colors } = useTheme();
-  const { globalRegistered, isTrueRegistered } = isRegistered();
+  const { dark, colors } = useTheme();  
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [termsCo, setTermsCo] = useState(false);
   const [revealPass, setRevealPass] = useState(false);
+  const [registered, isRegistered] = useGlobalState("registered");
+  const [userId, setUserId] = useGlobalState("userId");
+  const stars = useGlobalState("starCount");
   const myHeaderHeight = useHeaderHeight();
 
+  const addUserData = async () => {
+    await db
+      .collection("userdata")
+      .add({
+        email: email,
+        gender: "male",
+        stars: stars.toString().slice(0, 1),
+        glasses: "false",
+        partyHat: "false",
+        closed: "false"
+      })
+      .catch((error) => alert(error))
+  }
+
   const register = async () => {
+    addUserData()
     await auth
       .createUserWithEmailAndPassword(email, password)
       .catch((error) => alert(error))
       .then(
         () => navigation.navigate("Home"),
-        globalRegistered ? isTrueRegistered(true) : isTrueRegistered(false),
-        console.log("Is Global Registered 3?: " + globalRegistered)
+        isRegistered(true),
+        data => setUserId(data.user.uid)
+     //   console.log("Is Global Registered 3?: " + globalRegistered)
       );
   };
 

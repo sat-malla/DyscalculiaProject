@@ -1,5 +1,4 @@
 import {
-  FlatList,
   StyleSheet,
   TouchableOpacity,
   View,

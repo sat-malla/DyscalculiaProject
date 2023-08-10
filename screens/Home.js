@@ -7,16 +7,41 @@ import {
   ScrollView,
 } from "react-native";
 import { Text } from "@rneui/base";
-import React, { useLayoutEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import { useTheme } from "../DarkTheme/ThemeProvider.js";
-import { isRegistered } from "./RegisteredOrNot.js";
+import { useGlobalState } from "/Users/sathvikm/Documents/DyscalculiaProject/screens/RewardSystem.js";
 import { AntDesign, Entypo, Ionicons } from "@expo/vector-icons";
+import { auth, db } from "../firebase.js";
 
 const Home = ({ navigation }) => {
   const { colors } = useTheme();
   const [heyThere, setHeyThere] = useState(false);
-  const { globalRegistered } = isRegistered();
+  const [registered, isRegistered] = useGlobalState("registered");
+  const [userClosed, setUserClosed] = useState(false);
+  const userId = useGlobalState("userId");
+
+  const checkIfUserClosed = () => {
+    let idUser = userId;
+    let userInfo = db.collection('userdata').doc(idUser).get()
+    userInfo.then((snapshot) => {
+      if (snapshot.exists) {
+        let boolean = "false";
+        let closed = snapshot.data();
+        let isClosed = closed.closed
+        setUserClosed(boolean === closed)
+      }
+    })
+    db.collection('userdata').doc(idUser).set({
+      closed: 'true'
+    }, { merge: true }).catch(error => {
+      alert(error)
+    })
+  }
+
+  // useEffect(() => {
+  //   checkIfUserClosed();
+  // }, [])
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -76,7 +101,7 @@ const Home = ({ navigation }) => {
       }}
       scrollIndicatorInsets={{ right: 1 }}
     >
-      {globalRegistered ? (
+      {registered ? (
         heyThere ? (
           <Text> </Text>
         ) : (
@@ -121,7 +146,7 @@ const Home = ({ navigation }) => {
                 marginTop: 10,
               }}
             >
-              Click the top right corner above to access your profile! ↖️
+              Click the top left corner above to access your profile! ↖️
             </Text>
           </View>
         )
@@ -176,7 +201,7 @@ const Home = ({ navigation }) => {
           color: colors.text,
         }}
       >
-        Get started by pressing anything below!
+        Get started below!
       </Text>
       <TouchableOpacity
         style={{

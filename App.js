@@ -6,7 +6,6 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React, { useState } from "react";
 import { AntDesign } from "@expo/vector-icons";
 import { ThemeProvider } from "/Users/sathvikm/Documents/DyscalculiaProject/DarkTheme/ThemeProvider.js";
-import { RegisteredProvider } from "./screens/RegisteredOrNot";
 
 // Importing Screens
 import Home from "./screens/Home";
@@ -129,7 +128,6 @@ function Game6Title({ navigation }) {
 export default function App({ navigation }) {
   return (
     <ThemeProvider>
-      <RegisteredProvider>
         <NavigationContainer>
           <Stack.Navigator screenOptions={globalScreenOptions}>
             <Stack.Screen
@@ -723,7 +721,6 @@ export default function App({ navigation }) {
             />
           </Stack.Navigator>
         </NavigationContainer>
-      </RegisteredProvider>
     </ThemeProvider>
   );
 }
