@@ -52,7 +52,7 @@ const GameScreen2 = ({ navigation }) => {
   const startGame = () => {
     generateNumbers();
     setReady(false);
-  }
+  };
 
   const verify = () => {
     isButtonClicked(true);
@@ -88,7 +88,12 @@ const GameScreen2 = ({ navigation }) => {
       ...prevLines,
       <Text
         key={prevLines.length}
-        style={{ marginRight: 10, fontSize: 20, fontWeight: "500", color: colors.text }}
+        style={{
+          marginRight: 10,
+          fontSize: 20,
+          fontWeight: "500",
+          color: colors.text,
+        }}
       >
         |
       </Text>,
@@ -103,7 +108,7 @@ const GameScreen2 = ({ navigation }) => {
           marginRight: 10,
           fontSize: 20,
           fontWeight: "500",
-          color: colors.text
+          color: colors.text,
         }}
       >
         |
@@ -259,7 +264,7 @@ const GameScreen2 = ({ navigation }) => {
         <View
           style={{
             alignItems: "center",
-            justifyContent: "center"
+            justifyContent: "center",
           }}
         >
           <Text
@@ -334,43 +339,60 @@ const GameScreen2 = ({ navigation }) => {
                 alignItems: "center",
               }}
             >
-              <View style={{
-                flexDirection: "row"
-              }}>
-                <Text style={{ fontSize: 50, color: colors.text }}>{problemSign}</Text>
-                <Text style={{ fontSize: 50, marginLeft: 10, color: colors.text }}>{num2}</Text>
+              <View
+                style={{
+                  flexDirection: "row",
+                }}
+              >
+                <Text style={{ fontSize: 50, color: colors.text }}>
+                  {problemSign}
+                </Text>
+                <Text
+                  style={{ fontSize: 50, marginLeft: 10, color: colors.text }}
+                >
+                  {num2}
+                </Text>
               </View>
-              <Button
-                title="+"
-                style={{ marginRight: 10, marginLeft: 30 }}
-                buttonStyle={{
-                  borderRadius: 8,
-                  backgroundColor: "#6bffc6",
-                  borderWidth: 1.5,
-                  borderColor: "black",
-                }}
-                titleStyle={{
-                  color: "black",
-                  fontWeight: "bold",
-                }}
-                onPress={addLine2}
-              />
-              <Button
-                title="–"
-                style={{ marginLeft: 10, marginRight: 10 }}
-                buttonStyle={{
-                  borderRadius: 8,
-                  backgroundColor: "#6bffc6",
-                  borderWidth: 1.5,
-                  borderColor: "black",
-                }}
-                titleStyle={{
-                  color: "black",
-                  fontWeight: "bold",
-                }}
-                onPress={removeLine2}
-              />
-              {marks2}
+              {problemSign === "-" ? (
+                <Text> </Text>
+              ) : (
+                <View style={{
+                  flexDirection: "row",
+                  flexWrap: "nowrap"
+                }}>
+                  <Button
+                    title="+"
+                    style={{ marginRight: 10, marginLeft: 30 }}
+                    buttonStyle={{
+                      borderRadius: 8,
+                      backgroundColor: "#6bffc6",
+                      borderWidth: 1.5,
+                      borderColor: "black",
+                    }}
+                    titleStyle={{
+                      color: "black",
+                      fontWeight: "bold",
+                    }}
+                    onPress={addLine2}
+                  />
+                  <Button
+                    title="–"
+                    style={{ marginLeft: 10, marginRight: 10 }}
+                    buttonStyle={{
+                      borderRadius: 8,
+                      backgroundColor: "#6bffc6",
+                      borderWidth: 1.5,
+                      borderColor: "black",
+                    }}
+                    titleStyle={{
+                      color: "black",
+                      fontWeight: "bold",
+                    }}
+                    onPress={removeLine2}
+                  />
+                  {marks2}
+                </View>
+              )}
             </View>
             <View
               style={{
@@ -380,7 +402,9 @@ const GameScreen2 = ({ navigation }) => {
                 borderBottomWidth: StyleSheet.hairlineWidth,
               }}
             />
-            <Text style={{ fontSize: 50, marginLeft: 40, color: colors.text }}>?</Text>
+            <Text style={{ fontSize: 50, marginLeft: 40, color: colors.text }}>
+              ?
+            </Text>
           </View>
           <Input
             placeholder="Type answer here"
@@ -408,7 +432,9 @@ const GameScreen2 = ({ navigation }) => {
           />
           {buttonClicked ? (
             answerCorrect ? (
-              <Text style={[styles.response, { color: colors.text }]}>👏Good Job!👏</Text>
+              <Text style={[styles.response, { color: colors.text }]}>
+                👏Good Job!👏
+              </Text>
             ) : (
               <Text style={[styles.response, { color: colors.text }]}>
                 No pressure! Try it one more time!

@@ -18,11 +18,11 @@ import { AntDesign, FontAwesome, Feather, Entypo } from "@expo/vector-icons";
 import { CheckBox } from "@rneui/base";
 import { Link } from "@react-navigation/native";
 import { auth, db } from "../firebase.js";
+import firebase from "firebase/compat/app";
 import { useGlobalState } from "/Users/sathvikm/Documents/DyscalculiaProject/screens/RewardSystem.js";
 
-
 const Register = ({ navigation }) => {
-  const { dark, colors } = useTheme();  
+  const { dark, colors } = useTheme();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [termsCo, setTermsCo] = useState(false);
@@ -36,27 +36,27 @@ const Register = ({ navigation }) => {
     await db
       .collection("userdata")
       .add({
-        email: email,
+        email: auth.currentUser.email,
         gender: "male",
         stars: stars.toString().slice(0, 1),
         glasses: "false",
         partyHat: "false",
-        closed: "false"
+        closed: "false",
+        id: auth.currentUser.uid,
       })
-      .catch((error) => alert(error))
-  }
+      .catch((error) => alert(error));
+  };
 
   const register = async () => {
-    addUserData()
     await auth
       .createUserWithEmailAndPassword(email, password)
-      .catch((error) => alert(error))
       .then(
-        () => navigation.navigate("Home"),
-        isRegistered(true),
-        data => setUserId(data.user.uid)
-     //   console.log("Is Global Registered 3?: " + globalRegistered)
-      );
+         navigation.navigate("Home"),
+         isRegistered(true),
+      )
+      .catch((error) => alert(error));
+    setUserId(auth.currentUser.uid);
+    addUserData();
   };
 
   useLayoutEffect(() => {
@@ -85,10 +85,10 @@ const Register = ({ navigation }) => {
     <ScrollView
       style={{
         backgroundColor: colors.primary,
-        flex: 1
+        flex: 1,
       }}
       contentContainerStyle={{
-        paddingHorizontal: 20
+        paddingHorizontal: 20,
       }}
       scrollIndicatorInsets={{ right: 1 }}
     >

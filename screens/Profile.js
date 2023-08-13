@@ -4,13 +4,21 @@ import {
   View,
   Image,
   TouchableOpacity,
+  Button
 } from "react-native";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Text, ButtonGroup } from "@rneui/base";
 import { useTheme } from "../DarkTheme/ThemeProvider.js";
-import { Ionicons, MaterialCommunityIcons, Feather, AntDesign, Entypo } from "@expo/vector-icons";
+import {
+  Ionicons,
+  MaterialCommunityIcons,
+  Feather,
+  AntDesign,
+  Entypo,
+} from "@expo/vector-icons";
 import FlashMessage, { showMessage } from "react-native-flash-message";
 import { useGlobalState } from "/Users/sathvikm/Documents/DyscalculiaProject/screens/RewardSystem.js";
+import { auth, db } from "../firebase.js";
 
 const Profile = () => {
   const { colors, dark, setScheme } = useTheme();
@@ -18,7 +26,30 @@ const Profile = () => {
   const [glasses, setGlasses] = useState(false);
   const [partyHat, setPartyHat] = useState(false);
   const [saved, isSaved] = useState(false);
-  const [starCount, setStarCount] = useGlobalState('starCount')
+  const [starCount, setStarCount] = useGlobalState("starCount");
+
+  const loadUserData = () => {
+    db.collection("userdata")
+      .get()
+      .then(function (querySnapshot) {
+        querySnapshot.forEach(function (doc) {
+          if (doc.data().id == auth.currentUser.uid) {
+            setSelectedIndex(0);
+            setGlasses(doc.data().glasses);
+            setPartyHat(doc.data().partyHat);
+            setStarCount(doc.data().stars);
+            console.log("Document data: " + JSON.stringify(doc.data().stars));
+            console.log("Glasses: " + glasses);
+          }
+          //    setGlasses(JSON.stringify(doc.data().glasses))
+         // console.log("Doc user id: " + doc.data().id);
+        });
+      });
+  };
+
+  useEffect(() => {
+    loadUserData();
+  }, []);
 
   const toggleTheme = () => {
     dark ? setScheme("light") : setScheme("dark");
@@ -69,7 +100,7 @@ const Profile = () => {
           }
           style={{ width: 400, height: 400 }}
         />
-      ) : (glasses) ? (
+      ) : glasses ? (
         <Image
           source={
             selectedIndex == 0
@@ -78,7 +109,7 @@ const Profile = () => {
           }
           style={{ width: 400, height: 400 }}
         />
-      ) : (partyHat) ? (
+      ) : partyHat ? (
         <Image
           source={
             selectedIndex == 0
@@ -181,6 +212,7 @@ const Profile = () => {
       </Text>
       {glasses ? (
         <TouchableOpacity
+          disabled={starCount < 15}
           style={{
             borderRadius: 8,
             padding: 10,
@@ -319,7 +351,11 @@ const Profile = () => {
           //  Disable when user hasn't completed 3 games
           onPress={() => setPartyHat(!partyHat)}
         >
-          <MaterialCommunityIcons name="party-popper" size={35} color={colors.bannerText} />
+          <MaterialCommunityIcons
+            name="party-popper"
+            size={35}
+            color={colors.bannerText}
+          />
           <Text
             style={{
               color: colors.bannerText,
@@ -351,7 +387,8 @@ const Profile = () => {
           flexDirection: "row",
           justifyContent: "center",
           alignItems: "center",
-          marginTop: 100,
+          marginTop: 50,
+          marginBottom: 50,
           width: "55%",
           borderRadius: 8,
           padding: 10,
@@ -359,14 +396,26 @@ const Profile = () => {
         }}
         //  Save changes, GLOBALLY!!!, put this in a const function later
         onPress={() => {
-            showMessage({
-                message: "Saved!",
-                type: "success",
-                titleStyle: { fontSize: 19, marginTop: 20, fontWeight: "bold", color: colors.bannerText },
-                backgroundColor: colors.savedBG,
-                style: { alignItems: "center", alignSelf: "center", width: 450, borderTopStartRadius: 8, borderTopEndRadius: 8, overflow: "scroll" },
-                position: "bottom"
-            });
+          showMessage({
+            message: "Saved!",
+            type: "success",
+            titleStyle: {
+              fontSize: 19,
+              marginTop: 20,
+              fontWeight: "bold",
+              color: colors.bannerText,
+            },
+            backgroundColor: colors.savedBG,
+            style: {
+              alignItems: "center",
+              alignSelf: "center",
+              width: 450,
+              borderTopStartRadius: 8,
+              borderTopEndRadius: 8,
+              overflow: "scroll",
+            },
+            position: "bottom",
+          });
         }}
       >
         <Text
@@ -379,6 +428,10 @@ const Profile = () => {
           Save
         </Text>
       </TouchableOpacity>
+      <Button 
+        title="Logout"
+        color={colors.redComp}
+      />
       <FlashMessage />
       <View style={{ height: 50 }} />
     </ScrollView>

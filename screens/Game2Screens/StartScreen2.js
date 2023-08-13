@@ -67,13 +67,13 @@ const StartScreen2 = ({ navigation }) => {
       <Video
         ref={video}
         source={{
-          uri: "/Users/sathvikm/Documents/DyscalculiaProject/Videos/Game2Video.mp4",
+          uri: "https://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4"
         }}
         useNativeControls
-        resizeMode="center"
-        onPlaybackStatusUpdate={setStatus}
+        resizeMode={ResizeMode.CONTAIN}
         volume={1.0}
         style={styles.video}
+        onPlaybackStatusUpdate={status => setStatus(() => status)}
       />
       {/* <VideoPlayer 
         videoProps={{

@@ -23,21 +23,26 @@ const Home = ({ navigation }) => {
 
   const checkIfUserClosed = () => {
     let idUser = userId;
-    let userInfo = db.collection('userdata').doc(idUser).get()
+    let userInfo = db.collection("userdata").doc(idUser).get();
     userInfo.then((snapshot) => {
       if (snapshot.exists) {
         let boolean = "false";
-        let closed = snapshot.data();
-        let isClosed = closed.closed
-        setUserClosed(boolean === closed)
+        let closed = snapshot.data().closed;
+        setUserClosed(boolean === closed);
       }
-    })
-    db.collection('userdata').doc(idUser).set({
-      closed: 'true'
-    }, { merge: true }).catch(error => {
-      alert(error)
-    })
-  }
+    });
+    db.collection("userdata")
+      .doc(idUser)
+      .set(
+        {
+          closed: "true",
+        },
+        { merge: true }
+      )
+      .catch((error) => {
+        alert(error);
+      });
+  };
 
   // useEffect(() => {
   //   checkIfUserClosed();
@@ -45,30 +50,34 @@ const Home = ({ navigation }) => {
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      headerLeft: () => (
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "flex-end",
-            marginRight: 22,
-            marginLeft: -5,
-            marginBottom: 2,
-          }}
-        >
-          <TouchableOpacity
+      headerLeft: () => ((
+        registered ? (
+          <View
             style={{
-              alignItems: "center",
+              flexDirection: "row",
+              justifyContent: "flex-end",
+              marginRight: 22,
+              marginLeft: -5,
+              marginBottom: 2,
             }}
-            onPress={() => navigation.navigate("Profile")}
           >
-            <Ionicons
-              name="ios-person-circle-outline"
-              size={40}
-              color="black"
-            />
-          </TouchableOpacity>
-        </View>
-      ),
+            <TouchableOpacity
+              style={{
+                alignItems: "center",
+              }}
+              onPress={() => navigation.navigate("Profile")}
+            >
+              <Ionicons
+                name="ios-person-circle-outline"
+                size={40}
+                color="black"
+              />
+            </TouchableOpacity>
+          </View>
+        ) : (
+          <View />
+        )
+      )),
       headerRight: () => (
         <View
           style={{
@@ -245,7 +254,7 @@ const Home = ({ navigation }) => {
         color={colors.buttonColor}
         onPress={() => navigation.navigate("Suggest")}
       />
-      <View style={{ height: 70, marginTop: 200 }}/>
+      <View style={{ height: 70, marginTop: 200 }} />
     </ScrollView>
   );
 };

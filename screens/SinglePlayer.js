@@ -28,75 +28,75 @@ const SinglePlayer = ({ navigation }) => {
   const data = [
     {
       id: "1",
-      title: "Game 1",
-      image: require("/Users/sathvikm/Documents/DyscalculiaProject/Images/hand.jpg"),
+      title: "Counting",
+      image: require("/Users/sathvikm/Documents/DyscalculiaProject/Images/Game1Image.png"),
       openModal: () => setFirstGameModal(true),
     },
     {
       id: "2",
-      title: "Game 3",
+      title: "Multiplication",
       image: require("/Users/sathvikm/Documents/DyscalculiaProject/Images/Game3Image.png"),
-      openModal: () => setThirdGameModal(true)
+      openModal: () => setThirdGameModal(true),
     },
     {
       id: "3",
-      title: "Game 5",
+      title: "Comparisons",
       image: require("/Users/sathvikm/Documents/DyscalculiaProject/Images/Game5Image.png"),
-      openModal: () => setFifthGameModal(true)
+      openModal: () => setFifthGameModal(true),
     },
   ];
 
   const data1 = [
     {
       id: "4",
-      title: "Game 2",
+      title: "Addition & Subtraction",
       image: require("/Users/sathvikm/Documents/DyscalculiaProject/Images/Game2Image.png"),
-      openModal: () => setSecondGameModal(true)
+      openModal: () => setSecondGameModal(true),
     },
     {
       id: "5",
-      title: "Game 4",
+      title: "Reversing Math Equations",
       image: require("/Users/sathvikm/Documents/DyscalculiaProject/Images/Game4Image.png"),
-      openModal: () => setFourthGameModal(true)
+      openModal: () => setFourthGameModal(true),
     },
     {
       id: "6",
-      title: "Game 6",
+      title: "Arranging Numbers",
       image: require("/Users/sathvikm/Documents/DyscalculiaProject/Images/Game6Image.png"),
-      openModal: () => setSixthGameModal(true)
+      openModal: () => setSixthGameModal(true),
     },
   ];
 
- // Opening Games
- const startGame1 = () => {
+  // Opening Games
+  const startGame1 = () => {
     setFirstGameModal(false);
     navigation.navigate("StartScreen1");
- }
+  };
 
- const startGame2 = () => {
-  setSecondGameModal(false);
-  navigation.navigate("StartScreen2")
- }
+  const startGame2 = () => {
+    setSecondGameModal(false);
+    navigation.navigate("StartScreen2");
+  };
 
- const startGame3 = () => {
-  setThirdGameModal(false);
-  navigation.navigate("StartScreen3")
- }
+  const startGame3 = () => {
+    setThirdGameModal(false);
+    navigation.navigate("StartScreen3");
+  };
 
- const startGame4 = () => {
-  setFourthGameModal(false);
-  navigation.navigate("StartScreen4")
- }
+  const startGame4 = () => {
+    setFourthGameModal(false);
+    navigation.navigate("StartScreen4");
+  };
 
- const startGame5 = () => {
-  setFifthGameModal(false);
-  navigation.navigate("StartScreen5")
- }
+  const startGame5 = () => {
+    setFifthGameModal(false);
+    navigation.navigate("StartScreen5");
+  };
 
- const startGame6 = () => {
-  setSixthGameModal(false);
-  navigation.navigate("StartScreen6")
- }
+  const startGame6 = () => {
+    setSixthGameModal(false);
+    navigation.navigate("StartScreen6");
+  };
 
   return (
     <View
@@ -146,7 +146,7 @@ const SinglePlayer = ({ navigation }) => {
               }}
             >
               <ImageBackground
-                source={require("/Users/sathvikm/Documents/DyscalculiaProject/Images/hand.jpg")}
+                source={require("/Users/sathvikm/Documents/DyscalculiaProject/Images/Game1Image.png")}
                 imageStyle={{ opacity: 0.2 }}
                 animationType="fade"
                 style={{ width: 378, height: 318, padding: 20 }}
@@ -159,7 +159,7 @@ const SinglePlayer = ({ navigation }) => {
                     marginBottom: 15,
                   }}
                 >
-                  Game 1
+                  Counting
                 </Text>
                 <Text
                   style={{
@@ -177,7 +177,10 @@ const SinglePlayer = ({ navigation }) => {
                     fontSize: 14,
                   }}
                 >
-                  Lorem ipsum dolor
+                  Count with your fingers! This game will help you learn how to
+                  recognize numbers on fingers and properly count with them. If
+                  you are struggling on this or if you want to suggest any
+                  improvements to this game, please contact me.
                 </Text>
                 <Pressable
                   style={{
@@ -191,7 +194,7 @@ const SinglePlayer = ({ navigation }) => {
                     marginTop: 10,
                     marginBottom: 50,
                     alignSelf: "center",
-                    borderWidth: 2
+                    borderWidth: 2,
                   }}
                   onPress={() => startGame1()}
                 >
@@ -270,7 +273,7 @@ const SinglePlayer = ({ navigation }) => {
                     marginBottom: 15,
                   }}
                 >
-                  Game 2
+                  Addition & Subtraction
                 </Text>
                 <Text
                   style={{
@@ -302,9 +305,9 @@ const SinglePlayer = ({ navigation }) => {
                     marginTop: 10,
                     marginBottom: 50,
                     alignSelf: "center",
-                    borderWidth: 2
+                    borderWidth: 2,
                   }}
-                   onPress={() => startGame2()}
+                  onPress={() => startGame2()}
                 >
                   <Text
                     style={{
@@ -380,7 +383,7 @@ const SinglePlayer = ({ navigation }) => {
                     marginBottom: 15,
                   }}
                 >
-                  Game 3
+                  Multiplication
                 </Text>
                 <Text
                   style={{
@@ -412,9 +415,9 @@ const SinglePlayer = ({ navigation }) => {
                     marginTop: 10,
                     marginBottom: 50,
                     alignSelf: "center",
-                    borderWidth: 2
+                    borderWidth: 2,
                   }}
-                   onPress={startGame3}
+                  onPress={startGame3}
                 >
                   <Text
                     style={{
@@ -490,7 +493,7 @@ const SinglePlayer = ({ navigation }) => {
                     marginBottom: 15,
                   }}
                 >
-                  Game 4
+                  Reversing Math Equations
                 </Text>
                 <Text
                   style={{
@@ -522,9 +525,9 @@ const SinglePlayer = ({ navigation }) => {
                     marginTop: 10,
                     marginBottom: 50,
                     alignSelf: "center",
-                    borderWidth: 2
+                    borderWidth: 2,
                   }}
-                   onPress={startGame4}
+                  onPress={startGame4}
                 >
                   <Text
                     style={{
@@ -600,7 +603,7 @@ const SinglePlayer = ({ navigation }) => {
                     marginBottom: 15,
                   }}
                 >
-                  Game 5
+                  Comparisons
                 </Text>
                 <Text
                   style={{
@@ -632,9 +635,9 @@ const SinglePlayer = ({ navigation }) => {
                     marginTop: 10,
                     marginBottom: 50,
                     alignSelf: "center",
-                    borderWidth: 2
+                    borderWidth: 2,
                   }}
-                   onPress={startGame5}
+                  onPress={startGame5}
                 >
                   <Text
                     style={{
@@ -710,7 +713,7 @@ const SinglePlayer = ({ navigation }) => {
                     marginBottom: 15,
                   }}
                 >
-                  Game 6
+                  Arranging Numbers
                 </Text>
                 <Text
                   style={{
@@ -742,7 +745,7 @@ const SinglePlayer = ({ navigation }) => {
                     marginTop: 10,
                     marginBottom: 50,
                     alignSelf: "center",
-                    borderWidth: 2
+                    borderWidth: 2,
                   }}
                   onPress={startGame6}
                 >
@@ -768,7 +771,7 @@ const SinglePlayer = ({ navigation }) => {
           </View>
         </View>
       </Modal>
-      
+
       <Text
         style={{
           fontSize: 30,
@@ -821,9 +824,9 @@ const SinglePlayer = ({ navigation }) => {
                 >
                   <Text
                     style={{
-                      marginLeft: 15,
+                      marginLeft: 10,
                       marginTop: 15,
-                      fontSize: 20,
+                      fontSize: 18,
                       fontWeight: "bold",
                     }}
                   >
@@ -883,9 +886,9 @@ const SinglePlayer = ({ navigation }) => {
                 >
                   <Text
                     style={{
-                      marginLeft: 15,
+                      marginLeft: 10,
                       marginTop: 15,
-                      fontSize: 20,
+                      fontSize: 16,
                       fontWeight: "bold",
                     }}
                   >
@@ -894,7 +897,7 @@ const SinglePlayer = ({ navigation }) => {
                   <Text
                     style={{
                       marginLeft: 15,
-                      marginTop: 60,
+                      marginTop: 50,
                       fontSize: 12,
                       fontWeight: "500",
                     }}
