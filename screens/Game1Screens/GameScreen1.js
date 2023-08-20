@@ -3,10 +3,9 @@ import {
   StyleSheet,
   TouchableOpacity,
   View,
-  Button,
   Modal,
-  Pressable,
   Image,
+  ActivityIndicator,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { Text } from "@rneui/base";
@@ -84,6 +83,15 @@ const GameScreen1 = ({ navigation }) => {
   const [challengeModal, setChallengeModal] = useState(false);
   const [image, setImage] = useState(null);
   const [fruit, setFruit] = useGlobalState("game1Fruit");
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const generateNumber = () => {
     const randomNum = Math.floor(Math.random() * 10) + 1;
@@ -131,283 +139,302 @@ const GameScreen1 = ({ navigation }) => {
   };
 
   return (
-    <View
-      style={{
-        alignItems: "center",
-        height: "100%",
-        backgroundColor: colors.primary,
-        paddingHorizontal: 20,
-      }}
-    >
-      <Modal
-        animationType="fade"
-        transparent={true}
-        visible={challengeModal}
-        onRequestClose={() => {
-          Alert.alert("Closed");
-          setModalVisible(!challengeModal);
-        }}
-      >
+    <View>
+      {loading ? (
         <View
           style={{
             flex: 1,
             alignItems: "center",
             justifyContent: "center",
-            alignSelf: "center",
+            marginTop: 370,
           }}
         >
-          <View
-            style={[
-              styles.modalVw,
-              {
-                borderColor: colors.text,
-                borderWidth: 3,
-                borderRadius: 16,
-              },
-            ]}
+          <ActivityIndicator size="large" color="#6bffc6" animating={loading} />
+        </View>
+      ) : (
+        <View
+          style={{
+            alignItems: "center",
+            height: "100%",
+            backgroundColor: colors.primary,
+            paddingHorizontal: 20,
+          }}
+        >
+          <Modal
+            animationType="fade"
+            transparent={true}
+            visible={challengeModal}
+            onRequestClose={() => {
+              Alert.alert("Closed");
+              setModalVisible(!challengeModal);
+            }}
           >
-            <LinearGradient
-              colors={["#6bffc6", colors.gradientEndCol]}
-              start={{ x: 1, y: 0 }}
-              end={{ x: 1, y: 0.8 }}
+            <View
               style={{
-                borderRadius: 16,
-                height: 228,
-                width: 408,
+                flex: 1,
                 alignItems: "center",
-                padding: 5,
+                justifyContent: "center",
+                alignSelf: "center",
               }}
             >
-              <Text
-                style={{
-                  marginTop: 25,
-                  textAlign: "center",
-                  fontSize: 20,
-                  fontWeight: "bold",
-                }}
-              >
-                Congratulations! Before we move on to the challenge, pick your
-                favorite fruit!
-              </Text>
               <View
-                style={{
-                  flexDirection: "row",
-                  marginTop: 30,
-                  marginBottom: 30,
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                }}
+                style={[
+                  styles.modalVw,
+                  {
+                    borderColor: colors.text,
+                    borderWidth: 3,
+                    borderRadius: 16,
+                  },
+                ]}
               >
-                <View
+                <LinearGradient
+                  colors={["#6bffc6", colors.gradientEndCol]}
+                  start={{ x: 1, y: 0 }}
+                  end={{ x: 1, y: 0.8 }}
                   style={{
-                    flexDirection: "column",
+                    borderRadius: 16,
+                    height: 228,
+                    width: 408,
                     alignItems: "center",
+                    padding: 5,
                   }}
                 >
-                  <TouchableOpacity
+                  <Text
                     style={{
-                      borderRadius: 10,
-                      padding: 10,
-                      backgroundColor: "transparent",
-                      borderColor: "gray",
-                      borderWidth: 1,
+                      marginTop: 25,
+                      textAlign: "center",
+                      fontSize: 20,
+                      fontWeight: "bold",
                     }}
-                    onPress={nextGameApple}
                   >
-                    <Image
-                      source={require("/Users/sathvikm/Documents/DyscalculiaProject/Images/appleicon.png")}
-                      style={{ width: 30, height: 30 }}
-                    />
-                  </TouchableOpacity>
-                  <Text style={{ marginTop: 5 }}>Apple</Text>
-                </View>
-                <View
-                  style={{
-                    flexDirection: "column",
-                    alignItems: "center",
-                  }}
-                >
-                  <TouchableOpacity
+                    Congratulations! Before we move on to the challenge, pick
+                    your favorite fruit!
+                  </Text>
+                  <View
                     style={{
-                      borderRadius: 10,
-                      padding: 10,
-                      backgroundColor: "transparent",
-                      borderColor: "gray",
-                      borderWidth: 1,
-                      marginLeft: 30,
+                      flexDirection: "row",
+                      marginTop: 30,
+                      marginBottom: 30,
+                      alignItems: "center",
+                      justifyContent: "space-between",
                     }}
-                    onPress={nextGameOrange}
                   >
-                    <Image
-                      source={require("/Users/sathvikm/Documents/DyscalculiaProject/Images/orangeicon.png")}
-                      style={{ width: 30, height: 30 }}
-                    />
-                  </TouchableOpacity>
-                  <Text style={{ marginTop: 5, marginLeft: 30 }}>Orange</Text>
-                </View>
-                <View
-                  style={{
-                    flexDirection: "column",
-                    alignItems: "center",
-                  }}
-                >
-                  <TouchableOpacity
-                    style={{
-                      borderRadius: 10,
-                      padding: 10,
-                      backgroundColor: "transparent",
-                      borderColor: "gray",
-                      borderWidth: 1,
-                      marginLeft: 30,
-                    }}
-                    onPress={nextGameBanana}
-                  >
-                    <Image
-                      source={require("/Users/sathvikm/Documents/DyscalculiaProject/Images/bananaicon.png")}
-                      style={{ width: 30, height: 30 }}
-                    />
-                  </TouchableOpacity>
-                  <Text style={{ marginTop: 5, marginLeft: 30 }}>Banana</Text>
-                </View>
+                    <View
+                      style={{
+                        flexDirection: "column",
+                        alignItems: "center",
+                      }}
+                    >
+                      <TouchableOpacity
+                        style={{
+                          borderRadius: 10,
+                          padding: 10,
+                          backgroundColor: "transparent",
+                          borderColor: "gray",
+                          borderWidth: 1,
+                        }}
+                        onPress={nextGameApple}
+                      >
+                        <Image
+                          source={require("/Users/sathvikm/Documents/DyscalculiaProject/Images/appleicon.png")}
+                          style={{ width: 30, height: 30 }}
+                        />
+                      </TouchableOpacity>
+                      <Text style={{ marginTop: 5 }}>Apple</Text>
+                    </View>
+                    <View
+                      style={{
+                        flexDirection: "column",
+                        alignItems: "center",
+                      }}
+                    >
+                      <TouchableOpacity
+                        style={{
+                          borderRadius: 10,
+                          padding: 10,
+                          backgroundColor: "transparent",
+                          borderColor: "gray",
+                          borderWidth: 1,
+                          marginLeft: 30,
+                        }}
+                        onPress={nextGameOrange}
+                      >
+                        <Image
+                          source={require("/Users/sathvikm/Documents/DyscalculiaProject/Images/orangeicon.png")}
+                          style={{ width: 30, height: 30 }}
+                        />
+                      </TouchableOpacity>
+                      <Text style={{ marginTop: 5, marginLeft: 30 }}>
+                        Orange
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        flexDirection: "column",
+                        alignItems: "center",
+                      }}
+                    >
+                      <TouchableOpacity
+                        style={{
+                          borderRadius: 10,
+                          padding: 10,
+                          backgroundColor: "transparent",
+                          borderColor: "gray",
+                          borderWidth: 1,
+                          marginLeft: 30,
+                        }}
+                        onPress={nextGameBanana}
+                      >
+                        <Image
+                          source={require("/Users/sathvikm/Documents/DyscalculiaProject/Images/bananaicon.png")}
+                          style={{ width: 30, height: 30 }}
+                        />
+                      </TouchableOpacity>
+                      <Text style={{ marginTop: 5, marginLeft: 30 }}>
+                        Banana
+                      </Text>
+                    </View>
+                  </View>
+                </LinearGradient>
               </View>
-            </LinearGradient>
-          </View>
-        </View>
-      </Modal>
-      <Text
-        style={{
-          color: colors.text,
-          marginTop: 60,
-          fontSize: 25,
-          fontWeight: "bold",
-          textAlign: "center",
-        }}
-      >
-        Let's apply the skills we learned for the following problems!
-      </Text>
-      {ready ? (
-        <TouchableOpacity
-          style={{
-            width: 200,
-            borderWidth: 2,
-            borderColor: colors.text,
-            backgroundColor: "#6bffc6",
-            borderRadius: 8,
-            height: 50,
-            padding: 10,
-            alignItems: "center",
-            marginTop: 50,
-          }}
-          onPress={startGame}
-        >
-          <Text style={{ fontSize: 20, fontWeight: "bold" }}>
-            Press to Play!
-          </Text>
-        </TouchableOpacity>
-      ) : (
-        <View>
+            </View>
+          </Modal>
           <Text
             style={{
               color: colors.text,
-              marginTop: 10,
-              fontSize: 20,
+              marginTop: 60,
+              fontSize: 25,
+              fontWeight: "bold",
               textAlign: "center",
             }}
           >
-            What is the number of fingers shown by the hand? Press the correct
-            button below.
+            Let's apply the skills we learned for the following problems!
           </Text>
-          {image && (
-            <Image
-              source={image}
-              style={
-                number > 0 && number < 6
-                  ? {
-                      width: 200,
-                      height: 300,
-                      alignSelf: "center",
-                      marginTop: 30,
-                      resizeMode: "stretch",
-                    }
-                  : {
-                      width: 400,
-                      height: 300,
-                      alignSelf: "center",
-                      marginTop: 30,
-                      resizeMode: "stretch",
-                    }
-              }
-            />
-          )}
-          {buttonClicked ? (
-            answerCorrect ? (
-              <Text style={[styles.response, { color: colors.text }]}>
-                👏Good Job!👏
-              </Text>
-            ) : (
-              <Text style={[styles.response, { color: colors.text }]}>
-                No pressure! Try it one more time!
-              </Text>
-            )
+          {ready ? (
+            <View>
+              <TouchableOpacity
+                style={{
+                  width: 200,
+                  borderWidth: 2,
+                  borderColor: colors.text,
+                  backgroundColor: "#6bffc6",
+                  borderRadius: 8,
+                  height: 50,
+                  padding: 10,
+                  alignItems: "center",
+                  marginTop: 50,
+                }}
+                onPress={startGame}
+              >
+                <Text style={{ fontSize: 20, fontWeight: "bold" }}>
+                  Press to Play!
+                </Text>
+              </TouchableOpacity>
+            </View>
           ) : (
-            <Text> </Text>
+            <View>
+              <Text
+                style={{
+                  color: colors.text,
+                  marginTop: 10,
+                  fontSize: 20,
+                  textAlign: "center",
+                }}
+              >
+                What is the number of fingers shown by the hand? Press the
+                correct button below.
+              </Text>
+              {image && (
+                <Image
+                  source={image}
+                  style={
+                    number > 0 && number < 6
+                      ? {
+                          width: 200,
+                          height: 300,
+                          alignSelf: "center",
+                          marginTop: 30,
+                          resizeMode: "stretch",
+                        }
+                      : {
+                          width: 400,
+                          height: 300,
+                          alignSelf: "center",
+                          marginTop: 30,
+                          resizeMode: "stretch",
+                        }
+                  }
+                />
+              )}
+              {buttonClicked ? (
+                answerCorrect ? (
+                  <Text style={[styles.response, { color: colors.text }]}>
+                    👏Good Job!👏
+                  </Text>
+                ) : (
+                  <Text style={[styles.response, { color: colors.text }]}>
+                    No pressure! Try it one more time!
+                  </Text>
+                )
+              ) : (
+                <Text> </Text>
+              )}
+              <FlatList
+                data={buttons}
+                scrollEnabled={false}
+                contentContainerStyle={{
+                  flexDirection: "row",
+                  justifyContent: "center",
+                }}
+                style={{ marginTop: 40 }}
+                keyExtractor={(item) => item.id}
+                renderItem={({ item }) => (
+                  <TouchableOpacity
+                    style={{
+                      borderWidth: 1.5,
+                      borderColor: colors.bannerText,                      height: 40,
+                      width: 40,
+                      marginLeft: 15,
+                      alignItems: "center",
+                      borderRadius: 8,
+                      padding: 10,
+                      backgroundColor: colors.loginBanner,
+                    }}
+                    onPress={() => verify(item.id)}
+                  >
+                    <Text style={{ color: colors.bannerText, fontWeight: "bold" }}>{item.number}</Text>
+                  </TouchableOpacity>
+                )}
+              />
+              <FlatList
+                data={buttons1}
+                scrollEnabled={false}
+                contentContainerStyle={{
+                  flexDirection: "row",
+                  justifyContent: "center",
+                }}
+                style={{ marginTop: -230 }}
+                keyExtractor={(item) => item.id}
+                renderItem={({ item }) => (
+                  <TouchableOpacity
+                    style={{
+                      borderWidth: 1.5,
+                      borderColor: colors.bannerText,                      height: 40,
+                      width: 40,
+                      marginLeft: 15,
+                      alignItems: "center",
+                      borderRadius: 8,
+                      padding: 10,
+                      backgroundColor: colors.loginBanner,
+                    }}
+                    onPress={() => verify(item.id)}
+                  >
+                    <Text style={{ color: colors.bannerText, fontWeight: "bold" }}>{item.number}</Text>
+                  </TouchableOpacity>
+                )}
+              />
+            </View>
           )}
-          <FlatList
-            data={buttons}
-            scrollEnabled={false}
-            contentContainerStyle={{
-              flexDirection: "row",
-              justifyContent: "center",
-            }}
-            style={{ marginTop: 40 }}
-            keyExtractor={(item) => item.id}
-            renderItem={({ item }) => (
-              <TouchableOpacity
-                style={{
-                  borderColor: colors.text,
-                  borderWidth: 1,
-                  height: 40,
-                  width: 40,
-                  marginLeft: 15,
-                  alignItems: "center",
-                  borderRadius: 8,
-                  padding: 10,
-                  backgroundColor: "#b3ffe4",
-                }}
-                onPress={() => verify(item.id)}
-              >
-                <Text>{item.number}</Text>
-              </TouchableOpacity>
-            )}
-          />
-          <FlatList
-            data={buttons1}
-            scrollEnabled={false}
-            contentContainerStyle={{
-              flexDirection: "row",
-              justifyContent: "center",
-            }}
-            style={{ marginTop: -230 }}
-            keyExtractor={(item) => item.id}
-            renderItem={({ item }) => (
-              <TouchableOpacity
-                style={{
-                  borderColor: colors.text,
-                  borderWidth: 1,
-                  height: 40,
-                  width: 40,
-                  marginLeft: 15,
-                  alignItems: "center",
-                  borderRadius: 8,
-                  padding: 10,
-                  backgroundColor: "#b3ffe4",
-                }}
-                onPress={() => verify(item.id)}
-              >
-                <Text>{item.number}</Text>
-              </TouchableOpacity>
-            )}
-          />
         </View>
       )}
     </View>
@@ -432,6 +459,6 @@ const styles = StyleSheet.create({
   response: {
     marginTop: 40,
     fontSize: 20,
-    textAlign: "center"
+    textAlign: "center",
   },
 });

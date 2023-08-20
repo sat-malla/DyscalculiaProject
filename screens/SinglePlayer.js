@@ -98,6 +98,36 @@ const SinglePlayer = ({ navigation }) => {
     navigation.navigate("StartScreen6");
   };
 
+  const goToContact1 = () => {
+    setFirstGameModal(false);
+    navigation.navigate("Suggest")
+  }
+
+  const goToContact2 = () => {
+    setSecondGameModal(false);
+    navigation.navigate("Suggest")
+  }
+
+  const goToContact3 = () => {
+    setThirdGameModal(false);
+    navigation.navigate("Suggest")
+  }
+
+  const goToContact4 = () => {
+    setFourthGameModal(false);
+    navigation.navigate("Suggest")
+  }
+
+  const goToContact5 = () => {
+    setFifthGameModal(false);
+    navigation.navigate("Suggest")
+  }
+
+  const goToContact6 = () => {
+    setSixthGameModal(false);
+    navigation.navigate("Suggest")
+  }
+
   return (
     <View
       style={{
@@ -140,7 +170,7 @@ const SinglePlayer = ({ navigation }) => {
               end={{ x: 1, y: 0.8 }}
               style={{
                 borderRadius: 16,
-                height: 298,
+                height: 378,
                 width: 378,
                 alignItems: "center",
               }}
@@ -149,7 +179,7 @@ const SinglePlayer = ({ navigation }) => {
                 source={require("/Users/sathvikm/Documents/DyscalculiaProject/Images/Game1Image.png")}
                 imageStyle={{ opacity: 0.2 }}
                 animationType="fade"
-                style={{ width: 378, height: 318, padding: 20 }}
+                style={{ width: 378, height: 358, padding: 20 }}
               >
                 <Text
                   style={{
@@ -172,9 +202,9 @@ const SinglePlayer = ({ navigation }) => {
                 </Text>
                 <Text
                   style={{
-                    marginBottom: 20,
+                    marginBottom: 10,
                     textAlign: "center",
-                    fontSize: 14,
+                    fontSize: 15,
                   }}
                 >
                   Count with your fingers! This game will help you learn how to
@@ -182,6 +212,10 @@ const SinglePlayer = ({ navigation }) => {
                   you are struggling on this or if you want to suggest any
                   improvements to this game, please contact me.
                 </Text>
+                <Button
+                  title="Contact"
+                  onPress={goToContact1}
+                />
                 <Pressable
                   style={{
                     borderRadius: 20,
@@ -192,7 +226,7 @@ const SinglePlayer = ({ navigation }) => {
                     flexDirection: "row",
                     justifyContent: "space-evenly",
                     marginTop: 10,
-                    marginBottom: 50,
+                    marginBottom: 20,
                     alignSelf: "center",
                     borderWidth: 2,
                   }}
@@ -253,7 +287,7 @@ const SinglePlayer = ({ navigation }) => {
               end={{ x: 1, y: 0.8 }}
               style={{
                 borderRadius: 16,
-                height: 298,
+                height: 338,
                 width: 378,
                 alignItems: "center",
                 // marginRight: 0.75,
@@ -286,13 +320,17 @@ const SinglePlayer = ({ navigation }) => {
                 </Text>
                 <Text
                   style={{
-                    marginBottom: 20,
+                    marginBottom: 10,
                     textAlign: "center",
                     fontSize: 14,
                   }}
                 >
                   Lorem ipsum dolor
                 </Text>
+                <Button
+                  title="Contact"
+                  onPress={goToContact2}
+                />
                 <Pressable
                   style={{
                     borderRadius: 20,
@@ -364,7 +402,7 @@ const SinglePlayer = ({ navigation }) => {
               end={{ x: 1, y: 0.8 }}
               style={{
                 borderRadius: 16,
-                height: 298,
+                height: 338,
                 width: 378,
                 alignItems: "center",
               }}
@@ -396,13 +434,17 @@ const SinglePlayer = ({ navigation }) => {
                 </Text>
                 <Text
                   style={{
-                    marginBottom: 20,
+                    marginBottom: 10,
                     textAlign: "center",
                     fontSize: 14,
                   }}
                 >
                   Lorem ipsum dolor
                 </Text>
+                <Button
+                  title="Contact"
+                  onPress={goToContact3}
+                />
                 <Pressable
                   style={{
                     borderRadius: 20,
@@ -474,7 +516,7 @@ const SinglePlayer = ({ navigation }) => {
               end={{ x: 1, y: 0.8 }}
               style={{
                 borderRadius: 16,
-                height: 298,
+                height: 338,
                 width: 378,
                 alignItems: "center",
               }}
@@ -506,13 +548,17 @@ const SinglePlayer = ({ navigation }) => {
                 </Text>
                 <Text
                   style={{
-                    marginBottom: 20,
+                    marginBottom: 10,
                     textAlign: "center",
                     fontSize: 14,
                   }}
                 >
                   Lorem ipsum dolor
                 </Text>
+                <Button
+                  title="Contact"
+                  onPress={goToContact4}
+                />
                 <Pressable
                   style={{
                     borderRadius: 20,
@@ -584,7 +630,7 @@ const SinglePlayer = ({ navigation }) => {
               end={{ x: 1, y: 0.8 }}
               style={{
                 borderRadius: 16,
-                height: 298,
+                height: 338,
                 width: 378,
                 alignItems: "center",
               }}
@@ -616,13 +662,17 @@ const SinglePlayer = ({ navigation }) => {
                 </Text>
                 <Text
                   style={{
-                    marginBottom: 20,
+                    marginBottom: 10,
                     textAlign: "center",
                     fontSize: 14,
                   }}
                 >
                   Lorem ipsum dolor
                 </Text>
+                <Button
+                  title="Contact"
+                  onPress={goToContact5}
+                />
                 <Pressable
                   style={{
                     borderRadius: 20,
@@ -694,7 +744,7 @@ const SinglePlayer = ({ navigation }) => {
               end={{ x: 1, y: 0.8 }}
               style={{
                 borderRadius: 16,
-                height: 298,
+                height: 338,
                 width: 378,
                 alignItems: "center",
               }}
@@ -726,13 +776,17 @@ const SinglePlayer = ({ navigation }) => {
                 </Text>
                 <Text
                   style={{
-                    marginBottom: 20,
+                    marginBottom: 10,
                     textAlign: "center",
                     fontSize: 14,
                   }}
                 >
                   Lorem ipsum dolor
                 </Text>
+                <Button
+                  title="Contact"
+                  onPress={goToContact6}
+                />
                 <Pressable
                   style={{
                     borderRadius: 20,

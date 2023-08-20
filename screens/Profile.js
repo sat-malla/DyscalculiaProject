@@ -23,23 +23,30 @@ import { auth, db } from "../firebase.js";
 const Profile = () => {
   const { colors, dark, setScheme } = useTheme();
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const [glasses, setGlasses] = useState(false);
+  const [glasses, updateGlasses] = useState(false);
   const [partyHat, setPartyHat] = useState(false);
   const [saved, isSaved] = useState(false);
   const [starCount, setStarCount] = useGlobalState("starCount");
 
   const loadUserData = () => {
+    let breakPoint = false;
     db.collection("userdata")
       .get()
       .then(function (querySnapshot) {
         querySnapshot.forEach(function (doc) {
+          if (breakPoint) {
+            return;
+          }
           if (doc.data().id == auth.currentUser.uid) {
+            breakPoint = true;
             setSelectedIndex(0);
-            setGlasses(doc.data().glasses);
+            updateGlasses(doc.data().glasses);
             setPartyHat(doc.data().partyHat);
             setStarCount(doc.data().stars);
             console.log("Document data: " + JSON.stringify(doc.data().stars));
+            console.log("Glasses from doc data: " + doc.data().glasses);
             console.log("Glasses: " + glasses);
+            console.log("Party hat: " + partyHat);
           }
           //    setGlasses(JSON.stringify(doc.data().glasses))
          // console.log("Doc user id: " + doc.data().id);
@@ -49,7 +56,8 @@ const Profile = () => {
 
   useEffect(() => {
     loadUserData();
-  }, []);
+    console.log("Glasses in useEffect: " + glasses);
+  }, [glasses]);
 
   const toggleTheme = () => {
     dark ? setScheme("light") : setScheme("dark");

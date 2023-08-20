@@ -3,13 +3,12 @@ import {
   StyleSheet,
   TouchableOpacity,
   View,
-  KeyboardAvoidingView,
   Pressable,
   Modal,
   ImageBackground,
 } from "react-native";
-import React, { useEffect, useState } from "react";
-import { Text, Input, Button } from "@rneui/base";
+import React, { useState } from "react";
+import { Text, Button } from "@rneui/base";
 import { useTheme } from "/Users/sathvikm/Documents/DyscalculiaProject/DarkTheme/ThemeProvider.js";
 import { LinearGradient } from "expo-linear-gradient";
 import { AntDesign } from "@expo/vector-icons";
@@ -167,15 +166,11 @@ const GameScreenChallenge5 = ({ navigation }) => {
   ];
 
   return (
-    <KeyboardAvoidingView
+    <View
       style={{
         alignItems: "center",
         height: "100%",
         backgroundColor: colors.primary,
-      }}
-      contentContainerStyle={{
-        flexDirection: "column",
-        paddingHorizontal: 20,
       }}
     >
       <Modal
@@ -489,7 +484,9 @@ const GameScreenChallenge5 = ({ navigation }) => {
           />
           {buttonClicked ? (
             answerCorrect ? (
-              <Text style={[styles.response, { color: colors.text }]}>🎉 Well Done! 🎉</Text>
+              <Text style={[styles.response, { color: colors.text }]}>
+                🎉 Well Done! 🎉
+              </Text>
             ) : (
               <Text style={[styles.response, { color: colors.text }]}>
                 No pressure! Try it one more time!
@@ -500,7 +497,7 @@ const GameScreenChallenge5 = ({ navigation }) => {
           )}
         </View>
       )}
-    </KeyboardAvoidingView>
+    </View>
   );
 };
 

@@ -1,21 +1,27 @@
-import { StyleSheet, Button, View, ScrollView } from "react-native";
-import React from "react";
+import {
+  StyleSheet,
+  Button,
+  View,
+  ScrollView,
+  ActivityIndicator,
+  Dimensions
+} from "react-native";
+import React, { useState, useEffect } from "react";
 import { useTheme } from "/Users/sathvikm/Documents/DyscalculiaProject/DarkTheme/ThemeProvider.js";
 import { Text } from "@rneui/base";
-import { Video, ResizeMode } from "expo-av";
-import VideoPlayer from "expo-video-player";
+import YoutubeIframe from "react-native-youtube-iframe";
+
+const screenWidth = Dimensions.get("screen");
 
 const StartScreen2 = ({ navigation }) => {
   const { colors } = useTheme();
-  const video = React.useRef(null);
-  const [status, setStatus] = React.useState({});
 
   return (
     <ScrollView
       style={{
         height: "100%",
         backgroundColor: colors.primary,
-        paddingHorizontal: 20,
+        paddingHorizontal: 5,
       }}
       contentContainerStyle={{
         alignItems: "center",
@@ -24,13 +30,13 @@ const StartScreen2 = ({ navigation }) => {
     >
       <Text
         style={{
-          fontSize: 35,
+          fontSize: 24,
           fontWeight: "bold",
           marginTop: 60,
           color: colors.text,
         }}
       >
-        Welcome to Game 2!
+        Welcome to Addition & Subtraction!
       </Text>
       <Text
         style={{
@@ -57,6 +63,7 @@ const StartScreen2 = ({ navigation }) => {
         style={{
           fontSize: 19,
           marginTop: 20,
+          marginBottom: 20,
           color: colors.text,
           textAlign: "center",
           fontWeight: "bold",
@@ -64,84 +71,82 @@ const StartScreen2 = ({ navigation }) => {
       >
         Easy Addition:
       </Text>
-      <Video
-        ref={video}
-        source={{
-          uri: "https://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4"
-        }}
-        useNativeControls
-        resizeMode={ResizeMode.CONTAIN}
-        volume={1.0}
-        style={styles.video}
-        onPlaybackStatusUpdate={status => setStatus(() => status)}
+      <YoutubeIframe 
+        height={300}
+        width={screenWidth.width - 30}
+        play={false}
+        videoId="rSt9iSAZT0s"
       />
-      {/* <VideoPlayer 
-        videoProps={{
-          shouldPlay: true,
-          resizeMode: ResizeMode.CONTAIN,
-          source: {
-            uri: "/Users/sathvikm/Documents/DyscalculiaProject/Videos/Game2Video.MP4",
-          },
-        }}
-      /> */}
-      {/* <Video
-        source={{
-          uri: "/Users/sathvikm/Documents/DyscalculiaProject/Videos/Game2Video.mp4",
-        }}
-        style={{ width: 300, height: 300 }}
-        controls={true}
-        ref={(ref) => {
-          this.player = ref;
-        }}
-      /> */}
-      <Video
-        ref={video}
-        resizeMode="center"
-        source={{
-          uri:
-            '/Users/sathvikm/Documents/DyscalculiaProject/Videos/Game2Video.mp4',
-        }}
-        style={styles.video}
-        volume={1.0}
-        useNativeControls
-      />
-      
       <Text
         style={{
           fontSize: 19,
           marginTop: 20,
+          marginBottom: 20,
           color: colors.text,
           textAlign: "center",
+          fontWeight: "bold",
         }}
       >
         Hard Addition:
       </Text>
+      <YoutubeIframe 
+        height={300}
+        width={screenWidth.width - 30}
+        play={false}
+        videoId="EsAs4xa6_tY"
+      />
+      <YoutubeIframe 
+        height={300}
+        width={screenWidth.width - 30}
+        play={false}
+        videoId="L2YTc3k99TE"
+      />
       <Text
         style={{
           fontSize: 19,
           marginTop: 20,
+          marginBottom: 20,
           color: colors.text,
           textAlign: "center",
+          fontWeight: "bold",
         }}
       >
         Easy Subtraction:
       </Text>
+      <YoutubeIframe 
+        height={300}
+        width={screenWidth.width - 30}
+        play={false}
+        videoId="I9SlThGGxI4"
+      />
       <Text
         style={{
           fontSize: 19,
           marginTop: 20,
+          marginBottom: 20,
           color: colors.text,
           textAlign: "center",
+          fontWeight: "bold",
         }}
       >
         Hard Subtraction:
       </Text>
-
+      <YoutubeIframe 
+        height={300}
+        width={screenWidth.width - 30}
+        play={false}
+        videoId="fSK3T0WhAS8"
+      />
+      <YoutubeIframe 
+        height={300}
+        width={screenWidth.width - 30}
+        play={false}
+        videoId="_nupRU7ZEmY"
+      />
       <Text
         style={{
           fontSize: 19,
-          marginTop: 40,
-          marginBottom: 10,
+          marginBottom: 20,
           color: colors.text,
           textAlign: "center",
         }}
@@ -153,6 +158,7 @@ const StartScreen2 = ({ navigation }) => {
         title="Click to go to game page!"
         onPress={() => navigation.navigate("GameScreen2")}
       />
+      <View style={{ height: 50 }} />
     </ScrollView>
   );
 };

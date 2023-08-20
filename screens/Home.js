@@ -11,8 +11,8 @@ import React, { useEffect, useLayoutEffect, useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import { useTheme } from "../DarkTheme/ThemeProvider.js";
 import { useGlobalState } from "/Users/sathvikm/Documents/DyscalculiaProject/screens/RewardSystem.js";
-import { AntDesign, Entypo, Ionicons } from "@expo/vector-icons";
-import { auth, db } from "../firebase.js";
+import { AntDesign, Ionicons } from "@expo/vector-icons";
+import { db } from "../firebase.js";
 
 const Home = ({ navigation }) => {
   const { colors } = useTheme();
@@ -50,34 +50,30 @@ const Home = ({ navigation }) => {
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      headerLeft: () => ((
-        registered ? (
-          <View
+      headerLeft: () => (
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "flex-end",
+            marginRight: 22,
+            marginLeft: -5,
+            marginBottom: 2,
+          }}
+        >
+          <TouchableOpacity
             style={{
-              flexDirection: "row",
-              justifyContent: "flex-end",
-              marginRight: 22,
-              marginLeft: -5,
-              marginBottom: 2,
+              alignItems: "center",
             }}
+            onPress={() => navigation.navigate("Profile")}
           >
-            <TouchableOpacity
-              style={{
-                alignItems: "center",
-              }}
-              onPress={() => navigation.navigate("Profile")}
-            >
-              <Ionicons
-                name="ios-person-circle-outline"
-                size={40}
-                color="black"
-              />
-            </TouchableOpacity>
-          </View>
-        ) : (
-          <View />
-        )
-      )),
+            <Ionicons
+              name="ios-person-circle-outline"
+              size={40}
+              color="black"
+            />
+          </TouchableOpacity>
+        </View>
+      ),
       headerRight: () => (
         <View
           style={{
@@ -200,7 +196,7 @@ const Home = ({ navigation }) => {
           color: colors.text,
         }}
       >
-        Let Dyscalculia guide you to conquer your math hurdles!
+        Let LearnCulia guide you to conquer your math hurdles!
       </Text>
       <Text
         style={{

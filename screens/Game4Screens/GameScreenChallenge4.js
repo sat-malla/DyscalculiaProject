@@ -1,5 +1,4 @@
 import {
-  FlatList,
   StyleSheet,
   TouchableOpacity,
   View,
@@ -7,14 +6,15 @@ import {
   ImageBackground,
   Pressable,
   Modal,
-  ScrollView,
+  Platform,
+  Keyboard,
+  TouchableWithoutFeedback,
 } from "react-native";
-import React, { useEffect, useState, useLayoutEffect } from "react";
+import React, { useState } from "react";
 import { Text, Input, Button } from "@rneui/base";
-import { Divider } from "@rneui/themed";
 import { useTheme } from "/Users/sathvikm/Documents/DyscalculiaProject/DarkTheme/ThemeProvider.js";
 import { LinearGradient } from "expo-linear-gradient";
-import { AntDesign, FontAwesome } from "@expo/vector-icons";
+import { AntDesign } from "@expo/vector-icons";
 import { useHeaderHeight } from "@react-navigation/elements";
 
 const GameScreenChallenge4 = ({ navigation }) => {
@@ -30,6 +30,7 @@ const GameScreenChallenge4 = ({ navigation }) => {
   const [helpCount, setHelpCount] = useState(1);
   const [finishModal, setFinishModal] = useState(false);
   const [helpModal, setHelpModal] = useState(false);
+  const myHeaderHeight = useHeaderHeight();
 
   const generateNumbers = () => {
     const randomNum = Math.floor(Math.random() * 10) + 0;
@@ -85,337 +86,359 @@ const GameScreenChallenge4 = ({ navigation }) => {
 
   const contactScreen = () => {
     setHelpModal(false);
-    navigation.navigate("Suggest")
-  }
+    navigation.navigate("Suggest");
+  };
 
   return (
-    <View
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : null}
       style={{
-        alignItems: "center",
         height: "100%",
-        flex: 1,
         backgroundColor: colors.primary,
       }}
+      contentContainerStyle={{
+        flexDirection: "column",
+        paddingHorizontal: 20,
+        flex: 1,
+      }}
+      keyboardVerticalOffset={myHeaderHeight + 107}
     >
-      <Modal
-        animationType="fade"
-        transparent={true}
-        visible={finishModal}
-        onRequestClose={() => {
-          Alert.alert("Closed");
-          setModalVisible(!finishModal);
-        }}
-      >
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View
           style={{
-            flex: 1,
             alignItems: "center",
-            justifyContent: "center",
-            alignSelf: "center",
           }}
         >
-          <View
-            style={[
-              styles.modalVw,
-              {
-                borderColor: colors.text,
-                borderWidth: 3,
-              },
-            ]}
+          <Modal
+            animationType="fade"
+            transparent={true}
+            visible={finishModal}
+            onRequestClose={() => {
+              Alert.alert("Closed");
+              setModalVisible(!finishModal);
+            }}
           >
-            <LinearGradient
-              colors={["#6bffc6", colors.gradientEndCol]}
-              start={{ x: 1, y: 0 }}
-              end={{ x: 1, y: 0.8 }}
+            <View
               style={{
-                borderRadius: 16,
-                height: 258,
-                width: 378,
+                flex: 1,
                 alignItems: "center",
+                justifyContent: "center",
+                alignSelf: "center",
               }}
             >
-              <ImageBackground
-                source={require("/Users/sathvikm/Documents/DyscalculiaProject/Images/confetti.jpeg")}
-                imageStyle={{ opacity: 0.2 }}
-                animationType="fade"
-                style={{ width: 378, height: 318, padding: 25 }}
+              <View
+                style={[
+                  styles.modalVw,
+                  {
+                    borderColor: colors.text,
+                    borderWidth: 3,
+                  },
+                ]}
               >
-                <Text
+                <LinearGradient
+                  colors={["#6bffc6", colors.gradientEndCol]}
+                  start={{ x: 1, y: 0 }}
+                  end={{ x: 1, y: 0.8 }}
                   style={{
-                    marginBottom: 10,
-                    textAlign: "center",
-                    fontSize: 20,
-                    fontWeight: "bold",
+                    borderRadius: 16,
+                    height: 258,
+                    width: 378,
+                    alignItems: "center",
                   }}
                 >
-                  Congratulations!
-                </Text>
-                <Text
+                  <ImageBackground
+                    source={require("/Users/sathvikm/Documents/DyscalculiaProject/Images/confetti.jpeg")}
+                    imageStyle={{ opacity: 0.2 }}
+                    animationType="fade"
+                    style={{ width: 378, height: 318, padding: 25 }}
+                  >
+                    <Text
+                      style={{
+                        marginBottom: 10,
+                        textAlign: "center",
+                        fontSize: 20,
+                        fontWeight: "bold",
+                      }}
+                    >
+                      Congratulations!
+                    </Text>
+                    <Text
+                      style={{
+                        marginBottom: 10,
+                        textAlign: "center",
+                        fontSize: 20,
+                        fontWeight: "bold",
+                      }}
+                    >
+                      You have completed this game! Now you know how to read
+                      equations forwards and backwards!
+                    </Text>
+                    <Pressable
+                      style={{
+                        borderRadius: 20,
+                        padding: 10,
+                        elevation: 2,
+                        width: 150,
+                        backgroundColor: "#6bffc6",
+                        flexDirection: "row",
+                        justifyContent: "space-evenly",
+                        marginTop: 10,
+                        alignSelf: "center",
+                      }}
+                      onPress={finishGame}
+                    >
+                      <Text
+                        style={{
+                          color: "black",
+                          fontWeight: "bold",
+                          textAlign: "center",
+                          fontSize: 20,
+                        }}
+                      >
+                        Finish
+                      </Text>
+                      <AntDesign name="arrowright" size={24} color="black" />
+                    </Pressable>
+                  </ImageBackground>
+                </LinearGradient>
+              </View>
+            </View>
+          </Modal>
+          <Modal
+            animationType="fade"
+            transparent={true}
+            visible={helpModal}
+            onRequestClose={() => {
+              Alert.alert("Closed");
+              setModalVisible(!helpModal);
+            }}
+          >
+            <View
+              style={{
+                flex: 1,
+                alignItems: "center",
+                justifyContent: "center",
+                alignSelf: "center",
+              }}
+            >
+              <View
+                style={[
+                  styles.modalVw,
+                  {
+                    borderColor: colors.text,
+                    borderWidth: 3,
+                  },
+                ]}
+              >
+                <LinearGradient
+                  colors={["#6bffc6", colors.gradientEndCol]}
+                  start={{ x: 1, y: 0 }}
+                  end={{ x: 1, y: 0.8 }}
                   style={{
-                    marginBottom: 10,
-                    textAlign: "center",
-                    fontSize: 20,
-                    fontWeight: "bold",
+                    borderRadius: 16,
+                    height: 758,
+                    width: 378,
+                    alignItems: "center",
+                    padding: 26,
                   }}
-                >
-                  You have completed this game! Now you know how to read equations forwards and backwards!
-                </Text>
-                <Pressable
-                  style={{
-                    borderRadius: 20,
-                    padding: 10,
-                    elevation: 2,
-                    width: 150,
-                    backgroundColor: "#6bffc6",
-                    flexDirection: "row",
-                    justifyContent: "space-evenly",
-                    marginTop: 10,
-                    alignSelf: "center",
-                  }}
-                  onPress={finishGame}
                 >
                   <Text
                     style={{
-                      color: "black",
-                      fontWeight: "bold",
+                      marginBottom: 10,
                       textAlign: "center",
                       fontSize: 20,
+                      fontWeight: "bold",
                     }}
                   >
-                    Finish
+                    It seems that you are struggling on this problem. Here are
+                    some tips to help you out!
                   </Text>
-                  <AntDesign name="arrowright" size={24} color="black" />
-                </Pressable>
-              </ImageBackground>
-            </LinearGradient>
-          </View>
-        </View>
-      </Modal>
-      <Modal
-        animationType="fade"
-        transparent={true}
-        visible={helpModal}
-        onRequestClose={() => {
-          Alert.alert("Closed");
-          setModalVisible(!helpModal);
-        }}
-      >
-        <View
-          style={{
-            flex: 1,
-            alignItems: "center",
-            justifyContent: "center",
-            alignSelf: "center",
-          }}
-        >
-          <View
-            style={[
-              styles.modalVw,
-              {
-                borderColor: colors.text,
-                borderWidth: 3,
-              },
-            ]}
+                  <Text
+                    style={{
+                      marginBottom: 20,
+                      textAlign: "center",
+                      fontSize: 20,
+                      fontWeight: "bold",
+                    }}
+                  >
+                    Recall from the video that a+b=? is the same as ?=a+b. This
+                    is the same for subtraction.
+                  </Text>
+                  <Text
+                    style={{
+                      marginBottom: 20,
+                      textAlign: "center",
+                      fontSize: 20,
+                      fontWeight: "bold",
+                    }}
+                  >
+                    How? Because for both operations, they are the same
+                    operations and numbers. They are just swapped.
+                  </Text>
+                  <Text
+                    style={{
+                      marginBottom: 15,
+                      textAlign: "center",
+                      fontSize: 20,
+                      fontWeight: "bold",
+                    }}
+                  >
+                    Let me know if you are still struggling by contacting me
+                    below, and I can help you out!
+                  </Text>
+                  <Button
+                    title="Contact Me!"
+                    style={{ width: 200 }}
+                    titleStyle={{
+                      fontSize: 13,
+                      textDecorationLine: "underline",
+                      color: "black",
+                      marginTop: -10,
+                      marginBottom: 10,
+                    }}
+                    buttonStyle={{
+                      backgroundColor: "white",
+                      borderWidth: 0,
+                    }}
+                    onPress={contactScreen}
+                  />
+                  <Pressable
+                    style={{
+                      borderRadius: 20,
+                      padding: 10,
+                      elevation: 2,
+                      width: 150,
+                      backgroundColor: "#6bffc6",
+                      flexDirection: "row",
+                      justifyContent: "space-evenly",
+                      marginTop: 10,
+                      alignSelf: "center",
+                    }}
+                    onPress={() => setHelpModal(false)}
+                  >
+                    <Text
+                      style={{
+                        color: "black",
+                        fontWeight: "bold",
+                        textAlign: "center",
+                        fontSize: 20,
+                      }}
+                    >
+                      Close
+                    </Text>
+                  </Pressable>
+                </LinearGradient>
+              </View>
+            </View>
+          </Modal>
+          <Text
+            style={{
+              color: colors.text,
+              marginTop: 60,
+              fontSize: 25,
+              fontWeight: "bold",
+              textAlign: "center",
+            }}
           >
-            <LinearGradient
-              colors={["#6bffc6", colors.gradientEndCol]}
-              start={{ x: 1, y: 0 }}
-              end={{ x: 1, y: 0.8 }}
+            Let's apply the skills we learned for the following problems!
+          </Text>
+          {ready ? (
+            <TouchableOpacity
               style={{
-                borderRadius: 16,
-                height: 758,
-                width: 378,
+                width: 200,
+                borderWidth: 2,
+                borderColor: colors.text,
+                backgroundColor: "#6bffc6",
+                borderRadius: 8,
+                height: 50,
+                padding: 10,
                 alignItems: "center",
-                padding: 26,
+                marginTop: 50,
+              }}
+              onPress={startGame}
+            >
+              <Text style={{ fontSize: 20, fontWeight: "bold" }}>
+                Press to Play!
+              </Text>
+            </TouchableOpacity>
+          ) : (
+            <View
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
               }}
             >
               <Text
                 style={{
-                  marginBottom: 10,
-                  textAlign: "center",
+                  color: colors.text,
+                  marginTop: 20,
+                  marginHorizontal: 10,
                   fontSize: 20,
-                  fontWeight: "bold",
+                  fontWeight: "400",
+                  textAlign: "center",
                 }}
               >
-                It seems that you are struggling on this problem. Here are some
-                tips to help you out!
+                Write the the expression shown in the reverse direction. Make
+                sure to write the numbers in the opposite order shown.
               </Text>
-              <Text
+              <View
                 style={{
-                  marginBottom: 20,
-                  textAlign: "center",
-                  fontSize: 20,
-                  fontWeight: "bold",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  paddingHorizontal: 20,
+                  marginTop: 50,
                 }}
               >
-                Recall from the video that a+b=? is the same as ?=a+b. This is the same for subtraction.
-              </Text>
-              <Text
-                style={{
-                  marginBottom: 20,
-                  textAlign: "center",
-                  fontSize: 20,
-                  fontWeight: "bold",
-                }}
-              >
-                How? Because for both operations, they are the same operations and numbers. They are just swapped.
-              </Text>
-              <Text
-                style={{
-                  marginBottom: 15,
-                  textAlign: "center",
-                  fontSize: 20,
-                  fontWeight: "bold",
-                }}
-              >
-                Let me know if you are still struggling by contacting me below,
-                and I can help you out!
-              </Text>
+                <Text style={{ fontSize: 70, color: colors.text }}>
+                  ? = {num1} {problemSign} {num2}
+                </Text>
+              </View>
+              <Input
+                placeholder="Type answer here"
+                type="text"
+                keyboardAppearance={dark ? "dark" : "light"}
+                value={answer}
+                onChangeText={(text) => setAnswer(text)}
+                inputContainerStyle={{ borderBottomWidth: 0 }}
+                style={{ color: colors.text }}
+                containerStyle={[
+                  { borderColor: colors.text },
+                  styles.styleInput,
+                ]}
+              />
               <Button
-                title="Contact Me!"
-                style={{ width: 200 }}
+                disabled={!answer}
+                title="Check"
+                style={styles.button}
                 titleStyle={{
-                  fontSize: 13,
-                  textDecorationLine: "underline",
                   color: "black",
-                  marginTop: -10,
-                  marginBottom: 10
+                  fontWeight: "bold",
                 }}
                 buttonStyle={{
-                  backgroundColor: "white",
-                  borderWidth: 0
-                }}
-                onPress={contactScreen}
-              />
-              <Pressable
-                style={{
-                  borderRadius: 20,
-                  padding: 10,
-                  elevation: 2,
-                  width: 150,
+                  borderRadius: 8,
                   backgroundColor: "#6bffc6",
-                  flexDirection: "row",
-                  justifyContent: "space-evenly",
-                  marginTop: 10,
-                  alignSelf: "center",
                 }}
-                onPress={() => setHelpModal(false)}
-              >
-                <Text
-                  style={{
-                    color: "black",
-                    fontWeight: "bold",
-                    textAlign: "center",
-                    fontSize: 20,
-                  }}
-                >
-                  Close
-                </Text>
-              </Pressable>
-            </LinearGradient>
-          </View>
-        </View>
-      </Modal>
-      <Text
-        style={{
-          color: colors.text,
-          marginTop: 60,
-          fontSize: 25,
-          fontWeight: "bold",
-          textAlign: "center",
-        }}
-      >
-        Let's apply the skills we learned for the following problems!
-      </Text>
-      {ready ? (
-        <TouchableOpacity
-          style={{
-            width: 200,
-            borderWidth: 2,
-            borderColor: colors.text,
-            backgroundColor: "#6bffc6",
-            borderRadius: 8,
-            height: 50,
-            padding: 10,
-            alignItems: "center",
-            marginTop: 50,
-          }}
-          onPress={startGame}
-        >
-          <Text style={{ fontSize: 20, fontWeight: "bold" }}>
-            Press to Play!
-          </Text>
-        </TouchableOpacity>
-      ) : (
-        <View
-          style={{
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <Text
-            style={{
-              color: colors.text,
-              marginTop: 20,
-              marginHorizontal: 10,
-              fontSize: 20,
-              fontWeight: "400",
-              textAlign: "center",
-            }}
-          >
-            Write the the expression shown in the reverse direction. Make sure to write the numbers in the opposite order shown.
-          </Text>
-          <View
-            style={{
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "center",
-              paddingHorizontal: 20,
-              marginTop: 50,
-            }}
-          >
-            <Text style={{ fontSize: 70, color: colors.text, }}>
-              ? = {num1} {problemSign} {num2}
-            </Text>
-          </View>
-          <Input
-            placeholder="Type answer here"
-            type="text"
-            keyboardAppearance={dark ? "dark" : "light"}
-            value={answer}
-            onChangeText={(text) => setAnswer(text)}
-            inputContainerStyle={{ borderBottomWidth: 0 }}
-            style={{ color: colors.text }}
-            containerStyle={[{ borderColor: colors.text }, styles.styleInput]}
-          />
-          <Button
-            disabled={!answer}
-            title="Check"
-            style={styles.button}
-            titleStyle={{
-              color: "black",
-              fontWeight: "bold",
-            }}
-            buttonStyle={{
-              borderRadius: 8,
-              backgroundColor: "#6bffc6",
-            }}
-            onPress={verify}
-          />
-          {buttonClicked ? (
-            answerCorrect ? (
-              <Text style={[styles.response, { color: colors.text }]}>🎉 Well Done! 🎉</Text>
-            ) : (
-              <Text style={[styles.response, { color: colors.text }]}>
-                No pressure! Try it one more time!
-              </Text>
-            )
-          ) : (
-            <Text> </Text>
+                onPress={verify}
+              />
+              {buttonClicked ? (
+                answerCorrect ? (
+                  <Text style={[styles.response, { color: colors.text }]}>
+                    🎉 Well Done! 🎉
+                  </Text>
+                ) : (
+                  <Text style={[styles.response, { color: colors.text }]}>
+                    No pressure! Try it one more time!
+                  </Text>
+                )
+              ) : (
+                <Text> </Text>
+              )}
+            </View>
           )}
         </View>
-      )}
-    </View>
+      </TouchableWithoutFeedback>
+    </KeyboardAvoidingView>
   );
 };
 

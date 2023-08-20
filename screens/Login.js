@@ -9,7 +9,7 @@ import {
   TouchableOpacity,
   Image,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Text, Button } from "@rneui/base";
 import { useTheme } from "../DarkTheme/ThemeProvider.js";
 import { useHeaderHeight } from "@react-navigation/elements";
@@ -18,13 +18,12 @@ import { Feather } from "@expo/vector-icons";
 import { auth } from "../firebase.js";
 import { useGlobalState } from "/Users/sathvikm/Documents/DyscalculiaProject/screens/RewardSystem.js";
 
-
 const Login = ({ navigation }) => {
   const { dark, colors } = useTheme();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [revealPass, setRevealPass] = useState(false);
-  const [registered, isRegistered] = useGlobalState("registered")
+  const [registered, isRegistered] = useGlobalState("registered");
   const myHeaderHeight = useHeaderHeight();
 
   const login = async () => {
@@ -33,7 +32,7 @@ const Login = ({ navigation }) => {
       .catch((error) => alert(error))
       .then(
         () => navigation.navigate("Home"),
-        () => isRegistered(true),
+        () => isRegistered(true)
         //   console.log("Is Global Registered?: " + globalRegistered)
       );
   };
@@ -67,7 +66,12 @@ const Login = ({ navigation }) => {
           </Text>
           <Image
             source={require("/Users/sathvikm/Documents/DyscalculiaProject/Images/loginPic.png")}
-            style={{ width: 300, height: 150, marginTop: 30, borderRadius: 8 }}
+            style={{
+              width: 300,
+              height: 150,
+              marginTop: 30,
+              borderRadius: 8,
+            }}
           />
           <View style={styles.inputCont}>
             <TextInput
@@ -94,7 +98,11 @@ const Login = ({ navigation }) => {
                 placeholderTextColor="gray"
                 style={[
                   styles.styleInput,
-                  { borderColor: colors.text, width: 330, color: colors.text },
+                  {
+                    borderColor: colors.text,
+                    width: 330,
+                    color: colors.text,
+                  },
                 ]}
                 textContentType="text"
                 value={password}
@@ -139,11 +147,15 @@ const Login = ({ navigation }) => {
             onPress={login}
           />
           <Link
-              to={{ screen: "ForgotPass", params: { id: "id" } }}
-              style={{ marginTop: 20, color: colors.buttonColor, fontSize: 17 }}
-            >
-              Forgot Password?
-            </Link>
+            to={{ screen: "ForgotPass", params: { id: "id" } }}
+            style={{
+              marginTop: 20,
+              color: colors.buttonColor,
+              fontSize: 17,
+            }}
+          >
+            Forgot Password?
+          </Link>
           <Text
             style={{
               fontWeight: "bold",

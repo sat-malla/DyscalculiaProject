@@ -8,12 +8,16 @@ import {
   Modal,
   Image,
   ImageBackground,
+  Platform,
+  Keyboard,
+  TouchableWithoutFeedback,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { Text, Input, Button } from "@rneui/base";
 import { useTheme } from "/Users/sathvikm/Documents/DyscalculiaProject/DarkTheme/ThemeProvider.js";
 import { LinearGradient } from "expo-linear-gradient";
 import { AntDesign } from "@expo/vector-icons";
+import { useHeaderHeight } from "@react-navigation/elements";
 
 const GameScreenChallenge3 = ({ navigation }) => {
   const { colors, dark } = useTheme();
@@ -27,6 +31,7 @@ const GameScreenChallenge3 = ({ navigation }) => {
   const [helpCount, setHelpCount] = useState(0);
   const [helpModal, setHelpModal] = useState(false);
   const [finishModal, setFinishModal] = useState(false);
+  const myHeaderHeight = useHeaderHeight();
 
   const generateNumbersMult = () => {
     const randomNum = Math.floor(Math.random() * 12) + 0;
@@ -70,171 +75,275 @@ const GameScreenChallenge3 = ({ navigation }) => {
 
   return (
     <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : null}
       style={{
-        alignItems: "center",
         height: "100%",
         backgroundColor: colors.primary,
       }}
       contentContainerStyle={{
         flexDirection: "column",
         paddingHorizontal: 20,
+        flex: 1,
       }}
+      keyboardVerticalOffset={myHeaderHeight + 107}
     >
-      <Modal
-        animationType="fade"
-        transparent={true}
-        visible={finishModal}
-        onRequestClose={() => {
-          Alert.alert("Closed");
-          setModalVisible(!finishModal);
-        }}
-      >
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View
           style={{
-            flex: 1,
             alignItems: "center",
-            justifyContent: "center",
-            alignSelf: "center",
           }}
         >
-          <View
-            style={[
-              styles.modalVw,
-              {
-                borderColor: colors.text,
-                borderWidth: 3,
-              },
-            ]}
+          <Modal
+            animationType="fade"
+            transparent={true}
+            visible={finishModal}
+            onRequestClose={() => {
+              Alert.alert("Closed");
+              setModalVisible(!finishModal);
+            }}
           >
-            <LinearGradient
-              colors={["#6bffc6", colors.gradientEndCol]}
-              start={{ x: 1, y: 0 }}
-              end={{ x: 1, y: 0.8 }}
+            <View
               style={{
-                borderRadius: 16,
-                height: 258,
-                width: 378,
+                flex: 1,
                 alignItems: "center",
+                justifyContent: "center",
+                alignSelf: "center",
               }}
             >
-              <ImageBackground
-                source={require("/Users/sathvikm/Documents/DyscalculiaProject/Images/confetti.jpeg")}
-                imageStyle={{ opacity: 0.2 }}
-                animationType="fade"
-                style={{ width: 378, height: 318, padding: 25 }}
+              <View
+                style={[
+                  styles.modalVw,
+                  {
+                    borderColor: colors.text,
+                    borderWidth: 3,
+                  },
+                ]}
               >
-                <Text
+                <LinearGradient
+                  colors={["#6bffc6", colors.gradientEndCol]}
+                  start={{ x: 1, y: 0 }}
+                  end={{ x: 1, y: 0.8 }}
                   style={{
-                    marginBottom: 10,
-                    textAlign: "center",
-                    fontSize: 20,
-                    fontWeight: "bold",
+                    borderRadius: 16,
+                    height: 258,
+                    width: 378,
+                    alignItems: "center",
                   }}
                 >
-                  Congratulations!
-                </Text>
-                <Text
+                  <ImageBackground
+                    source={require("/Users/sathvikm/Documents/DyscalculiaProject/Images/confetti.jpeg")}
+                    imageStyle={{ opacity: 0.2 }}
+                    animationType="fade"
+                    style={{ width: 378, height: 318, padding: 25 }}
+                  >
+                    <Text
+                      style={{
+                        marginBottom: 10,
+                        textAlign: "center",
+                        fontSize: 20,
+                        fontWeight: "bold",
+                      }}
+                    >
+                      Congratulations!
+                    </Text>
+                    <Text
+                      style={{
+                        marginBottom: 10,
+                        textAlign: "center",
+                        fontSize: 20,
+                        fontWeight: "bold",
+                      }}
+                    >
+                      You have completed this game! Now you know how to multiply
+                      with and without the multiplication table!
+                    </Text>
+                    <Pressable
+                      style={{
+                        borderRadius: 20,
+                        padding: 10,
+                        elevation: 2,
+                        width: 150,
+                        backgroundColor: "#6bffc6",
+                        flexDirection: "row",
+                        justifyContent: "space-evenly",
+                        marginTop: 10,
+                        alignSelf: "center",
+                      }}
+                      onPress={finishGame}
+                    >
+                      <Text
+                        style={{
+                          color: "black",
+                          fontWeight: "bold",
+                          textAlign: "center",
+                          fontSize: 20,
+                        }}
+                      >
+                        Finish
+                      </Text>
+                      <AntDesign name="arrowright" size={24} color="black" />
+                    </Pressable>
+                  </ImageBackground>
+                </LinearGradient>
+              </View>
+            </View>
+          </Modal>
+          <Modal
+            animationType="fade"
+            transparent={true}
+            visible={helpModal}
+            onRequestClose={() => {
+              Alert.alert("Closed");
+              setModalVisible(!helpModal);
+            }}
+          >
+            <View
+              style={{
+                flex: 1,
+                alignItems: "center",
+                justifyContent: "center",
+                alignSelf: "center",
+              }}
+            >
+              <View
+                style={[
+                  styles.modalVw,
+                  {
+                    borderColor: colors.text,
+                    borderWidth: 3,
+                  },
+                ]}
+              >
+                <LinearGradient
+                  colors={["#6bffc6", colors.gradientEndCol]}
+                  start={{ x: 1, y: 0 }}
+                  end={{ x: 1, y: 0.8 }}
                   style={{
-                    marginBottom: 10,
-                    textAlign: "center",
-                    fontSize: 20,
-                    fontWeight: "bold",
+                    borderRadius: 16,
+                    height: 608,
+                    width: 378,
+                    alignItems: "center",
+                    justifyContent: "center",
                   }}
-                >
-                  You have completed this game! Now you know how to multiply
-                  with and without the multiplication table!
-                </Text>
-                <Pressable
-                  style={{
-                    borderRadius: 20,
-                    padding: 10,
-                    elevation: 2,
-                    width: 150,
-                    backgroundColor: "#6bffc6",
-                    flexDirection: "row",
-                    justifyContent: "space-evenly",
-                    marginTop: 10,
-                    alignSelf: "center",
-                  }}
-                  onPress={finishGame}
                 >
                   <Text
                     style={{
-                      color: "black",
-                      fontWeight: "bold",
+                      marginBottom: 15,
                       textAlign: "center",
                       fontSize: 20,
+                      fontWeight: "bold",
                     }}
                   >
-                    Finish
+                    It seems that you are struggling with this problem. Here is
+                    the multiplication table to help you! When done, press
+                    Close.
                   </Text>
-                  <AntDesign name="arrowright" size={24} color="black" />
-                </Pressable>
-              </ImageBackground>
-            </LinearGradient>
-          </View>
-        </View>
-      </Modal>
-      <Modal
-        animationType="fade"
-        transparent={true}
-        visible={helpModal}
-        onRequestClose={() => {
-          Alert.alert("Closed");
-          setModalVisible(!helpModal);
-        }}
-      >
-        <View
-          style={{
-            flex: 1,
-            alignItems: "center",
-            justifyContent: "center",
-            alignSelf: "center",
-          }}
-        >
-          <View
-            style={[
-              styles.modalVw,
-              {
-                borderColor: colors.text,
-                borderWidth: 3,
-              },
-            ]}
+                  <Image
+                    source={require("/Users/sathvikm/Documents/DyscalculiaProject/Images/MultiplicationTable.jpg")}
+                    style={{
+                      width: 350,
+                      height: 350,
+                      borderRadius: 8,
+                      borderWidth: 1,
+                    }}
+                  />
+                  <Button
+                    title="Close"
+                    style={styles.button}
+                    titleStyle={{
+                      color: "black",
+                      fontWeight: "bold",
+                    }}
+                    buttonStyle={{
+                      borderRadius: 8,
+                      borderWidth: 2,
+                      borderColor: "black",
+                      backgroundColor: "#6bffc6",
+                    }}
+                    onPress={() => setHelpModal(false)}
+                  />
+                </LinearGradient>
+              </View>
+            </View>
+          </Modal>
+          <Text
+            style={{
+              color: colors.text,
+              marginTop: 60,
+              fontSize: 25,
+              fontWeight: "bold",
+              textAlign: "center",
+            }}
           >
-            <LinearGradient
-              colors={["#6bffc6", colors.gradientEndCol]}
-              start={{ x: 1, y: 0 }}
-              end={{ x: 1, y: 0.8 }}
+            Let's apply the skills we learned for the following problems without
+            the Multiplication Table!
+          </Text>
+          {ready ? (
+            <TouchableOpacity
               style={{
-                borderRadius: 16,
-                height: 608,
-                width: 378,
+                width: 200,
+                borderWidth: 2,
+                borderColor: colors.text,
+                backgroundColor: "#6bffc6",
+                borderRadius: 8,
+                height: 50,
+                padding: 10,
                 alignItems: "center",
-                justifyContent: "center"
+                marginTop: 50,
+              }}
+              onPress={startGame}
+            >
+              <Text style={{ fontSize: 20, fontWeight: "bold" }}>
+                Press to Play!
+              </Text>
+            </TouchableOpacity>
+          ) : (
+            <View
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
               }}
             >
               <Text
                 style={{
-                  marginBottom: 15,
-                  textAlign: "center",
+                  color: colors.text,
+                  marginTop: 20,
                   fontSize: 20,
-                  fontWeight: "bold",
+                  fontWeight: "400",
+                  textAlign: "center",
                 }}
               >
-                It seems that you are struggling with this problem. Here is the
-                multiplication table to help you! When done, press Close.
+                Type in the correct answer below.
               </Text>
-              <Image
-                source={require("/Users/sathvikm/Documents/DyscalculiaProject/Images/MultiplicationTable.jpg")}
+              <View
                 style={{
-                  width: 350,
-                  height: 350,
-                  borderRadius: 8,
-                  borderWidth: 1,
+                  flexDirection: "row",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  paddingHorizontal: 20,
+                  marginTop: 50,
                 }}
+              >
+                <Text style={{ fontSize: 70, color: colors.text }}>
+                  {num1} x {num2} = ?
+                </Text>
+              </View>
+              <Input
+                placeholder="Type answer here"
+                type="text"
+                keyboardAppearance={dark ? "dark" : "light"}
+                value={answer}
+                onChangeText={(text) => setAnswer(text)}
+                inputContainerStyle={{ borderBottomWidth: 0 }}
+                style={{ color: colors.text }}
+                containerStyle={[
+                  { borderColor: colors.text },
+                  styles.styleInput,
+                ]}
               />
               <Button
-                title="Close"
+                disabled={!answer}
+                title="Check"
                 style={styles.button}
                 titleStyle={{
                   color: "black",
@@ -242,115 +351,27 @@ const GameScreenChallenge3 = ({ navigation }) => {
                 }}
                 buttonStyle={{
                   borderRadius: 8,
-                  borderWidth: 2,
-                  borderColor: "black",
                   backgroundColor: "#6bffc6",
                 }}
-                onPress={() => setHelpModal(false)}
+                onPress={verify}
               />
-            </LinearGradient>
-          </View>
-        </View>
-      </Modal>
-      <Text
-        style={{
-          color: colors.text,
-          marginTop: 60,
-          fontSize: 25,
-          fontWeight: "bold",
-          textAlign: "center",
-        }}
-      >
-        Let's apply the skills we learned for the following problems without the
-        Multiplication Table!
-      </Text>
-      {ready ? (
-        <TouchableOpacity
-          style={{
-            width: 200,
-            borderWidth: 2,
-            borderColor: colors.text,
-            backgroundColor: "#6bffc6",
-            borderRadius: 8,
-            height: 50,
-            padding: 10,
-            alignItems: "center",
-            marginTop: 50,
-          }}
-          onPress={startGame}
-        >
-          <Text style={{ fontSize: 20, fontWeight: "bold" }}>
-            Press to Play!
-          </Text>
-        </TouchableOpacity>
-      ) : (
-        <View
-          style={{
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <Text
-            style={{
-              color: colors.text,
-              marginTop: 20,
-              fontSize: 20,
-              fontWeight: "400",
-              textAlign: "center",
-            }}
-          >
-            Type in the correct answer below.
-          </Text>
-          <View
-            style={{
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "center",
-              paddingHorizontal: 20,
-              marginTop: 50,
-            }}
-          >
-            <Text style={{ fontSize: 70, color: colors.text }}>
-              {num1} x {num2} = ?
-            </Text>
-          </View>
-          <Input
-            placeholder="Type answer here"
-            type="text"
-            keyboardAppearance={dark ? "dark" : "light"}
-            value={answer}
-            onChangeText={(text) => setAnswer(text)}
-            inputContainerStyle={{ borderBottomWidth: 0 }}
-            style={{ color: colors.text }}
-            containerStyle={[{ borderColor: colors.text }, styles.styleInput]}
-          />
-          <Button
-            disabled={!answer}
-            title="Check"
-            style={styles.button}
-            titleStyle={{
-              color: "black",
-              fontWeight: "bold",
-            }}
-            buttonStyle={{
-              borderRadius: 8,
-              backgroundColor: "#6bffc6",
-            }}
-            onPress={verify}
-          />
-          {buttonClicked ? (
-            answerCorrect ? (
-              <Text style={[styles.response, { color: colors.text }]}>🎉 Well Done! 🎉</Text>
-            ) : (
-              <Text style={[styles.response, { color: colors.text }]}>
-                No pressure! Try it one more time!
-              </Text>
-            )
-          ) : (
-            <Text> </Text>
+              {buttonClicked ? (
+                answerCorrect ? (
+                  <Text style={[styles.response, { color: colors.text }]}>
+                    🎉 Well Done! 🎉
+                  </Text>
+                ) : (
+                  <Text style={[styles.response, { color: colors.text }]}>
+                    No pressure! Try it one more time!
+                  </Text>
+                )
+              ) : (
+                <Text> </Text>
+              )}
+            </View>
           )}
         </View>
-      )}
+      </TouchableWithoutFeedback>
     </KeyboardAvoidingView>
   );
 };
