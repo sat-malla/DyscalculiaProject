@@ -8,6 +8,7 @@ import {
   TextInput,
   TouchableOpacity,
   Image,
+  ScrollView,
 } from "react-native";
 import React, { useState, useEffect } from "react";
 import { Text, Button } from "@rneui/base";
@@ -42,11 +43,13 @@ const Login = ({ navigation }) => {
       behavior={Platform.OS === "ios" ? "padding" : null}
       style={{
         backgroundColor: colors.primary,
-        paddingHorizontal: 20,
         flex: 1,
       }}
       keyboardVerticalOffset={myHeaderHeight + 47}
     >
+      <ScrollView
+        scrollIndicatorInsets={{ right: 1 }}
+      >
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View
           style={{
@@ -63,6 +66,16 @@ const Login = ({ navigation }) => {
             }}
           >
             Login
+          </Text>
+          <Text
+            style={{
+              fontSize: 20,
+              marginTop: 35,
+              color: colors.text,
+              textAlign: "center"
+            }}
+          >
+            Login today to have custom profile pictures, achievements, and more!
           </Text>
           <Image
             source={require("/Users/sathvikm/Documents/DyscalculiaProject/Images/loginPic.png")}
@@ -81,7 +94,7 @@ const Login = ({ navigation }) => {
                 styles.styleInput,
                 { borderColor: colors.text, color: colors.text },
               ]}
-              textContentType="text"
+              keyboardType="email-address"
               value={email}
               onChangeText={setEmail}
               keyboardAppearance={dark ? "dark" : "light"}
@@ -104,7 +117,7 @@ const Login = ({ navigation }) => {
                     color: colors.text,
                   },
                 ]}
-                textContentType="text"
+                keyboardType="default"
                 value={password}
                 onChangeText={setPassword}
                 secureTextEntry={revealPass ? false : true}
@@ -190,8 +203,10 @@ const Login = ({ navigation }) => {
               Create New Account
             </Text>
           </TouchableOpacity>
+          <View style={{ height: 50 }} />
         </View>
       </TouchableWithoutFeedback>
+      </ScrollView>
     </KeyboardAvoidingView>
   );
 };

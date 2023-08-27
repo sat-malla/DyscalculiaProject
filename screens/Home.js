@@ -112,7 +112,7 @@ const Home = ({ navigation }) => {
         ) : (
           <View
             style={{
-              backgroundColor: "#c9ffea",
+              backgroundColor: colors.loginBanner,
               width: 300,
               padding: 15,
               paddingVertical: 10,
@@ -126,6 +126,7 @@ const Home = ({ navigation }) => {
           >
             <Button
               title="Close"
+              color={colors.bannerText}
               onPress={() => setHeyThere(true)}
               style={{ marginTop: -20, marginBottom: 20, marginRight: 50 }}
             />
@@ -139,6 +140,7 @@ const Home = ({ navigation }) => {
                 fontWeight: "bold",
                 textAlign: "center",
                 marginTop: 20,
+                color: colors.bannerText
               }}
             >
               Hey There! 👋
@@ -149,6 +151,7 @@ const Home = ({ navigation }) => {
                 fontWeight: "bold",
                 textAlign: "center",
                 marginTop: 10,
+                color: colors.bannerText
               }}
             >
               Click the top left corner above to access your profile! ↖️
@@ -170,20 +173,14 @@ const Home = ({ navigation }) => {
           }}
           onPress={() => navigation.navigate("Login")}
         >
-          <AntDesign
-            name="infocirlceo"
-            size={19}
-            color={colors.bannerText}
-            style={{ marginRight: 10, marginLeft: 12, marginTop: 7 }}
-          />
-          <Text style={{ color: colors.bannerText, fontWeight: "500" }}>
-            Login today to have custom profile pictures, achievements, and more!
+          <Text style={{ color: colors.bannerText, fontWeight: "500", fontSize: 30, marginLeft: 90 }}>
+            Login
           </Text>
           <AntDesign
             name="arrowright"
-            size={15}
+            size={30}
             color={colors.bannerText}
-            style={{ marginTop: 10, marginLeft: 3, marginRight: 10 }}
+            style={{ marginTop: 4, marginLeft: 70 }}
           />
         </TouchableOpacity>
       )}

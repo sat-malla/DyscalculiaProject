@@ -35,10 +35,10 @@ const Profile = () => {
       .then(function (querySnapshot) {
         querySnapshot.forEach(function (doc) {
           if (breakPoint) {
+            console.log("User: " + auth.currentUser.uid);
             return;
           }
           if (doc.data().id == auth.currentUser.uid) {
-            breakPoint = true;
             setSelectedIndex(0);
             updateGlasses(doc.data().glasses);
             setPartyHat(doc.data().partyHat);
@@ -47,6 +47,8 @@ const Profile = () => {
             console.log("Glasses from doc data: " + doc.data().glasses);
             console.log("Glasses: " + glasses);
             console.log("Party hat: " + partyHat);
+            breakPoint = true;
+            return;
           }
           //    setGlasses(JSON.stringify(doc.data().glasses))
          // console.log("Doc user id: " + doc.data().id);
