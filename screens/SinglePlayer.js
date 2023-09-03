@@ -100,33 +100,33 @@ const SinglePlayer = ({ navigation }) => {
 
   const goToContact1 = () => {
     setFirstGameModal(false);
-    navigation.navigate("Suggest")
-  }
+    navigation.navigate("Suggest");
+  };
 
   const goToContact2 = () => {
     setSecondGameModal(false);
-    navigation.navigate("Suggest")
-  }
+    navigation.navigate("Suggest");
+  };
 
   const goToContact3 = () => {
     setThirdGameModal(false);
-    navigation.navigate("Suggest")
-  }
+    navigation.navigate("Suggest");
+  };
 
   const goToContact4 = () => {
     setFourthGameModal(false);
-    navigation.navigate("Suggest")
-  }
+    navigation.navigate("Suggest");
+  };
 
   const goToContact5 = () => {
     setFifthGameModal(false);
-    navigation.navigate("Suggest")
-  }
+    navigation.navigate("Suggest");
+  };
 
   const goToContact6 = () => {
     setSixthGameModal(false);
-    navigation.navigate("Suggest")
-  }
+    navigation.navigate("Suggest");
+  };
 
   return (
     <View
@@ -170,7 +170,7 @@ const SinglePlayer = ({ navigation }) => {
               end={{ x: 1, y: 0.8 }}
               style={{
                 borderRadius: 16,
-                height: 378,
+                height: 528,
                 width: 378,
                 alignItems: "center",
               }}
@@ -204,18 +204,21 @@ const SinglePlayer = ({ navigation }) => {
                   style={{
                     marginBottom: 10,
                     textAlign: "center",
-                    fontSize: 15,
+                    fontSize: 16,
+                    fontWeight: "500",
                   }}
                 >
                   Count with your fingers! This game will help you learn how to
-                  recognize numbers on fingers and properly count with them. If
-                  you are struggling on this or if you want to suggest any
-                  improvements to this game, please contact me.
+                  recognize numbers on fingers and properly count with them.
+                  There is a slideshow provided to help you understand and
+                  sharpen skills. You will learn how to count with your fingers,
+                  and apply it to real-life situations. There will be 10
+                  problems with 10 challenge problems! If you are struggling on
+                  this, or if you want to suggest any improvements to this game,
+                  please contact me below. Press 'Start Game' to start. Good
+                  Luck and Have Fun!
                 </Text>
-                <Button
-                  title="Contact"
-                  onPress={goToContact1}
-                />
+                <Button title="Contact" onPress={goToContact1} />
                 <Pressable
                   style={{
                     borderRadius: 20,
@@ -287,7 +290,7 @@ const SinglePlayer = ({ navigation }) => {
               end={{ x: 1, y: 0.8 }}
               style={{
                 borderRadius: 16,
-                height: 338,
+                height: 508,
                 width: 378,
                 alignItems: "center",
                 // marginRight: 0.75,
@@ -322,15 +325,21 @@ const SinglePlayer = ({ navigation }) => {
                   style={{
                     marginBottom: 10,
                     textAlign: "center",
-                    fontSize: 14,
+                    fontSize: 16,
+                    fontWeight: "500",
                   }}
                 >
-                  Lorem ipsum dolor
+                  Add or Subtract! This game will help you learn how to do easy
+                  and hard addition and subtraction. Guided and concise tutorial
+                  videos are provided to help you understand and sharpen skills.
+                  You will learn how to add and subtract two one-digit numbers
+                  and two-digit numbers. There will be 10 problems with 10
+                  challenge problems. If you are struggling on this concept, or
+                  if you want to suggest any improvements to this game, please
+                  contact me below. Click 'Start Game' to start. Good Luck and
+                  Have Fun!
                 </Text>
-                <Button
-                  title="Contact"
-                  onPress={goToContact2}
-                />
+                <Button title="Contact" onPress={goToContact2} />
                 <Pressable
                   style={{
                     borderRadius: 20,
@@ -341,7 +350,7 @@ const SinglePlayer = ({ navigation }) => {
                     flexDirection: "row",
                     justifyContent: "space-evenly",
                     marginTop: 10,
-                    marginBottom: 50,
+                    marginBottom: 10,
                     alignSelf: "center",
                     borderWidth: 2,
                   }}
@@ -402,7 +411,7 @@ const SinglePlayer = ({ navigation }) => {
               end={{ x: 1, y: 0.8 }}
               style={{
                 borderRadius: 16,
-                height: 338,
+                height: 488,
                 width: 378,
                 alignItems: "center",
               }}
@@ -436,15 +445,20 @@ const SinglePlayer = ({ navigation }) => {
                   style={{
                     marginBottom: 10,
                     textAlign: "center",
-                    fontSize: 14,
+                    fontSize: 16,
+                    fontWeight: "500",
                   }}
                 >
-                  Lorem ipsum dolor
+                  Let's multiply! This game will help you learn how to do simple
+                  multiplication with guided and concise tutorial videos to help
+                  you understand and sharpen skills. You will learn how to do
+                  multiplication with and without a multiplication table. There
+                  are 10 problems with 10 challenge problems. If you are
+                  struggling on this concept, or if you want to suggest any
+                  improvements to this game, please contact me below. Click
+                  'Start Game' to start. Good Luck and Have Fun!
                 </Text>
-                <Button
-                  title="Contact"
-                  onPress={goToContact3}
-                />
+                <Button title="Contact" onPress={goToContact3} />
                 <Pressable
                   style={{
                     borderRadius: 20,
@@ -455,7 +469,7 @@ const SinglePlayer = ({ navigation }) => {
                     flexDirection: "row",
                     justifyContent: "space-evenly",
                     marginTop: 10,
-                    marginBottom: 50,
+                    marginBottom: 10,
                     alignSelf: "center",
                     borderWidth: 2,
                   }}
@@ -516,7 +530,7 @@ const SinglePlayer = ({ navigation }) => {
               end={{ x: 1, y: 0.8 }}
               style={{
                 borderRadius: 16,
-                height: 338,
+                height: 528,
                 width: 378,
                 alignItems: "center",
               }}
@@ -550,15 +564,21 @@ const SinglePlayer = ({ navigation }) => {
                   style={{
                     marginBottom: 10,
                     textAlign: "center",
-                    fontSize: 14,
+                    fontSize: 16,
+                    fontWeight: "500",
                   }}
                 >
-                  Lorem ipsum dolor
+                  Let's reverse some equations! This game will help you learn
+                  how to reverse math equations with guided and concise tutorial
+                  videos to help you understand and sharpen skills. Make sure to
+                  note that reversed math equations are the same as the original
+                  ones. You will reverse original equations to the new ones, and
+                  vice versa. There are 10 problems with 10 challenge problems.
+                  If you are struggling on this concept, or if you want to
+                  suggest any improvements to this game, please contact me
+                  below. Click 'Start Game' to start. Good Luck and Have Fun!
                 </Text>
-                <Button
-                  title="Contact"
-                  onPress={goToContact4}
-                />
+                <Button title="Contact" onPress={goToContact4} />
                 <Pressable
                   style={{
                     borderRadius: 20,
@@ -569,7 +589,7 @@ const SinglePlayer = ({ navigation }) => {
                     flexDirection: "row",
                     justifyContent: "space-evenly",
                     marginTop: 10,
-                    marginBottom: 50,
+                    marginBottom: 10,
                     alignSelf: "center",
                     borderWidth: 2,
                   }}
@@ -630,7 +650,7 @@ const SinglePlayer = ({ navigation }) => {
               end={{ x: 1, y: 0.8 }}
               style={{
                 borderRadius: 16,
-                height: 338,
+                height: 528,
                 width: 378,
                 alignItems: "center",
               }}
@@ -664,15 +684,21 @@ const SinglePlayer = ({ navigation }) => {
                   style={{
                     marginBottom: 10,
                     textAlign: "center",
-                    fontSize: 14,
+                    fontSize: 16,
+                    fontWeight: "500",
                   }}
                 >
-                  Lorem ipsum dolor
+                  Let's compare! This game will help you learn how to compare
+                  two numbers with different comparison symbols. There are
+                  guided and concise tutorial videos to help you understand and
+                  sharpen skills. You will choose the best symbol to compare two
+                  numbers, and evaluate if a statement is true. There are 10
+                  problems with 10 challenge problems. If you are struggling on
+                  this concept, or if you want to suggest any improvements to
+                  this game, please contact me below. Click 'Start Game' to
+                  start. Good Luck and Have Fun!
                 </Text>
-                <Button
-                  title="Contact"
-                  onPress={goToContact5}
-                />
+                <Button title="Contact" onPress={goToContact5} />
                 <Pressable
                   style={{
                     borderRadius: 20,
@@ -683,7 +709,7 @@ const SinglePlayer = ({ navigation }) => {
                     flexDirection: "row",
                     justifyContent: "space-evenly",
                     marginTop: 10,
-                    marginBottom: 50,
+                    marginBottom: 10,
                     alignSelf: "center",
                     borderWidth: 2,
                   }}
@@ -744,7 +770,7 @@ const SinglePlayer = ({ navigation }) => {
               end={{ x: 1, y: 0.8 }}
               style={{
                 borderRadius: 16,
-                height: 338,
+                height: 508,
                 width: 378,
                 alignItems: "center",
               }}
@@ -778,15 +804,21 @@ const SinglePlayer = ({ navigation }) => {
                   style={{
                     marginBottom: 10,
                     textAlign: "center",
-                    fontSize: 14,
+                    fontSize: 16,
+                    fontWeight: "500",
                   }}
                 >
-                  Lorem ipsum dolor
+                  Let's arrange! This game will help you learn how to arrange
+                  numbers with guided and concise tutorial videos to help you
+                  understand and sharpen skills. For this game, you will arrange
+                  only 5 numbers. You will learn how to arrange normal numbers
+                  from 1-100, and decimals. There are 10 problems with 10
+                  challenge problems. If you are struggling on this concept, or
+                  if you want to suggest any improvements to this game, please
+                  contact me below. Click 'Start Game' to start. Good Luck and
+                  Have Fun!
                 </Text>
-                <Button
-                  title="Contact"
-                  onPress={goToContact6}
-                />
+                <Button title="Contact" onPress={goToContact6} />
                 <Pressable
                   style={{
                     borderRadius: 20,
@@ -797,7 +829,7 @@ const SinglePlayer = ({ navigation }) => {
                     flexDirection: "row",
                     justifyContent: "space-evenly",
                     marginTop: 10,
-                    marginBottom: 50,
+                    marginBottom: 10,
                     alignSelf: "center",
                     borderWidth: 2,
                   }}
@@ -951,7 +983,7 @@ const SinglePlayer = ({ navigation }) => {
                   <Text
                     style={{
                       marginLeft: 15,
-                      marginTop: 50,
+                      marginTop: 43,
                       fontSize: 12,
                       fontWeight: "500",
                     }}

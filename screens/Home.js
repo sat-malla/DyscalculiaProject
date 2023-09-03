@@ -12,41 +12,12 @@ import { LinearGradient } from "expo-linear-gradient";
 import { useTheme } from "../DarkTheme/ThemeProvider.js";
 import { useGlobalState } from "/Users/sathvikm/Documents/DyscalculiaProject/screens/RewardSystem.js";
 import { AntDesign, Ionicons } from "@expo/vector-icons";
-import { db } from "../firebase.js";
 
 const Home = ({ navigation }) => {
   const { colors } = useTheme();
   const [heyThere, setHeyThere] = useState(false);
   const [registered, isRegistered] = useGlobalState("registered");
-  const [userClosed, setUserClosed] = useState(false);
-  const userId = useGlobalState("userId");
 
-  const checkIfUserClosed = () => {
-    let idUser = userId;
-    let userInfo = db.collection("userdata").doc(idUser).get();
-    userInfo.then((snapshot) => {
-      if (snapshot.exists) {
-        let boolean = "false";
-        let closed = snapshot.data().closed;
-        setUserClosed(boolean === closed);
-      }
-    });
-    db.collection("userdata")
-      .doc(idUser)
-      .set(
-        {
-          closed: "true",
-        },
-        { merge: true }
-      )
-      .catch((error) => {
-        alert(error);
-      });
-  };
-
-  // useEffect(() => {
-  //   checkIfUserClosed();
-  // }, [])
 
   useLayoutEffect(() => {
     navigation.setOptions({

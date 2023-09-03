@@ -17,6 +17,8 @@ import { useTheme } from "/Users/sathvikm/Documents/DyscalculiaProject/DarkTheme
 import { LinearGradient } from "expo-linear-gradient";
 import { AntDesign } from "@expo/vector-icons";
 import { useHeaderHeight } from "@react-navigation/elements";
+import { useGlobalState } from "../RewardSystem";
+import { auth, db } from "/Users/sathvikm/Documents/DyscalculiaProject/firebase.js";
 
 const GameScreenChallenge2 = ({ navigation }) => {
   const { colors, dark } = useTheme();
@@ -29,6 +31,7 @@ const GameScreenChallenge2 = ({ navigation }) => {
   const [answerCorrect, isAnswerCorrect] = useState(false);
   const [count, setCount] = useState(0);
   const [finishModal, setFinishModal] = useState(false);
+  const [starCount, setStarCount] = useGlobalState("starCount");
   const [marks, setMarks] = useState([]);
   const [marks2, setMarks2] = useState([]);
   const myHeaderHeight = useHeaderHeight();
@@ -84,6 +87,24 @@ const GameScreenChallenge2 = ({ navigation }) => {
       setFinishModal(true);
     }
   };
+
+  //  const addStars = async () => {
+  //   await db
+  //     .collection("userdata")
+  //     .
+  //     .then(function (querySnapshot) {
+  //       try {
+  //         querySnapshot.forEach(function (doc) {
+  //           if (doc.data().id == auth.currentUser.uid) {
+  //             const userRef = db.collection("userdata").doc(doc)
+  //             throw new Exception("User has been found");
+  //           }
+  //         });
+  //       } catch (e) {
+  //         console.log("User found");
+  //       }
+  //     })
+  //  }
 
   const finishGame = () => {
     setFinishModal(false);

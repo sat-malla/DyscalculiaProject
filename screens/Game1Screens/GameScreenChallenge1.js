@@ -24,6 +24,7 @@ const GameScreenChallenge1 = ({ navigation }) => {
   const [answerCorrect, isAnswerCorrect] = useState(false);
   const [count, setCount] = useState(0);
   const [finishModal, setFinishModal] = useState(false);
+  const [starCount, setStarCount] = useGlobalState("starCount");
   const [image, setImage] = useState(null);
   const [userFruit, setUserFruit] = useGlobalState("game1Fruit");
 
@@ -75,6 +76,7 @@ const GameScreenChallenge1 = ({ navigation }) => {
 
   const finishGame = () => {
     setFinishModal(false);
+    setStarCount(starCount + 5);
     navigation.navigate("SinglePlayer");
   };
 

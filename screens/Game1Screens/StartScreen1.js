@@ -51,8 +51,8 @@ const StartScreen1 = ({ navigation }) => {
       >
         Welcome to Counting!
       </Text>
-      <Text style={{ fontSize: 19, marginTop: 40, color: colors.text }}>
-        Take some time to memorize the images from the slideshow below.
+      <Text style={{ fontSize: 19, marginTop: 40, textAlign: "center", color: colors.text }}>
+        Take some time to memorize the images from the slideshow below. Swipe to the left to see the rest of the slideshow!
       </Text>
       <ScrollView
         onScroll={({nativeEvent}) => onchange(nativeEvent)}

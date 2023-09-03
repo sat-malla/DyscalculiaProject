@@ -29,7 +29,7 @@ const Register = ({ navigation }) => {
   const [revealPass, setRevealPass] = useState(false);
   const [registered, isRegistered] = useGlobalState("registered");
   const [userId, setUserId] = useGlobalState("userId");
-  const stars = useGlobalState("starCount");
+  const [userFieldId, setUserFieldId] = useGlobalState("docUserId");
   const myHeaderHeight = useHeaderHeight();
 
   const addUserData = async () => {
@@ -37,11 +37,9 @@ const Register = ({ navigation }) => {
       .collection("userdata")
       .add({
         email: auth.currentUser.email,
-        gender: "male",
-        stars: stars.toString().slice(0, 1),
-        glasses: "false",
-        partyHat: "false",
-        closed: "false",
+        gender: 0,
+        glasses: false,
+        partyHat: false,
         id: auth.currentUser.uid,
       })
       .catch((error) => alert(error));
@@ -140,7 +138,7 @@ const Register = ({ navigation }) => {
                   styles.styleInput,
                   { borderColor: colors.text, color: colors.text },
                 ]}
-                textContentType="text"
+                keyboardType="default"
                 value={email}
                 onChangeText={setEmail}
                 keyboardAppearance={dark ? "dark" : "light"}
@@ -163,7 +161,7 @@ const Register = ({ navigation }) => {
                       color: colors.text,
                     },
                   ]}
-                  textContentType="text"
+                  keyboardType="default"
                   value={password}
                   onChangeText={setPassword}
                   keyboardAppearance={dark ? "dark" : "light"}
