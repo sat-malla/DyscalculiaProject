@@ -1,7 +1,6 @@
 import {
   StyleSheet,
   View,
-  Button,
   TouchableOpacity,
   FlatList,
   Modal,
@@ -24,7 +23,6 @@ const GameScreenChallenge1 = ({ navigation }) => {
   const [answerCorrect, isAnswerCorrect] = useState(false);
   const [count, setCount] = useState(0);
   const [finishModal, setFinishModal] = useState(false);
-  const [starCount, setStarCount] = useGlobalState("starCount");
   const [image, setImage] = useState(null);
   const [userFruit, setUserFruit] = useGlobalState("game1Fruit");
 
@@ -74,9 +72,47 @@ const GameScreenChallenge1 = ({ navigation }) => {
     },
   ];
 
+  const AppleImages = [
+    require("/Users/sathvikm/Documents/DyscalculiaProject/Images/AppleImages/oneApple.png"),
+    require("/Users/sathvikm/Documents/DyscalculiaProject/Images/AppleImages/twoApple.png"),
+    require("/Users/sathvikm/Documents/DyscalculiaProject/Images/AppleImages/threeApple.png"),
+    require("/Users/sathvikm/Documents/DyscalculiaProject/Images/AppleImages/fourApple.png"),
+    require("/Users/sathvikm/Documents/DyscalculiaProject/Images/AppleImages/fiveApple.png"),
+    require("/Users/sathvikm/Documents/DyscalculiaProject/Images/AppleImages/sixApple.png"),
+    require("/Users/sathvikm/Documents/DyscalculiaProject/Images/AppleImages/sevenApple.png"),
+    require("/Users/sathvikm/Documents/DyscalculiaProject/Images/AppleImages/eightApple.png"),
+    require("/Users/sathvikm/Documents/DyscalculiaProject/Images/AppleImages/nineApple.png"),
+    require("/Users/sathvikm/Documents/DyscalculiaProject/Images/AppleImages/tenApple.png"),
+  ];
+
+  const OrangeImages = [
+    require("/Users/sathvikm/Documents/DyscalculiaProject/Images/OrangeImages/oneOrange.png"),
+    require("/Users/sathvikm/Documents/DyscalculiaProject/Images/OrangeImages/twoOrange.png"),
+    require("/Users/sathvikm/Documents/DyscalculiaProject/Images/OrangeImages/threeOrange.png"),
+    require("/Users/sathvikm/Documents/DyscalculiaProject/Images/OrangeImages/fourOrange.png"),
+    require("/Users/sathvikm/Documents/DyscalculiaProject/Images/OrangeImages/fiveOrange.png"),
+    require("/Users/sathvikm/Documents/DyscalculiaProject/Images/OrangeImages/sixOrange.png"),
+    require("/Users/sathvikm/Documents/DyscalculiaProject/Images/OrangeImages/sevenOrange.png"),
+    require("/Users/sathvikm/Documents/DyscalculiaProject/Images/OrangeImages/eightOrange.png"),
+    require("/Users/sathvikm/Documents/DyscalculiaProject/Images/OrangeImages/nineOrange.png"),
+    require("/Users/sathvikm/Documents/DyscalculiaProject/Images/OrangeImages/tenOrange.png"),
+  ];
+
+  const BananaImages = [
+    require("/Users/sathvikm/Documents/DyscalculiaProject/Images/BananaImages/oneBanana.png"),
+    require("/Users/sathvikm/Documents/DyscalculiaProject/Images/BananaImages/twoBanana.png"),
+    require("/Users/sathvikm/Documents/DyscalculiaProject/Images/BananaImages/threeBanana.png"),
+    require("/Users/sathvikm/Documents/DyscalculiaProject/Images/BananaImages/fourBanana.png"),
+    require("/Users/sathvikm/Documents/DyscalculiaProject/Images/BananaImages/fiveBanana.png"),
+    require("/Users/sathvikm/Documents/DyscalculiaProject/Images/BananaImages/sixBanana.png"),
+    require("/Users/sathvikm/Documents/DyscalculiaProject/Images/BananaImages/sevenBanana.png"),
+    require("/Users/sathvikm/Documents/DyscalculiaProject/Images/BananaImages/eightBanana.png"),
+    require("/Users/sathvikm/Documents/DyscalculiaProject/Images/BananaImages/nineBanana.png"),
+    require("/Users/sathvikm/Documents/DyscalculiaProject/Images/BananaImages/tenBanana.png"),
+  ];
+
   const finishGame = () => {
     setFinishModal(false);
-    setStarCount(starCount + 5);
     navigation.navigate("SinglePlayer");
   };
 
@@ -84,17 +120,11 @@ const GameScreenChallenge1 = ({ navigation }) => {
     const randomNum = Math.floor(Math.random() * 10) + 1;
     setNumber(randomNum);
     if (userFruit == "apple") {
-      image = Array(randomNum).fill({
-        image: require("/Users/sathvikm/Documents/DyscalculiaProject/Images/appleicon.png"),
-      });
+      setImage(AppleImages[randomNum - 1]);
     } else if (userFruit == "orange") {
-      image = Array(randomNum).fill({
-        image: require("/Users/sathvikm/Documents/DyscalculiaProject/Images/orangeicon.png"),
-      });
+      setImage(OrangeImages[randomNum - 1]);
     } else if (userFruit == "banana") {
-      image = Array(randomNum).fill({
-        image: require("/Users/sathvikm/Documents/DyscalculiaProject/Images/bananaicon.png"),
-      });
+      setImage(BananaImages[randomNum - 1]);
     }
   };
 
@@ -257,28 +287,31 @@ const GameScreenChallenge1 = ({ navigation }) => {
           >
             Count the number of fruits on your screen!
           </Text>
-          <FlatList
-            data={image}
-            scrollEnabled={false}
-            contentContainerStyle={{
-              flexDirection: "row",
-              justifyContent: "center",
-              margin: 4,
-            }}
-            numColumns={2}
-            style={{ marginTop: 50 }}
-            keyExtractor={(item, index) => index.toString()}
-            renderItem={({ item }) => (
-              <View style={{
-                padding: 20
-              }}>
-                <Image
-                  source={item.image}
-                  style={{ width: 300, height: 100 }}
-                />
-              </View>
-            )}
-          />
+          {image && (
+            <Image
+              source={image}
+              style={{
+                width: 400,
+                height: 300,
+                alignSelf: "center",
+                marginTop: 30,
+                resizeMode: "stretch",
+              }}
+            />
+          )}
+          {buttonClicked ? (
+            answerCorrect ? (
+              <Text style={[styles.response, { color: colors.text }]}>
+                👏 Good Job! 👏
+              </Text>
+            ) : (
+              <Text style={[styles.response, { color: colors.text }]}>
+                No pressure! Try it one more time!
+              </Text>
+            )
+          ) : (
+            <Text> </Text>
+          )}
           <FlatList
             data={buttons}
             scrollEnabled={false}
@@ -329,25 +362,12 @@ const GameScreenChallenge1 = ({ navigation }) => {
                   padding: 10,
                   backgroundColor: "#b3ffe4",
                 }}
-                onPress={verify(item.id)}
+                onPress={() => verify(item.id)}
               >
                 <Text>{item.number}</Text>
               </TouchableOpacity>
             )}
           />
-          {buttonClicked ? (
-            answerCorrect ? (
-              <Text style={[styles.response, { color: colors.text }]}>
-                👏Good Job!👏
-              </Text>
-            ) : (
-              <Text style={[styles.response, { color: colors.text }]}>
-                No pressure! Try it one more time!
-              </Text>
-            )
-          ) : (
-            <Text> </Text>
-          )}
         </View>
       )}
     </View>
@@ -368,5 +388,10 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
+  },
+  response: {
+    marginTop: 40,
+    fontSize: 20,
+    textAlign: "center",
   },
 });

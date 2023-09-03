@@ -54,6 +54,9 @@ const StartScreen1 = ({ navigation }) => {
       <Text style={{ fontSize: 19, marginTop: 40, textAlign: "center", color: colors.text }}>
         Take some time to memorize the images from the slideshow below. Swipe to the left to see the rest of the slideshow!
       </Text>
+      <Text style={{ fontSize: 19, marginTop: 20, textAlign: "center", color: colors.redComp }}>
+        *Fingers might not change, but that's because it's run by a not-really random number generator. Just click the correct number again!
+      </Text>
       <ScrollView
         onScroll={({nativeEvent}) => onchange(nativeEvent)}
         showsHorizontalScrollIndicator={false}
@@ -89,8 +92,8 @@ const StartScreen1 = ({ navigation }) => {
       <Text
         style={{
           fontSize: 19,
-          marginTop: -70,
-          marginBottom: 50,
+          marginTop: -30,
+          marginBottom: 20,
           color: colors.text,
           textAlign: "center",
         }}
@@ -101,7 +104,7 @@ const StartScreen1 = ({ navigation }) => {
         title="Click when you are ready!"
         onPress={() => navigation.navigate("GameScreen1")}
       />
-      <View style={{ height: 70 }} />
+      <View style={{ height: 50 }} />
     </View>
   );
 };
@@ -118,13 +121,13 @@ const styles = StyleSheet.create({
     borderColor: "#6bffc6"
   },
   slidesWrap2: {
-    marginTop: 30,
+    marginTop: 10,
     width: WIDTH * 0.9,
     height: HEIGHT * 0.28,
   },
   slidesDot: {
     position: "absolute",
-    bottom: 280,
+    bottom: 180,
     flexDirection: "row",
     alignSelf: "center"
   },
