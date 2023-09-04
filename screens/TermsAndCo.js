@@ -32,7 +32,7 @@ const TermsAndCo = () => {
           fontSize: 20,
           marginTop: 50,
           color: colors.text,
-          textAlign: "center"
+          textAlign: "center",
         }}
       >
         Welcome to LearnCulia!
@@ -42,7 +42,7 @@ const TermsAndCo = () => {
           fontSize: 20,
           marginTop: 50,
           color: colors.text,
-          textAlign: "center"
+          textAlign: "center",
         }}
       >
         These terms and conditions outline the rules and regulations for the use
@@ -53,7 +53,7 @@ const TermsAndCo = () => {
           fontSize: 20,
           marginTop: 50,
           color: colors.text,
-          textAlign: "center"
+          textAlign: "center",
         }}
       >
         By using this app we assume you accept these terms and conditions. Do
@@ -65,7 +65,7 @@ const TermsAndCo = () => {
           fontSize: 20,
           marginTop: 50,
           color: colors.text,
-          textAlign: "center"
+          textAlign: "center",
         }}
       >
         The following terminology applies to these Terms and Conditions, Privacy
@@ -92,6 +92,143 @@ const TermsAndCo = () => {
         }}
       >
         License
+      </Text>
+      <Text
+        style={{
+          fontSize: 20,
+          marginTop: 50,
+          color: colors.text,
+          textAlign: "center",
+        }}
+      >
+        Unless otherwise stated, LearnCulia and/or its licensors own the
+        intellectual property rights for all material on LearnCulia. All
+        intellectual property rights are reserved. You may access this from
+        LearnCulia for your own personal use subject to restrictions set in
+        these terms and conditions.
+      </Text>
+      <Text
+        style={{
+          fontSize: 20,
+          marginTop: 50,
+          color: colors.text,
+          textAlign: "center",
+        }}
+      >
+        You must not:
+      </Text>
+      <Text
+        style={{
+          fontSize: 20,
+          marginTop: 20,
+          color: colors.text,
+          textAlign: "center",
+        }}
+      >
+        Republish material from LearnCulia Sell
+      </Text>
+      <Text
+        style={{
+          fontSize: 20,
+          marginTop: 10,
+          color: colors.text,
+          textAlign: "center",
+        }}
+      >
+        Rent or sub-license material from LearnCulia Reproduce
+      </Text>
+      <Text
+        style={{
+          fontSize: 20,
+          marginTop: 10,
+          color: colors.text,
+          textAlign: "center",
+        }}
+      >
+        Duplicate or copy material from LearnCulia
+      </Text>
+      <Text
+        style={{
+          fontSize: 20,
+          marginTop: 10,
+          color: colors.text,
+          textAlign: "center",
+        }}
+      >
+        Redistribute content from LearnCulia
+      </Text>
+      <Text
+        style={{
+          fontSize: 20,
+          marginTop: 50,
+          color: colors.text,
+          textAlign: "center",
+        }}
+      >
+        Parts of this app offer an opportunity for users to post and exchange
+        opinions and information in certain areas of the website. LearnCulia
+        does not filter, edit, publish or review Comments prior to their
+        presence on the website. Comments do not reflect the views and opinions
+        of LearnCulia, its agents and/or affiliates. Comments reflect the views
+        and opinions of the person who posts their views and opinions. To the
+        extent permitted by applicable laws, LearnCulia shall not be liable for
+        the Comments or for any liability, damages or expenses caused and/or
+        suffered as a result of any use of and/or posting of and/or appearance
+        of the Comments on this website.
+      </Text>
+      <Text
+        style={{
+          fontSize: 20,
+          marginTop: 50,
+          color: colors.text,
+          textAlign: "center",
+        }}
+      >
+        You warrant and represent that:
+      </Text>
+      <Text
+        style={{
+          fontSize: 20,
+          marginTop: 20,
+          color: colors.text,
+          textAlign: "center",
+        }}
+      >
+        You are entitled to post the Comments on our App and have all necessary
+        licenses and consents to do so.
+      </Text>
+      <Text
+        style={{
+          fontSize: 20,
+          marginTop: 10,
+          color: colors.text,
+          textAlign: "center",
+        }}
+      >
+        The Comments do not invade any intellectual property right, including
+        without limitation copyright, patent or trademark of any third party.
+      </Text>
+      <Text
+        style={{
+          fontSize: 20,
+          marginTop: 10,
+          color: colors.text,
+          textAlign: "center",
+        }}
+      >
+        The Comments do not contain any defamatory, libelous, offensive,
+        indecent or otherwise unlawful material which is an invasion of privacy.{" "}
+      </Text>
+      <Text
+        style={{
+          fontSize: 20,
+          marginTop: 10,
+          color: colors.text,
+          textAlign: "center",
+        }}
+      >
+        The Comments will not be used to solicit or promote business or custom
+        or present commercial activities or unlawful activity.{" "}
       </Text>
       <View style={{ height: 70 }} />
     </ScrollView>

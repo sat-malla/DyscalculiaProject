@@ -246,7 +246,7 @@ const Register = ({ navigation }) => {
             </View>
           </View>
         </TouchableWithoutFeedback>
-        <View style={{ height: 100 }} />
+        <View style={{ height: 80 }} />
       </KeyboardAvoidingView>
     </ScrollView>
   );

@@ -7,6 +7,7 @@ import {
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
   Keyboard,
+  ScrollView,
   Platform,
 } from "react-native";
 import React, { useState } from "react";
@@ -38,13 +39,18 @@ const Suggest = ({ navigation }) => {
   };
 
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === "ios" ? "padding" : null}
+    <ScrollView
       style={{
         backgroundColor: colors.primary,
-        paddingHorizontal: 20,
         flex: 1,
       }}
+      contentContainerStyle={{
+        paddingHorizontal: 20,
+      }}
+      scrollIndicatorInsets={{ right: 1 }}
+    >
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : null}
       keyboardVerticalOffset={myHeaderHeight+47}
     >
       <Modal
@@ -199,6 +205,7 @@ const Suggest = ({ navigation }) => {
         </View>
       </TouchableWithoutFeedback>
     </KeyboardAvoidingView>
+    </ScrollView>
   );
 };
 

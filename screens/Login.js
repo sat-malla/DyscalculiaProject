@@ -63,6 +63,7 @@ const Login = ({ navigation }) => {
       style={{
         backgroundColor: colors.primary,
         flex: 1,
+        padding: 10
       }}
       keyboardVerticalOffset={myHeaderHeight + 47}
     >

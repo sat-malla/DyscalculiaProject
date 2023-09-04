@@ -424,6 +424,7 @@ const Profile = ({ navigation }) => {
               fontSize: 25,
               fontWeight: "bold",
               textAlign: "center",
+              color: colors.text
             }}
           >
             You're not logged in! Log in or Register to access your Profile!

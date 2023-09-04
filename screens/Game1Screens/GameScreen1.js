@@ -6,6 +6,7 @@ import {
   Modal,
   Image,
   ActivityIndicator,
+  ScrollView
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { Text } from "@rneui/base";
@@ -138,13 +139,20 @@ const GameScreen1 = ({ navigation }) => {
   };
 
   return (
-    <View>
+    <ScrollView
+      style={{
+        backgroundColor: colors.primary,
+        flex: 1
+      }}
+      contentContainerStyle={{
+        alignItems: "center",
+        paddingHorizontal: 20,
+      }}
+      scrollIndicatorInsets={{ right: 1 }}
+    >
       {loading ? (
         <View
           style={{
-            flex: 1,
-            alignItems: "center",
-            justifyContent: "center",
             marginTop: 370,
           }}
         >
@@ -154,9 +162,7 @@ const GameScreen1 = ({ navigation }) => {
         <View
           style={{
             alignItems: "center",
-            height: "100%",
             backgroundColor: colors.primary,
-            paddingHorizontal: 20,
           }}
         >
           <Modal
@@ -391,7 +397,8 @@ const GameScreen1 = ({ navigation }) => {
                   <TouchableOpacity
                     style={{
                       borderWidth: 1.5,
-                      borderColor: colors.bannerText,                      height: 40,
+                      borderColor: colors.bannerText,
+                      height: 40,
                       width: 40,
                       marginLeft: 15,
                       alignItems: "center",
@@ -401,7 +408,11 @@ const GameScreen1 = ({ navigation }) => {
                     }}
                     onPress={() => verify(item.id)}
                   >
-                    <Text style={{ color: colors.bannerText, fontWeight: "bold" }}>{item.number}</Text>
+                    <Text
+                      style={{ color: colors.bannerText, fontWeight: "bold" }}
+                    >
+                      {item.number}
+                    </Text>
                   </TouchableOpacity>
                 )}
               />
@@ -412,13 +423,14 @@ const GameScreen1 = ({ navigation }) => {
                   flexDirection: "row",
                   justifyContent: "center",
                 }}
-                style={{ marginTop: -230 }}
+                style={{ marginTop: -150 }}
                 keyExtractor={(item) => item.id}
                 renderItem={({ item }) => (
                   <TouchableOpacity
                     style={{
                       borderWidth: 1.5,
-                      borderColor: colors.bannerText,                      height: 40,
+                      borderColor: colors.bannerText,
+                      height: 40,
                       width: 40,
                       marginLeft: 15,
                       alignItems: "center",
@@ -428,7 +440,11 @@ const GameScreen1 = ({ navigation }) => {
                     }}
                     onPress={() => verify(item.id)}
                   >
-                    <Text style={{ color: colors.bannerText, fontWeight: "bold" }}>{item.number}</Text>
+                    <Text
+                      style={{ color: colors.bannerText, fontWeight: "bold" }}
+                    >
+                      {item.number}
+                    </Text>
                   </TouchableOpacity>
                 )}
               />
@@ -436,7 +452,8 @@ const GameScreen1 = ({ navigation }) => {
           )}
         </View>
       )}
-    </View>
+      <View style={{ height: 130 }} />
+    </ScrollView>
   );
 };
 

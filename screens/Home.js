@@ -252,7 +252,7 @@ const Home = ({ navigation }) => {
               marginTop: 15,
               marginBottom: 70,
               width: "95%",
-              height: "3.5%",
+              height: "5.5%",
               alignItems: "center",
               justifyContent: "center",
               borderRadius: 8,
@@ -269,7 +269,7 @@ const Home = ({ navigation }) => {
               <Ionicons name="moon" size={25} color={"black"} />
             )}
           </TouchableOpacity>
-      <View style={{ height: 70, marginTop: 500 }} />
+      <View style={{ height: 70 }} />
     </ScrollView>
   );
 };

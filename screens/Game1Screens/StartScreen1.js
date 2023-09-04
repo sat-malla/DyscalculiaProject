@@ -33,13 +33,16 @@ const StartScreen1 = ({ navigation }) => {
   }
 
   return (
-    <View
+    <ScrollView
       style={{
-        alignItems: "center",
-        height: "100%",
         backgroundColor: colors.primary,
-        paddingHorizontal: 20,
+        flex: 1,
       }}
+      contentContainerStyle={{
+        paddingHorizontal: 20,
+        alignItems: "center"
+      }}
+      scrollIndicatorInsets={{ right: 1 }}
     >
       <Text
         style={{
@@ -47,6 +50,7 @@ const StartScreen1 = ({ navigation }) => {
           fontWeight: "bold",
           marginTop: 60,
           color: colors.text,
+          textAlign: "center"
         }}
       >
         Welcome to Counting!
@@ -68,7 +72,7 @@ const StartScreen1 = ({ navigation }) => {
           images.map((e, index) =>
             <Image 
               key={e}
-              resizeMode="stretch"
+              resizeMode="cover"
               style={styles.slidesWrap}
               source={e}
             />
@@ -105,7 +109,7 @@ const StartScreen1 = ({ navigation }) => {
         onPress={() => navigation.navigate("GameScreen1")}
       />
       <View style={{ height: 50 }} />
-    </View>
+    </ScrollView>
   );
 };
 
@@ -115,7 +119,7 @@ const styles = StyleSheet.create({
   slidesWrap: {
     marginTop: 30,
     width: WIDTH * 0.9,
-    height: HEIGHT * 0.28,
+    height: HEIGHT * 0.4,
     borderRadius: 8,
     borderWidth: 2,
     borderColor: "#6bffc6"
@@ -123,11 +127,11 @@ const styles = StyleSheet.create({
   slidesWrap2: {
     marginTop: 10,
     width: WIDTH * 0.9,
-    height: HEIGHT * 0.28,
+    height: HEIGHT * 0.9,
   },
   slidesDot: {
     position: "absolute",
-    bottom: 180,
+    bottom: 460,
     flexDirection: "row",
     alignSelf: "center"
   },
