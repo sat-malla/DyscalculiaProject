@@ -73,42 +73,42 @@ const GameScreenChallenge1 = ({ navigation }) => {
   ];
 
   const AppleImages = [
-    require("/Users/sathvikm/Documents/DyscalculiaProject/Images/AppleImages/oneApple.png"),
-    require("/Users/sathvikm/Documents/DyscalculiaProject/Images/AppleImages/twoApple.png"),
-    require("/Users/sathvikm/Documents/DyscalculiaProject/Images/AppleImages/threeApple.png"),
-    require("/Users/sathvikm/Documents/DyscalculiaProject/Images/AppleImages/fourApple.png"),
-    require("/Users/sathvikm/Documents/DyscalculiaProject/Images/AppleImages/fiveApple.png"),
-    require("/Users/sathvikm/Documents/DyscalculiaProject/Images/AppleImages/sixApple.png"),
-    require("/Users/sathvikm/Documents/DyscalculiaProject/Images/AppleImages/sevenApple.png"),
-    require("/Users/sathvikm/Documents/DyscalculiaProject/Images/AppleImages/eightApple.png"),
-    require("/Users/sathvikm/Documents/DyscalculiaProject/Images/AppleImages/nineApple.png"),
-    require("/Users/sathvikm/Documents/DyscalculiaProject/Images/AppleImages/tenApple.png"),
+    require("../../Images/AppleImages/oneApple.png"),
+    require("../../Images/AppleImages/twoApple.png"),
+    require("../../Images/AppleImages/threeApple.png"),
+    require("../../Images/AppleImages/fourApple.png"),
+    require("../../Images/AppleImages/fiveApple.png"),
+    require("../../Images/AppleImages/sixApple.png"),
+    require("../../Images/AppleImages/sevenApple.png"),
+    require("../../Images/AppleImages/eightApple.png"),
+    require("../../Images/AppleImages/nineApple.png"),
+    require("../../Images/AppleImages/tenApple.png"),
   ];
 
   const OrangeImages = [
-    require("/Users/sathvikm/Documents/DyscalculiaProject/Images/OrangeImages/oneOrange.png"),
-    require("/Users/sathvikm/Documents/DyscalculiaProject/Images/OrangeImages/twoOrange.png"),
-    require("/Users/sathvikm/Documents/DyscalculiaProject/Images/OrangeImages/threeOrange.png"),
-    require("/Users/sathvikm/Documents/DyscalculiaProject/Images/OrangeImages/fourOrange.png"),
-    require("/Users/sathvikm/Documents/DyscalculiaProject/Images/OrangeImages/fiveOrange.png"),
-    require("/Users/sathvikm/Documents/DyscalculiaProject/Images/OrangeImages/sixOrange.png"),
-    require("/Users/sathvikm/Documents/DyscalculiaProject/Images/OrangeImages/sevenOrange.png"),
-    require("/Users/sathvikm/Documents/DyscalculiaProject/Images/OrangeImages/eightOrange.png"),
-    require("/Users/sathvikm/Documents/DyscalculiaProject/Images/OrangeImages/nineOrange.png"),
-    require("/Users/sathvikm/Documents/DyscalculiaProject/Images/OrangeImages/tenOrange.png"),
+    require("../../Images/OrangeImages/oneOrange.png"),
+    require("../../Images/OrangeImages/twoOrange.png"),
+    require("../../Images/OrangeImages/threeOrange.png"),
+    require("../../Images/OrangeImages/fourOrange.png"),
+    require("../../Images/OrangeImages/fiveOrange.png"),
+    require("../../Images/OrangeImages/sixOrange.png"),
+    require("../../Images/OrangeImages/sevenOrange.png"),
+    require("../../Images/OrangeImages/eightOrange.png"),
+    require("../../Images/OrangeImages/nineOrange.png"),
+    require("../../Images/OrangeImages/tenOrange.png"),
   ];
 
   const BananaImages = [
-    require("/Users/sathvikm/Documents/DyscalculiaProject/Images/BananaImages/oneBanana.png"),
-    require("/Users/sathvikm/Documents/DyscalculiaProject/Images/BananaImages/twoBanana.png"),
-    require("/Users/sathvikm/Documents/DyscalculiaProject/Images/BananaImages/threeBanana.png"),
-    require("/Users/sathvikm/Documents/DyscalculiaProject/Images/BananaImages/fourBanana.png"),
-    require("/Users/sathvikm/Documents/DyscalculiaProject/Images/BananaImages/fiveBanana.png"),
-    require("/Users/sathvikm/Documents/DyscalculiaProject/Images/BananaImages/sixBanana.png"),
-    require("/Users/sathvikm/Documents/DyscalculiaProject/Images/BananaImages/sevenBanana.png"),
-    require("/Users/sathvikm/Documents/DyscalculiaProject/Images/BananaImages/eightBanana.png"),
-    require("/Users/sathvikm/Documents/DyscalculiaProject/Images/BananaImages/nineBanana.png"),
-    require("/Users/sathvikm/Documents/DyscalculiaProject/Images/BananaImages/tenBanana.png"),
+    require("../../Images/BananaImages/oneBanana.png"),
+    require("../../Images/BananaImages/twoBanana.png"),
+    require("../../Images/BananaImages/threeBanana.png"),
+    require("../../Images/BananaImages/fourBanana.png"),
+    require("../../Images/BananaImages/fiveBanana.png"),
+    require("../../Images/BananaImages/sixBanana.png"),
+    require("../../Images/BananaImages/sevenBanana.png"),
+    require("../../Images/BananaImages/eightBanana.png"),
+    require("../../Images/BananaImages/nineBanana.png"),
+    require("../../Images/BananaImages/tenBanana.png"),
   ];
 
   const finishGame = () => {
@@ -195,9 +195,9 @@ const GameScreenChallenge1 = ({ navigation }) => {
                 alignItems: "center",
               }}
             >
-              {/* Give confetti image credit: https://unsplash.com/@dendrolago89 */}
+              {/* Image credit: https://unsplash.com/@dendrolago89 */}
               <ImageBackground
-                source={require("/Users/sathvikm/Documents/DyscalculiaProject/Images/confetti.jpeg")}
+                source={require("../../Images/confetti.jpeg")}
                 imageStyle={{ opacity: 0.2 }}
                 animationType="fade"
                 style={{ width: 378, height: 318, padding: 35 }}

@@ -10,7 +10,6 @@ import {
 import React, { useEffect, useState } from "react";
 import { Text } from "@rneui/base";
 import { LinearGradient } from "expo-linear-gradient";
-import { AntDesign } from "@expo/vector-icons";
 import { useTheme } from "/Users/sathvikm/Documents/DyscalculiaProject/DarkTheme/ThemeProvider.js";
 import { useGlobalState } from "/Users/sathvikm/Documents/DyscalculiaProject/screens/RewardSystem.js";
 
@@ -61,16 +60,16 @@ const buttons1 = [
 ];
 
 const FingerImages = [
-  require("/Users/sathvikm/Documents/DyscalculiaProject/Images/fingerOne.png"),
-  require("/Users/sathvikm/Documents/DyscalculiaProject/Images/fingerTwo.png"),
-  require("/Users/sathvikm/Documents/DyscalculiaProject/Images/fingerThree.png"),
-  require("/Users/sathvikm/Documents/DyscalculiaProject/Images/fingerFour.png"),
-  require("/Users/sathvikm/Documents/DyscalculiaProject/Images/fingerFive.png"),
-  require("/Users/sathvikm/Documents/DyscalculiaProject/Images/fingerSix.png"),
-  require("/Users/sathvikm/Documents/DyscalculiaProject/Images/fingerSeven.png"),
-  require("/Users/sathvikm/Documents/DyscalculiaProject/Images/fingerEight.png"),
-  require("/Users/sathvikm/Documents/DyscalculiaProject/Images/fingerNine.png"),
-  require("/Users/sathvikm/Documents/DyscalculiaProject/Images/fingerTen.png"),
+  require("../../Images/fingerOne.png"),
+  require("../../Images/fingerTwo.png"),
+  require("../../Images/fingerThree.png"),
+  require("../../Images/fingerFour.png"),
+  require("../../Images/fingerFive.png"),
+  require("../../Images/fingerSix.png"),
+  require("../../Images/fingerSeven.png"),
+  require("../../Images/fingerEight.png"),
+  require("../../Images/fingerNine.png"),
+  require("../../Images/fingerTen.png"),
 ];
 
 const GameScreen1 = ({ navigation }) => {
@@ -236,7 +235,7 @@ const GameScreen1 = ({ navigation }) => {
                         onPress={nextGameApple}
                       >
                         <Image
-                          source={require("/Users/sathvikm/Documents/DyscalculiaProject/Images/appleicon.png")}
+                          source={require("../../Images/appleicon.png")}
                           style={{ width: 30, height: 30 }}
                         />
                       </TouchableOpacity>
@@ -260,7 +259,7 @@ const GameScreen1 = ({ navigation }) => {
                         onPress={nextGameOrange}
                       >
                         <Image
-                          source={require("/Users/sathvikm/Documents/DyscalculiaProject/Images/orangeicon.png")}
+                          source={require("../../Images/orangeicon.png")}
                           style={{ width: 30, height: 30 }}
                         />
                       </TouchableOpacity>
@@ -286,7 +285,7 @@ const GameScreen1 = ({ navigation }) => {
                         onPress={nextGameBanana}
                       >
                         <Image
-                          source={require("/Users/sathvikm/Documents/DyscalculiaProject/Images/bananaicon.png")}
+                          source={require("../../Images/bananaicon.png")}
                           style={{ width: 30, height: 30 }}
                         />
                       </TouchableOpacity>

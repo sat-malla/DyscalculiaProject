@@ -3,10 +3,9 @@ import {
   Button,
   View,
   ScrollView,
-  ActivityIndicator,
   Dimensions
 } from "react-native";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useTheme } from "/Users/sathvikm/Documents/DyscalculiaProject/DarkTheme/ThemeProvider.js";
 import { Text } from "@rneui/base";
 import YoutubeIframe from "react-native-youtube-iframe";

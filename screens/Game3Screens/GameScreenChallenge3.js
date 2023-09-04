@@ -1,5 +1,4 @@
 import {
-  FlatList,
   StyleSheet,
   TouchableOpacity,
   View,
@@ -12,7 +11,7 @@ import {
   Keyboard,
   TouchableWithoutFeedback,
 } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Text, Input, Button } from "@rneui/base";
 import { useTheme } from "/Users/sathvikm/Documents/DyscalculiaProject/DarkTheme/ThemeProvider.js";
 import { LinearGradient } from "expo-linear-gradient";
@@ -131,7 +130,7 @@ const GameScreenChallenge3 = ({ navigation }) => {
                   }}
                 >
                   <ImageBackground
-                    source={require("/Users/sathvikm/Documents/DyscalculiaProject/Images/confetti.jpeg")}
+                    source={require("../../Images/confetti.jpeg")}
                     imageStyle={{ opacity: 0.2 }}
                     animationType="fade"
                     style={{ width: 378, height: 318, padding: 25 }}
@@ -239,7 +238,7 @@ const GameScreenChallenge3 = ({ navigation }) => {
                     Close.
                   </Text>
                   <Image
-                    source={require("/Users/sathvikm/Documents/DyscalculiaProject/Images/MultiplicationTable.jpg")}
+                    source={require("../../Images/MultiplicationTable.jpg")}
                     style={{
                       width: 350,
                       height: 350,

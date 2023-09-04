@@ -14,11 +14,10 @@ import React, { useState, useLayoutEffect } from "react";
 import { Text, Button } from "@rneui/base";
 import { useTheme } from "../DarkTheme/ThemeProvider.js";
 import { useHeaderHeight } from "@react-navigation/elements";
-import { AntDesign, FontAwesome, Feather, Entypo } from "@expo/vector-icons";
+import { Feather, Entypo } from "@expo/vector-icons";
 import { CheckBox } from "@rneui/base";
 import { Link } from "@react-navigation/native";
 import { auth, db } from "../firebase.js";
-import firebase from "firebase/compat/app";
 import { useGlobalState } from "/Users/sathvikm/Documents/DyscalculiaProject/screens/RewardSystem.js";
 
 const Register = ({ navigation }) => {
@@ -122,7 +121,7 @@ const Register = ({ navigation }) => {
               Register for customized profile pictures, achievements, and more!
             </Text>
             <Image
-              source={require("/Users/sathvikm/Documents/DyscalculiaProject/Images/registerPic.png")}
+              source={require("../Images/registerPic.png")}
               style={{
                 width: 300,
                 height: 220,

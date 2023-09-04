@@ -147,7 +147,7 @@ const GameScreenChallenge4 = ({ navigation }) => {
                   }}
                 >
                   <ImageBackground
-                    source={require("/Users/sathvikm/Documents/DyscalculiaProject/Images/confetti.jpeg")}
+                    source={require("../../Images/confetti.jpeg")}
                     imageStyle={{ opacity: 0.2 }}
                     animationType="fade"
                     style={{ width: 378, height: 318, padding: 25 }}

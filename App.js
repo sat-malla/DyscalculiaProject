@@ -1,9 +1,9 @@
 import "react-native-gesture-handler";
 import { StyleSheet, TouchableOpacity, Image } from "react-native";
 import { Text } from "@rneui/base";
-import { NavigationContainer, useNavigation } from "@react-navigation/native";
+import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import React, { useState } from "react";
+import React from "react";
 import { AntDesign } from "@expo/vector-icons";
 import { ThemeProvider } from "/Users/sathvikm/Documents/DyscalculiaProject/DarkTheme/ThemeProvider.js";
 
@@ -61,7 +61,7 @@ const globalScreenOptions = {
 
 // Screen titles in functions
 function HomeTitle({ navigation }) {
-  return <Image style={{ height: 30, width: 150, marginTop: 10 }} source={require("/Users/sathvikm/Documents/DyscalculiaProject/Images/LearnCuliaHeader.png")} />;
+  return <Image style={{ height: 30, width: 150, marginTop: 10 }} source={require("./Images/LearnCuliaHeader.png")} />;
 }
 
 function InfoTitle({ navigation }) {

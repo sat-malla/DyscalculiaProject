@@ -1,19 +1,19 @@
-import { StyleSheet, Button, View, ActivityIndicator, ScrollView, Dimensions, Image } from "react-native";
-import React, { useEffect, useState } from "react";
+import { StyleSheet, Button, View, ScrollView, Dimensions, Image } from "react-native";
+import React, { useState } from "react";
 import { useTheme } from "/Users/sathvikm/Documents/DyscalculiaProject/DarkTheme/ThemeProvider.js";
 import { Text } from "@rneui/base";
 
 const images = [
-  require("/Users/sathvikm/Documents/DyscalculiaProject/Images/fingerOneSlide.png"),
-  require("/Users/sathvikm/Documents/DyscalculiaProject/Images/fingerTwoSlide.png"),
-  require("/Users/sathvikm/Documents/DyscalculiaProject/Images/fingerThreeSlide.png"),
-  require("/Users/sathvikm/Documents/DyscalculiaProject/Images/fingerFourSlide.png"),
-  require("/Users/sathvikm/Documents/DyscalculiaProject/Images/fingerFiveSlide.png"),
-  require("/Users/sathvikm/Documents/DyscalculiaProject/Images/fingerSixSlide.png"),
-  require("/Users/sathvikm/Documents/DyscalculiaProject/Images/fingerSevenSlide.png"),
-  require("/Users/sathvikm/Documents/DyscalculiaProject/Images/fingerEightSlide.png"),
-  require("/Users/sathvikm/Documents/DyscalculiaProject/Images/fingerNineSlide.png"),
-  require("/Users/sathvikm/Documents/DyscalculiaProject/Images/fingerTenSlide.png")
+  require("../../Images/fingerOneSlide.png"),
+  require("../../Images/fingerTwoSlide.png"),
+  require("../../Images/fingerThreeSlide.png"),
+  require("../../Images/fingerFourSlide.png"),
+  require("../../Images/fingerFiveSlide.png"),
+  require("../../Images/fingerSixSlide.png"),
+  require("../../Images/fingerSevenSlide.png"),
+  require("../../Images/fingerEightSlide.png"),
+  require("../../Images/fingerNineSlide.png"),
+  require("../../Images/fingerTenSlide.png")
 ]
 
 const WIDTH = Dimensions.get('window').width;

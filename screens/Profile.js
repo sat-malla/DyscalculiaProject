@@ -6,22 +6,20 @@ import {
   TouchableOpacity,
   Button,
 } from "react-native";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Text, ButtonGroup } from "@rneui/base";
 import { useTheme } from "../DarkTheme/ThemeProvider.js";
 import {
   Ionicons,
   MaterialCommunityIcons,
   Feather,
-  AntDesign,
-  Entypo,
 } from "@expo/vector-icons";
 import FlashMessage, { showMessage } from "react-native-flash-message";
 import { useGlobalState } from "/Users/sathvikm/Documents/DyscalculiaProject/screens/RewardSystem.js";
 import { auth, db } from "../firebase.js";
 
 const Profile = ({ navigation }) => {
-  const { colors, dark, setScheme } = useTheme();
+  const { colors } = useTheme();
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [glasses, setGlasses] = useState(false);
   const [partyHat, setPartyHat] = useState(false);
@@ -107,9 +105,6 @@ const Profile = ({ navigation }) => {
     loadUserData();
   }, []);
 
-  const toggleTheme = () => {
-    dark ? setScheme("light") : setScheme("dark");
-  };
 
   const buttonOptions = ["Male", "Female"];
   // Add glasses and party hat profile pictures
@@ -158,8 +153,8 @@ const Profile = ({ navigation }) => {
             <Image
               source={
                 selectedIndex == 0
-                  ? require("/Users/sathvikm/Documents/DyscalculiaProject/Images/maleGPHProfilePic.png")
-                  : require("/Users/sathvikm/Documents/DyscalculiaProject/Images/femaleGPHProfilePic.png")
+                  ? require("../Images/maleGPHProfilePic.png")
+                  : require("../Images/femaleGPHProfilePic.png")
               }
               style={{ width: 400, height: 400 }}
             />
@@ -167,8 +162,8 @@ const Profile = ({ navigation }) => {
             <Image
               source={
                 selectedIndex == 0
-                  ? require("/Users/sathvikm/Documents/DyscalculiaProject/Images/maleGlassesProfilePic.png")
-                  : require("/Users/sathvikm/Documents/DyscalculiaProject/Images/femaleGlassesProfilePic.png")
+                  ? require("../Images/maleGlassesProfilePic.png")
+                  : require("../Images/femaleGlassesProfilePic.png")
               }
               style={{ width: 400, height: 400 }}
             />
@@ -176,8 +171,8 @@ const Profile = ({ navigation }) => {
             <Image
               source={
                 selectedIndex == 0
-                  ? require("/Users/sathvikm/Documents/DyscalculiaProject/Images/malePHProfilePic.png")
-                  : require("/Users/sathvikm/Documents/DyscalculiaProject/Images/femalePHProfilePic.png")
+                  ? require("../Images/malePHProfilePic.png")
+                  : require("../Images/femalePHProfilePic.png")
               }
               style={{ width: 400, height: 400 }}
             />
@@ -185,60 +180,12 @@ const Profile = ({ navigation }) => {
             <Image
               source={
                 selectedIndex == 0
-                  ? require("/Users/sathvikm/Documents/DyscalculiaProject/Images/maleProfilePic.png")
-                  : require("/Users/sathvikm/Documents/DyscalculiaProject/Images/femaleProfilePic.png")
+                  ? require("../Images/maleProfilePic.png")
+                  : require("../Images/femaleProfilePic.png")
               }
               style={{ width: 400, height: 400 }}
             />
           )}
-          {dark ? (
-            <Text
-              style={{
-                alignSelf: "center",
-                fontSize: 30,
-                fontWeight: "bold",
-                marginTop: 40,
-                color: colors.text,
-              }}
-            >
-              Light Mode:
-            </Text>
-          ) : (
-            <Text
-              style={{
-                alignSelf: "center",
-                fontSize: 30,
-                fontWeight: "bold",
-                marginTop: 40,
-                color: colors.text,
-              }}
-            >
-              Dark Mode:
-            </Text>
-          )}
-          <TouchableOpacity
-            onPress={toggleTheme}
-            style={{
-              marginTop: 15,
-              marginBottom: 70,
-              width: "95%",
-              height: "3.5%",
-              alignItems: "center",
-              justifyContent: "center",
-              borderRadius: 8,
-              borderWidth: 2,
-              padding: 5,
-              paddingHorizontal: 6,
-              backgroundColor: dark ? "#2E293A" : "white",
-              borderColor: dark ? "white" : "black",
-            }}
-          >
-            {dark ? (
-              <Entypo name="light-up" size={25} color={"white"} />
-            ) : (
-              <Ionicons name="moon" size={25} color={"black"} />
-            )}
-          </TouchableOpacity>
           <ButtonGroup
             buttons={buttonOptions}
             selectedIndex={selectedIndex}
@@ -482,7 +429,7 @@ const Profile = ({ navigation }) => {
             You're not logged in! Log in or Register to access your Profile!
           </Text>
           <Image
-            source={require("/Users/sathvikm/Documents/DyscalculiaProject/Images/notRegistered.png")}
+            source={require("../Images/notRegistered.png")}
             style={{ width: 300, height: 320, marginTop: 150, borderRadius: 8 }}
           />
         </View>

@@ -3,7 +3,7 @@ import React from "react";
 import { Text } from "@rneui/base";
 import { useTheme } from "../DarkTheme/ThemeProvider.js";
 
-const Info = () => {
+const Info = ({ navigation }) => {
   const { colors } = useTheme();
 
   return (
@@ -139,6 +139,12 @@ const Info = () => {
         title="Contact here"
         color={colors.buttonColor}
         onPress={() => navigation.navigate("Suggest")}
+      />
+      <Text style={{ fontSize: 20, marginTop: 20, color: colors.text }}>Check Terms & Conditions Here: </Text>
+      <Button
+        title="Terms & Conditions"
+        color={colors.buttonColor}
+        onPress={() => navigation.navigate("TermsAndCo")}
       />
       <View style={{ height: 100 }} />
     </ScrollView>

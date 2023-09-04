@@ -1,5 +1,4 @@
 import {
-  FlatList,
   StyleSheet,
   TouchableOpacity,
   View,
@@ -11,9 +10,8 @@ import {
   Keyboard,
   TouchableWithoutFeedback,
 } from "react-native";
-import React, { useEffect, useState, useLayoutEffect } from "react";
+import React, { useState, useLayoutEffect } from "react";
 import { Text, Input, Button } from "@rneui/base";
-import { Divider } from "@rneui/themed";
 import { useTheme } from "/Users/sathvikm/Documents/DyscalculiaProject/DarkTheme/ThemeProvider.js";
 import { LinearGradient } from "expo-linear-gradient";
 import { AntDesign, FontAwesome } from "@expo/vector-icons";
@@ -246,7 +244,7 @@ const GameScreen3 = ({ navigation }) => {
                     Multiplication Table:
                   </Text>
                   <Image
-                    source={require("/Users/sathvikm/Documents/DyscalculiaProject/Images/MultiplicationTable.jpg")}
+                    source={require("../../Images/MultiplicationTable.jpg")}
                     style={{
                       width: 350,
                       height: 350,

@@ -3,15 +3,13 @@ import {
   View,
   FlatList,
   TouchableOpacity,
-  Image,
   Modal,
   ImageBackground,
   Pressable,
-  Animated,
   Button,
 } from "react-native";
 import { Text } from "@rneui/base";
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 import { AntDesign } from "@expo/vector-icons";
 import { useTheme } from "../DarkTheme/ThemeProvider.js";
 import { LinearGradient } from "expo-linear-gradient";
@@ -29,19 +27,19 @@ const SinglePlayer = ({ navigation }) => {
     {
       id: "1",
       title: "Counting",
-      image: require("/Users/sathvikm/Documents/DyscalculiaProject/Images/Game1Image.png"),
+      image: require("../Images/Game1Image.png"),
       openModal: () => setFirstGameModal(true),
     },
     {
       id: "2",
       title: "Multiplication",
-      image: require("/Users/sathvikm/Documents/DyscalculiaProject/Images/Game3Image.png"),
+      image: require("../Images/Game3Image.png"),
       openModal: () => setThirdGameModal(true),
     },
     {
       id: "3",
       title: "Comparisons",
-      image: require("/Users/sathvikm/Documents/DyscalculiaProject/Images/Game5Image.png"),
+      image: require("../Images/Game5Image.png"),
       openModal: () => setFifthGameModal(true),
     },
   ];
@@ -50,19 +48,19 @@ const SinglePlayer = ({ navigation }) => {
     {
       id: "4",
       title: "Addition & Subtraction",
-      image: require("/Users/sathvikm/Documents/DyscalculiaProject/Images/Game2Image.png"),
+      image: require("../Images/Game2Image.png"),
       openModal: () => setSecondGameModal(true),
     },
     {
       id: "5",
       title: "Reversing Math Equations",
-      image: require("/Users/sathvikm/Documents/DyscalculiaProject/Images/Game4Image.png"),
+      image: require("../Images/Game4Image.png"),
       openModal: () => setFourthGameModal(true),
     },
     {
       id: "6",
       title: "Arranging Numbers",
-      image: require("/Users/sathvikm/Documents/DyscalculiaProject/Images/Game6Image.png"),
+      image: require("../Images/Game6Image.png"),
       openModal: () => setSixthGameModal(true),
     },
   ];
@@ -176,7 +174,7 @@ const SinglePlayer = ({ navigation }) => {
               }}
             >
               <ImageBackground
-                source={require("/Users/sathvikm/Documents/DyscalculiaProject/Images/Game1Image.png")}
+                source={require("../Images/Game1Image.png")}
                 imageStyle={{ opacity: 0.2 }}
                 animationType="fade"
                 style={{ width: 378, height: 358, padding: 20 }}
@@ -297,7 +295,7 @@ const SinglePlayer = ({ navigation }) => {
               }}
             >
               <ImageBackground
-                source={require("/Users/sathvikm/Documents/DyscalculiaProject/Images/Game2Image.png")}
+                source={require("../Images/Game2Image.png")}
                 imageStyle={{ opacity: 0.2 }}
                 animationType="fade"
                 style={{ width: 378, height: 318, padding: 20 }}
@@ -417,7 +415,7 @@ const SinglePlayer = ({ navigation }) => {
               }}
             >
               <ImageBackground
-                source={require("/Users/sathvikm/Documents/DyscalculiaProject/Images/Game3Image.png")}
+                source={require("../Images/Game3Image.png")}
                 imageStyle={{ opacity: 0.2 }}
                 animationType="fade"
                 style={{ width: 378, height: 318, padding: 20 }}
@@ -536,7 +534,7 @@ const SinglePlayer = ({ navigation }) => {
               }}
             >
               <ImageBackground
-                source={require("/Users/sathvikm/Documents/DyscalculiaProject/Images/Game4Image.png")}
+                source={require("../Images/Game4Image.png")}
                 imageStyle={{ opacity: 0.2 }}
                 animationType="fade"
                 style={{ width: 378, height: 318, padding: 20 }}
@@ -656,7 +654,7 @@ const SinglePlayer = ({ navigation }) => {
               }}
             >
               <ImageBackground
-                source={require("/Users/sathvikm/Documents/DyscalculiaProject/Images/Game5Image.png")}
+                source={require("../Images/Game5Image.png")}
                 imageStyle={{ opacity: 0.2 }}
                 animationType="fade"
                 style={{ width: 378, height: 318, padding: 20 }}
@@ -776,7 +774,7 @@ const SinglePlayer = ({ navigation }) => {
               }}
             >
               <ImageBackground
-                source={require("/Users/sathvikm/Documents/DyscalculiaProject/Images/Game6Image.png")}
+                source={require("../Images/Game6Image.png")}
                 imageStyle={{ opacity: 0.2 }}
                 animationType="fade"
                 style={{ width: 378, height: 318, padding: 20 }}

@@ -11,7 +11,7 @@ import {
   ScrollView,
   Alert,
 } from "react-native";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Text, Button } from "@rneui/base";
 import { useTheme } from "../DarkTheme/ThemeProvider.js";
 import { useHeaderHeight } from "@react-navigation/elements";
@@ -96,7 +96,7 @@ const Login = ({ navigation }) => {
               more!
             </Text>
             <Image
-              source={require("/Users/sathvikm/Documents/DyscalculiaProject/Images/loginPic.png")}
+              source={require("../Images/loginPic.png")}
               style={{
                 width: 300,
                 height: 150,

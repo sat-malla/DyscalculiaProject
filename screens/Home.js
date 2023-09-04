@@ -7,17 +7,20 @@ import {
   ScrollView,
 } from "react-native";
 import { Text } from "@rneui/base";
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import { useTheme } from "../DarkTheme/ThemeProvider.js";
 import { useGlobalState } from "/Users/sathvikm/Documents/DyscalculiaProject/screens/RewardSystem.js";
-import { AntDesign, Ionicons } from "@expo/vector-icons";
+import { AntDesign, Ionicons, Entypo } from "@expo/vector-icons";
 
 const Home = ({ navigation }) => {
-  const { colors } = useTheme();
+  const { colors, dark, setScheme } = useTheme();
   const [heyThere, setHeyThere] = useState(false);
   const [registered, isRegistered] = useGlobalState("registered");
 
+  const toggleTheme = () => {
+    dark ? setScheme("light") : setScheme("dark");
+  };
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -102,7 +105,7 @@ const Home = ({ navigation }) => {
               style={{ marginTop: -20, marginBottom: 20, marginRight: 50 }}
             />
             <Image
-              source={require("/Users/sathvikm/Documents/DyscalculiaProject/Images/helloHome.png")}
+              source={require("../Images/helloHome.png")}
               style={{ width: 300, height: 200, borderRadius: 6 }}
             />
             <Text
@@ -218,7 +221,55 @@ const Home = ({ navigation }) => {
         color={colors.buttonColor}
         onPress={() => navigation.navigate("Suggest")}
       />
-      <View style={{ height: 70, marginTop: 200 }} />
+      {dark ? (
+            <Text
+              style={{
+                alignSelf: "center",
+                fontSize: 30,
+                fontWeight: "bold",
+                marginTop: 40,
+                color: colors.text,
+              }}
+            >
+              Light Mode:
+            </Text>
+          ) : (
+            <Text
+              style={{
+                alignSelf: "center",
+                fontSize: 30,
+                fontWeight: "bold",
+                marginTop: 40,
+                color: colors.text,
+              }}
+            >
+              Dark Mode:
+            </Text>
+          )}
+          <TouchableOpacity
+            onPress={toggleTheme}
+            style={{
+              marginTop: 15,
+              marginBottom: 70,
+              width: "95%",
+              height: "3.5%",
+              alignItems: "center",
+              justifyContent: "center",
+              borderRadius: 8,
+              borderWidth: 2,
+              padding: 5,
+              paddingHorizontal: 6,
+              backgroundColor: dark ? "#2E293A" : "white",
+              borderColor: dark ? "white" : "black",
+            }}
+          >
+            {dark ? (
+              <Entypo name="light-up" size={25} color={"white"} />
+            ) : (
+              <Ionicons name="moon" size={25} color={"black"} />
+            )}
+          </TouchableOpacity>
+      <View style={{ height: 70, marginTop: 500 }} />
     </ScrollView>
   );
 };
