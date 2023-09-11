@@ -18,7 +18,7 @@ import { useHeaderHeight } from "@react-navigation/elements";
 import { Link } from "@react-navigation/native";
 import { Feather } from "@expo/vector-icons";
 import { auth } from "../firebase.js";
-import { useGlobalState } from "/Users/sathvikm/Documents/DyscalculiaProject/screens/RewardSystem.js";
+import { useGlobalState } from "../RewardSystem";
 
 const Login = ({ navigation }) => {
   const { dark, colors } = useTheme();

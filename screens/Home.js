@@ -10,7 +10,7 @@ import { Text } from "@rneui/base";
 import React, { useLayoutEffect, useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import { useTheme } from "../DarkTheme/ThemeProvider.js";
-import { useGlobalState } from "/Users/sathvikm/Documents/DyscalculiaProject/screens/RewardSystem.js";
+import { useGlobalState } from "./RewardSystem.js";
 import { AntDesign, Ionicons, Entypo } from "@expo/vector-icons";
 
 const Home = ({ navigation }) => {

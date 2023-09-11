@@ -5,7 +5,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
 import { AntDesign } from "@expo/vector-icons";
-import { ThemeProvider } from "/Users/sathvikm/Documents/DyscalculiaProject/DarkTheme/ThemeProvider.js";
+import { ThemeProvider } from "./DarkTheme/ThemeProvider"
 
 // Importing Screens
 import Home from "./screens/Home";

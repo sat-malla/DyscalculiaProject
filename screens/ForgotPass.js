@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import { Text, Button } from "@rneui/base";
-import { useTheme } from "../DarkTheme/ThemeProvider.js";
+import { ThemeProvider } from "../DarkTheme/ThemeProvider"
 import { useHeaderHeight } from "@react-navigation/elements";
 import { auth } from "../firebase.js";
 

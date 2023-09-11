@@ -12,7 +12,7 @@ import {
 } from "react-native";
 import React, { useState, useLayoutEffect } from "react";
 import { Text, Input, Button } from "@rneui/base";
-import { useTheme } from "/Users/sathvikm/Documents/DyscalculiaProject/DarkTheme/ThemeProvider.js";
+import { useTheme } from "../DarkTheme/ThemeProvider.js";
 import { LinearGradient } from "expo-linear-gradient";
 import { AntDesign, FontAwesome } from "@expo/vector-icons";
 import { useHeaderHeight } from "@react-navigation/elements";

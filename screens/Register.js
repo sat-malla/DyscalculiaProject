@@ -18,7 +18,7 @@ import { Feather, Entypo } from "@expo/vector-icons";
 import { CheckBox } from "@rneui/base";
 import { Link } from "@react-navigation/native";
 import { auth, db } from "../firebase.js";
-import { useGlobalState } from "/Users/sathvikm/Documents/DyscalculiaProject/screens/RewardSystem.js";
+import { useGlobalState } from "./RewardSystem.js";
 
 const Register = ({ navigation }) => {
   const { dark, colors } = useTheme();

@@ -15,7 +15,7 @@ import {
   Feather,
 } from "@expo/vector-icons";
 import FlashMessage, { showMessage } from "react-native-flash-message";
-import { useGlobalState } from "/Users/sathvikm/Documents/DyscalculiaProject/screens/RewardSystem.js";
+import { useGlobalState } from "./RewardSystem.js";
 import { auth, db } from "../firebase.js";
 
 const Profile = ({ navigation }) => {
