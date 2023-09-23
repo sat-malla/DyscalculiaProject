@@ -1,6 +1,6 @@
 import { StyleSheet, Button, View, ScrollView, Dimensions, Image } from "react-native";
 import React, { useState } from "react";
-import { useTheme } from "../DarkTheme/ThemeProvider.js";
+import { useTheme } from "../../DarkTheme/ThemeProvider";
 import { Text } from "@rneui/base";
 
 const images = [

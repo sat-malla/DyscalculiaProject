@@ -9,11 +9,11 @@ import {
   Image,
 } from "react-native";
 import React, { useState } from "react";
-import { useTheme } from "../DarkTheme/ThemeProvider.js";
+import { useTheme } from "../../DarkTheme/ThemeProvider";
 import { Text } from "@rneui/base";
 import { LinearGradient } from "expo-linear-gradient";
 import { AntDesign } from "@expo/vector-icons";
-import { useGlobalState } from "./RewardSystem.js";
+import { useGlobalState } from "../RewardSystem.js";
 
 const GameScreenChallenge1 = ({ navigation }) => {
   const { colors } = useTheme();

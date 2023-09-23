@@ -11,7 +11,7 @@ import {
 import React, { useEffect, useState } from "react";
 import { Text } from "@rneui/base";
 import { LinearGradient } from "expo-linear-gradient";
-import { useTheme } from "../DarkTheme/ThemeProvider.js";
+import { useTheme } from "../../DarkTheme/ThemeProvider";
 import { useGlobalState } from "../RewardSystem";
 
 const buttons = [

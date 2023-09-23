@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import { Text, Button } from "@rneui/base";
-import { useTheme } from "../DarkTheme/ThemeProvider.js";
+import { useTheme } from "../../DarkTheme/ThemeProvider";
 import { LinearGradient } from "expo-linear-gradient";
 import { AntDesign } from "@expo/vector-icons";
 import DropDownPicker from "react-native-dropdown-picker";

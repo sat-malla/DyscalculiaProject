@@ -6,7 +6,7 @@ import {
   Dimensions
 } from "react-native";
 import React from "react";
-import { useTheme } from "../DarkTheme/ThemeProvider.js";
+import { useTheme } from "../../DarkTheme/ThemeProvider";
 import { Text } from "@rneui/base";
 import YoutubeIframe from "react-native-youtube-iframe";
 
