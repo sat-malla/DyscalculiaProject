@@ -99,7 +99,7 @@ const GameScreen3 = ({ navigation }) => {
         paddingHorizontal: 20,
         flex: 1,
       }}
-      keyboardVerticalOffset={myHeaderHeight + 107}
+      keyboardVerticalOffset={height + 107}
     >
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View
