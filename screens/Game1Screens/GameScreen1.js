@@ -146,7 +146,7 @@ const GameScreen1 = ({ navigation }) => {
       }}
       contentContainerStyle={{
         alignItems: "center",
-        paddingHorizontal: 20,
+        paddingHorizontal: 15,
       }}
       scrollIndicatorInsets={{ right: 1 }}
     >
@@ -198,8 +198,8 @@ const GameScreen1 = ({ navigation }) => {
                   end={{ x: 1, y: 0.8 }}
                   style={{
                     borderRadius: 16,
-                    height: 228,
-                    width: 408,
+                    height: 218,
+                    width: 378,
                     alignItems: "center",
                     padding: 5,
                   }}
@@ -307,7 +307,7 @@ const GameScreen1 = ({ navigation }) => {
           <Text
             style={{
               color: colors.text,
-              marginTop: 60,
+              marginTop: 50,
               fontSize: 25,
               fontWeight: "bold",
               textAlign: "center",
@@ -342,7 +342,7 @@ const GameScreen1 = ({ navigation }) => {
                 style={{
                   color: colors.text,
                   marginTop: 10,
-                  fontSize: 20,
+                  fontSize: 18,
                   textAlign: "center",
                 }}
               >
@@ -355,15 +355,15 @@ const GameScreen1 = ({ navigation }) => {
                   style={
                     number > 0 && number < 6
                       ? {
-                          width: 200,
-                          height: 300,
+                          width: 100,
+                          height: 200,
                           alignSelf: "center",
                           marginTop: 30,
                           resizeMode: "stretch",
                         }
                       : {
-                          width: 400,
-                          height: 300,
+                          width: 300,
+                          height: 200,
                           alignSelf: "center",
                           marginTop: 30,
                           resizeMode: "stretch",
@@ -423,7 +423,7 @@ const GameScreen1 = ({ navigation }) => {
                   flexDirection: "row",
                   justifyContent: "center",
                 }}
-                style={{ marginTop: -150 }}
+                style={{ marginTop: -200 }}
                 keyExtractor={(item) => item.id}
                 renderItem={({ item }) => (
                   <TouchableOpacity
@@ -452,7 +452,7 @@ const GameScreen1 = ({ navigation }) => {
           )}
         </View>
       )}
-      <View style={{ height: 130 }} />
+      <View style={{ height: 150 }} />
     </ScrollView>
   );
 };

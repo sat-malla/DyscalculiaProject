@@ -5,6 +5,7 @@ import {
   View,
   Pressable,
   Modal,
+  ScrollView
 } from "react-native";
 import React, { useState } from "react";
 import { Text, Button } from "@rneui/base";
@@ -147,12 +148,15 @@ const GameScreen5 = ({ navigation }) => {
   };
 
   return (
-    <View
+    <ScrollView
       style={{
-        alignItems: "center",
         height: "100%",
         backgroundColor: colors.primary,
       }}
+      contentContainerStyle={{
+        alignItems: "center",
+      }}
+      scrollIndicatorInsets={{ right: 1 }}
     >
       <Modal
         animationType="fade"
@@ -310,7 +314,7 @@ const GameScreen5 = ({ navigation }) => {
               setItems={setItems}
               dropDownContainerStyle={{
                 width: 70,
-                marginLeft: 20,
+                marginLeft: 2,
                 backgroundColor: colors.primary,
                 borderColor: colors.text,
               }}
@@ -455,7 +459,8 @@ const GameScreen5 = ({ navigation }) => {
           )}
         </View>
       )}
-    </View>
+      <View style={{ height: 300 }} />
+    </ScrollView>
   );
 };
 

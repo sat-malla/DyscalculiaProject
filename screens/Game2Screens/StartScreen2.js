@@ -33,6 +33,7 @@ const StartScreen2 = ({ navigation }) => {
           fontWeight: "bold",
           marginTop: 60,
           color: colors.text,
+          textAlign: "center",
         }}
       >
         Welcome to Addition & Subtraction!

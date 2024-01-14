@@ -2,7 +2,7 @@
   "expo": {
     "name": "LearnCulia",
     "slug": "LearnCulia",
-    "version": "1.0.0",
+    "version": "1.0.5",
     "orientation": "portrait",
     "icon": "./assets/LearnCuliaIcon.png",
     "userInterfaceStyle": "light",

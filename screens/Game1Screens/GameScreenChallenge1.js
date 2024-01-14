@@ -7,6 +7,7 @@ import {
   Pressable,
   ImageBackground,
   Image,
+  ScrollView
 } from "react-native";
 import React, { useState } from "react";
 import { useTheme } from "../../DarkTheme/ThemeProvider";
@@ -150,14 +151,17 @@ const GameScreenChallenge1 = ({ navigation }) => {
   };
 
   return (
-    <View
-      style={{
-        alignItems: "center",
-        height: "100%",
-        backgroundColor: colors.primary,
-        paddingHorizontal: 20,
-      }}
-    >
+    <ScrollView
+    style={{
+      backgroundColor: colors.primary,
+      flex: 1
+    }}
+    contentContainerStyle={{
+      alignItems: "center",
+      paddingHorizontal: 15,
+    }}
+    scrollIndicatorInsets={{ right: 1 }}
+  >
       <Modal
         animationType="fade"
         transparent={true}
@@ -248,7 +252,7 @@ const GameScreenChallenge1 = ({ navigation }) => {
       <Text
         style={{
           color: colors.text,
-          marginTop: 60,
+          marginTop: 50,
           fontSize: 25,
           fontWeight: "bold",
           textAlign: "center",
@@ -290,13 +294,23 @@ const GameScreenChallenge1 = ({ navigation }) => {
           {image && (
             <Image
               source={image}
-              style={{
-                width: 400,
-                height: 300,
-                alignSelf: "center",
-                marginTop: 30,
-                resizeMode: "stretch",
-              }}
+              style={
+                number > 0 && number < 6
+                  ? {
+                      width: 300,
+                      height: 150,
+                      alignSelf: "center",
+                      marginTop: 30,
+                      resizeMode: "stretch",
+                    }
+                  : {
+                      width: 300,
+                      height: 200,
+                      alignSelf: "center",
+                      marginTop: 30,
+                      resizeMode: "stretch",
+                    }
+              }
             />
           )}
           {buttonClicked ? (
@@ -370,7 +384,7 @@ const GameScreenChallenge1 = ({ navigation }) => {
           />
         </View>
       )}
-    </View>
+    </ScrollView>
   );
 };
 

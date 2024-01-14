@@ -8,6 +8,7 @@ import {
   ActivityIndicator,
   Platform,
   Keyboard,
+  ScrollView,
   TouchableWithoutFeedback,
 } from "react-native";
 import React, { useEffect, useState } from "react";
@@ -167,11 +168,14 @@ const GameScreen2 = ({ navigation }) => {
           }}
           contentContainerStyle={{
             flexDirection: "column",
-            paddingHorizontal: 20,
+            paddingHorizontal: 10,
             flex: 1
           }}
           keyboardVerticalOffset={myHeaderHeight + 107}
         >
+          <ScrollView
+             scrollIndicatorInsets={{ right: 1 }}
+          >
           <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <View
               style={{
@@ -320,7 +324,7 @@ const GameScreen2 = ({ navigation }) => {
                       alignItems: "center",
                       justifyContent: "flex-start",
                       marginRight: 150,
-                      paddingHorizontal: 20,
+                      paddingHorizontal: 10,
                     }}
                   >
                     <View
@@ -342,7 +346,7 @@ const GameScreen2 = ({ navigation }) => {
                         buttonStyle={{
                           borderRadius: 8,
                           backgroundColor: "#6bffc6",
-                          borderWidth: 1.5,
+                          borderWidth: 1,
                           borderColor: "black",
                         }}
                         titleStyle={{
@@ -500,6 +504,7 @@ const GameScreen2 = ({ navigation }) => {
               )}
             </View>
           </TouchableWithoutFeedback>
+          </ScrollView>
         </KeyboardAvoidingView>
       )}
     </View>

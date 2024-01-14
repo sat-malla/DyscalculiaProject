@@ -4,6 +4,7 @@ import {
   TouchableOpacity,
   View,
   Pressable,
+  ScrollView,
   Modal,
   ImageBackground,
 } from "react-native";
@@ -166,13 +167,16 @@ const GameScreenChallenge5 = ({ navigation }) => {
   ];
 
   return (
-    <View
-      style={{
-        alignItems: "center",
-        height: "100%",
-        backgroundColor: colors.primary,
-      }}
-    >
+    <ScrollView
+    style={{
+      height: "100%",
+      backgroundColor: colors.primary,
+    }}
+    contentContainerStyle={{
+      alignItems: "center",
+    }}
+    scrollIndicatorInsets={{ right: 1 }}
+  >
       <Modal
         animationType="fade"
         transparent={true}
@@ -497,7 +501,7 @@ const GameScreenChallenge5 = ({ navigation }) => {
           )}
         </View>
       )}
-    </View>
+    </ScrollView>
   );
 };
 
